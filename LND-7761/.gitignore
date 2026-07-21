@@ -1,0 +1,11 @@
+# Generated report output
+land_repos_report.csv
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# IDE
+.idea/

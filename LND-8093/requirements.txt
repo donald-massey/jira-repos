@@ -1,0 +1,6 @@
+boto3==1.33.13
+botocore==1.33.13
+pypdf==3.17.4
+python-dotenv==0.21.1
+Pebble==5.0.7
+pyodbc==5.0.0b3

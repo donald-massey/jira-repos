@@ -1,0 +1,254 @@
+================================================================================
+LND-6796 — Open-Item Walk-Through & Solutions
+tblDimlXref shared package_id: resolving the six open items from §11
+Prepared 2026-06-30. Grounded in code reads of:
+  - land.courthouse-ocr-legals-extractor (COLE)
+  - cs-digital-mfg (the xref writer)
+  - land-lease-producer (the consumer that crashes)
+  - LND-6796.sql + LND-6796(A/B/C).csv (the quantified data)
+================================================================================
+
+CONFIRMED WRITE PATH (foundation for everything below)
+--------------------------------------------------------------------------------
+cs-digital-mfg `clerk_load.process_county` runs per county. For each clerk
+record it classifies insert-vs-update by matching tblRecord on
+(StateID, CountyID, normalized recordNumber, fileDate), county derived from the
+scraper feed's diml_county_name -> tblLookupCounties.DIMLCountyName -> CountyID.
+  - new_record_query.sql:1-19  -> NEW rows get record_id = newid() (fresh GUID).
+  - existing_record_query.sql:20-21 -> UPDATE reuses tr.recordID, statusID=10 only.
+  - package_id / document_dataset_id are NOT in the match key; both come from the
+    scraper feed per record. original_file_name = "{'package_id','dataset_id'}"
+    (clerk_load.py:181-184).
+  - County is never derived from the document: headers["county_id"]=county.CountyID
+    (clerk_load.py:177).
+  - TblDimlXRef.insert is a blind INSERT...FROM SELECT, no existence check, no
+    unique constraint on recordID (models.py:113-121).
+
+Consequence: same document re-tagged under a different county (LND-6879 scraper
+instability) misses the county-scoped match -> classified NEW -> fresh recordID +
+new xref row carrying the SAME package_id. One package_id, many recordIDs, many
+counties.
+
+RESOLVED GATES (from prior code review)
+  §9  IIE TRUSTS the supplied countyName; no document-based county detection
+      (single_chunk_iie_processor.py:97-102, 345-414).
+  §10 OCR RE-PULLS the PDF from DIML by package_id; imageLocation is a fallback
+      used only when DIML has no instrument_pdf root (single_chunk_ocr_processor.py:166-182).
+      OCR/IIE artifacts are stored keyed by package_id -> shared package_id =
+      last-writer-wins.
+
+DIML CONTENT-CHECK DETERMINATION (full prod run 2026-06-30; ISSUE_AND_FIX §8)
+  Ran LND-8451_diml_pdf_check.py over all 4,500 Shape 2 pairs against prod DIML,
+  0 errors. Verdicts: same_pdf 4,463 / missing_pdf 25 / different_pdf 12.
+  DECISIVE: all 2,830 LIVE recordIDs (the actual producer-crash population) are
+  same_pdf -- byte-identical by S3 size + ETag. The scoped dedupe is therefore
+  unconditionally safe for the whole crash population; no document resolution
+  needed. Every ambiguous record (37 = 12 different_pdf + 25 missing_pdf) is an
+  ORPHAN (no tblRecord) -> not producer- or COLE-relevant. Scope = the 4,463
+  same_pdf recordIDs (20 with an artifact-winner keeper, rest fall back to latest
+  _ModifiedDateTime). 8 of the 12 different_pdf were same-size/different-ETag --
+  a path-only check would have missed them and false-flagged all same_pdf.
+  NEXT: LND-8451_dedupe_xref.sql (self-contained, dry-run -> COMMIT).
+
+PROD STATUS (Grafana 2026-06-30; ISSUE_AND_FIX §12)
+  Producer is NOT currently crashing -- 22 consecutive clean prod runs
+  (06-09 -> 06-30), one "The producer has finished." per day, zero tracebacks.
+  No full reload has been done (normal daily increments only). The crash is
+  latent/data-dependent and the drop_duplicates guard is still NOT on master, so
+  "not crashing now" != fixed.
+
+
+================================================================================
+ITEM 1 — TRUE-COUNTY SOURCE OF TRUTH FOR THE 2,192 (cross-county)
+================================================================================
+STATUS: external dependency — the only item we cannot fully drive ourselves.
+
+Finding:
+  Nothing inside CS_Digital is independent of the bad county signal. County comes
+  from the scraper (diml_county_name); the DIML package was created by the same
+  scraper with the same bad county; IIE trusts whatever county we pass (§9). So
+  there is no in-house authoritative county already stored.
+
+Solution:
+  Authoritative source = the CORRECTED OKCR scraper feed (LND-6879). For each
+  affected instrument, re-derive county by joining the corrected source on
+  (instrument_number, file_date) and write it into the fixed-dataset CSV's
+  countyName column.
+
+  Confirm with the LND-6879 owner:
+    (a) Does the fix RE-TAG / BACKFILL existing OK records, or only correct new
+        ones? If it backfills, re-measure first — much of the 2,192 may
+        self-resolve. If not, we pull corrected county per instrument ourselves.
+    (b) Can we query the corrected OKCR source by (instrument_number, file_date)
+        to obtain the true county?
+
+  In-house fallback (if the scraper cannot supply it):
+    OK deeds carry "STATE OF OKLAHOMA, COUNTY OF ___" in the header. COLE OCRs
+    the document anyway, so a one-off pass over the combined_ocr_result text with
+    a `COUNTY OF (\w+)` extraction yields a per-record true county independent of
+    the scraper. Small script, not a pipeline change.
+
+Owner / decision: LND-6879 owner (backfill + source query); fallback is ours.
+
+
+================================================================================
+ITEM 2 — CORRECT-DOCUMENT DETERMINATION FOR THE 668 (different-PDF)
+================================================================================
+STATUS: solvable in-house.
+
+Finding:
+  The 668 is a PROXY — LND-6796.sql:51-67 counts distinct originalFileName
+  (= distinct document_dataset_id) under one package_id; the SQL itself flags it
+  as unconfirmed (not proven byte-different PDFs). Each record's OWN image
+  (tblS3Image.s3FilePath / tblRecord.storageFilePath) IS the document the scraper
+  bound to that record — images.py physically wrote one copy per record at
+  creation. So "the correct document for record R" already exists: R's own
+  imageLocation.
+
+Solution:
+  Extend the existing LND-8451_diml_pdf_check.py (built for Shape 2 pairs) to the
+  Shape 1 668: compare the root instrument_pdf download_url across the datasets in
+  each package.
+    - Same PDF  -> registration artifact, nothing to fix.
+    - Different -> the record's own imageLocation is the authoritative per-record
+                   document (better than the package's "latest root," which is
+                   what COLE would otherwise grab).
+  Either verdict resolves to "use each record's own image" -> flows into Item 3.
+
+Owner / decision: ours. No external dependency.
+
+
+================================================================================
+ITEM 3 — package_id-SPLITTING MECHANISM
+================================================================================
+STATUS: solvable in-house — biggest unlock; folds in Item 2 and the §10 artifact
+        problem.
+
+Finding:
+  Do NOT manually split DIML packages. The code gives a cleaner path:
+    - COLE package_enricher looks up package_id from tblDimlXref by recordID
+      (package_enricher.py:60-92). If it finds NONE, it mints a fresh per-record
+      package and inserts the new mapping.
+    - OCR _download_pdf (single_chunk_ocr_processor.py:166-182) finds no
+      instrument_pdf root on a brand-new package and falls back to the supplied
+      imageLocation — i.e. OCRs the record's OWN image.
+
+Solution:
+  DELETE the shared tblDimlXref rows for the affected records BEFORE the COLE
+  fixed-dataset run. COLE then:
+    - mints one package per record,
+    - OCRs each record's own correct PDF,
+    - writes PER-RECORD artifacts.
+  This simultaneously fixes the different-PDF problem (Item 2) AND the
+  last-writer-wins shared-artifact problem (§10), in one move. No DIML surgery.
+
+  Required ordering: delete affected xref rows -> (county corrected per Item 1,
+  imageLocation already correct) -> upload fixed dataset -> COLE recompute.
+
+Caveats (confirm with COLE owner before running at scale):
+    - Deleting xref rows orphans the old shared packages' artifacts (harmless/stale).
+    - Transient window where the producer sees no binding until COLE repopulates.
+    - Strongly supported by the code; validate with the COLE owner.
+
+Owner / decision: COLE owner sign-off on delete-then-recompute; execution is ours.
+
+
+================================================================================
+ITEM 4 — cs-digital-mfg RECURRENCE GUARDS (cross-repo)
+================================================================================
+STATUS: NOTE ONLY — not planned under this card; being addressed with the team.
+
+Two known recurrence drivers live in cs-digital-mfg, both PREVENTIVE (they do not
+remediate the existing 65,148). Recorded here for context only:
+  (a) Shape 2 (one recordID -> many package_ids): TblDimlXRef.insert is a blind
+      insert with no existence check / no uniqueness guard on recordID
+      (models.py:113-121).
+  (b) Shape 1 (cross-county): classification in new_record_query.sql is not
+      package_id-aware, so a known package_id under a different county newid()-mints
+      a new cross-county record.
+
+No implementation is planned in this card. Owner is taking these to the team
+separately.
+
+
+================================================================================
+ITEM 5 — VERIFICATION / EXIT CRITERIA
+================================================================================
+STATUS: fully runnable now, no dependencies.
+
+After remediation, re-run LND-6796.sql §0 staging + the two crash queries and
+assert:
+    - (b) different-county query        -> 0 rows
+    - (a) different-document query       -> 0 rows (or every remaining one
+                                            confirmed same-PDF by the Item 2 check)
+    - producer-crash query
+      (recordIDs with >1 xref row)       -> 0 rows (after deduping all same_pdf AND
+                                            resolving different_pdf). This count
+                                            includes the 1,670 orphaned xref rows;
+                                            to reach 0 they must be cleaned up too,
+                                            or scope the check to records that exist
+                                            in tblRecord (the 2,830 live population).
+    - producer completes the OK county increments without the merge explosion
+      (operational check) — satisfied once the 2,830 LIVE recordIDs are single-rowed;
+      the 1,670 orphans don't affect the producer.
+
+NOTE — Shape 2 splits into 2,830 live (have a tblRecord row = the real crash
+population) + 1,670 orphaned xref rows (recordID absent from tblRecord; confirmed
+not a collation artifact 2026-06-30). Orphans can't crash the producer; deduping
+them is cleanup only.
+
+OPEN DECISION (owner -> team, not urgent): dedupe the 1,670 orphans (cleanup ->
+clean exit check) vs leave them and verify against the live-only count. Do not act
+on this without the owner's go-ahead.
+
+The "Verification / exit criteria" section in the LND-8451 repo README
+(github.com/donald-massey/LND-8451) carries these assertions as SQL (incl. a
+live-only multi-row variant).
+
+Owner / decision: ours.
+
+
+================================================================================
+ITEM 6 — PRODUCER HARDENING LANDING
+================================================================================
+STATUS: pure execution, no open question.
+
+Open a PR in land-lease-producer adding drop_duplicates after the get_package_ids
+merge in BOTH image_enricher.py and iie_enricher.py:
+
+    package_ids = get_package_ids(instruments[instrument_id_column_name].tolist())
+    instruments = pd.merge(instruments, package_ids, how="left",
+                           on=instrument_id_column_name)
+    instruments = instruments.drop_duplicates(subset=[instrument_id_column_name])
+    # LND-6796: guard against duplicate xref rows exploding the merge
+
+Stops the crash today; independent of all remediation above. Caveat: keeps one of
+the two package_ids arbitrarily (pandas keeps first) — unblock, not the
+correctness fix.
+
+Owner / decision: ours.
+
+
+================================================================================
+SUMMARY
+================================================================================
+Five of six we can drive ourselves; only Item 1 has a hard external dependency
+(LND-6879 owner / corrected county source), and even that has an in-house
+OCR-header fallback.
+
+Biggest unlock: Item 3 — deleting the shared xref rows BEFORE recompute is what
+makes COLE produce correct per-record results, folding Item 2 and the §10
+shared-artifact problem into a single action.
+
+Dependency map / suggested order:
+  1. Item 6 (producer drop_duplicates)   — ship now, stops the crash.
+  2. Item 2 (extend diml_pdf_check to 668) — classify same/different PDF.
+  3. Item 1 (true county)                  — confirm LND-6879 backfill or pull
+                                             corrected county / OCR-header fallback.
+  4. Item 3 (delete xref rows)             — COLE-owner sign-off, then execute.
+  5. Upload fixed dataset -> COLE recompute (county corrected, per-record packages).
+  6. Item 5 (verification)                 — re-run queries, assert zeros.
+
+  (Item 4 — cs-digital-mfg recurrence guards — is intentionally NOT in this plan;
+   note only, being addressed with the team separately.)
+================================================================================

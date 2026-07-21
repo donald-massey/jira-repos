@@ -1,0 +1,2 @@
+recordID,CountyID,CountyName,StateAbbreviation,recordNumber,fileDate,statusID,originalFileName,storageFilePath
+b981a9bc-c4b6-4b51-b17d-e58b2833b950,111,Hood,TX,P513,2015-06-26 00:00:00,10,b981a9bc-c4b6-4b51-b17d-e58b2833b950,s3://enverus-courthouse-prod-chd-plants/tx/hood/b981/b981a9bc-c4b6-4b51-b17d-e58b2833b950.pdf

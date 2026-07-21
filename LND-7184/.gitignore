@@ -1,0 +1,7 @@
+# Environment variables (contains credentials)
+.env
+
+# IDE
+.idea/
+__pycache__/
+*.pyc

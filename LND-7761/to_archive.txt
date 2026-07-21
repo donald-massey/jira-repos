@@ -1,0 +1,139 @@
+# LND-7761 - recommended archive list (ARCHIVE verdicts from review.md).
+# Lines starting with # are ignored. Trim as you review, then:
+#   python main.py archive            (dry-run)
+#   python main.py archive --execute  (apply)
+# Total recommended: 47
+
+# --- Empty / test / abandoned-experiment repos ---
+DataClean_Title
+HackthonGit
+chd-tif2pdf-s3batchop-csvgen-prefect
+courthouseDirectDbRDS
+test_repo_sam_yesipov
+
+# --- Stale standalone repos (no DAG, no Nomad job, no local clone; last real activity <=2021) ---
+CSTitle_Loader
+CSTitle_Loader_SyndicateLite
+County-Gap-Checker
+CoverageDateAnalysis
+DepthSeverancesOCR
+WEBSITE_IMAGE_AUTO_EXPORTER_DI2.0
+captcha
+chdplant-instrument-deduper
+directional-survey-scripts
+docker-database
+gis-att-export
+grid-convergence-reporting-backup-tables
+image-drive-map
+indentify-closure-azimuth
+land-dash
+land_notifications
+landex_scraper_downloader
+landpres-loader
+las-hot-folder
+mapzone-queue-generator
+midlandmap-shapefile-scripts
+operator-aliasing-plugin
+redash-nginx
+share-ds-survey-data
+sql-hcl-mapper
+thoughttrace-api-helper
+volpgfromocr
+well-log-scraper
+well-log-updates
+xlrd
+
+# --- DID_* desktop-suite repos: CAUTION, the combined-form apps are still maintained.
+# --- Confirm with the data-entry app owner these are not DLL deps before archiving. ---
+DID_AssignmentsSupervisor
+DID_CourthouseSupervisor
+DID_Employee
+DID_HistprodUpdates
+DID_ImageViewerExtension
+DID_LUG
+DID_LeadToolsLicense
+DID_NDAssignmentsDownloader
+DID_ProductionPublisher
+DID_SQLbasics
+DID_WebApps
+DID_WellLogDigitization
+
+# === ACTIVE (excluded from archive) - listed for a holistic view; commented so they are NOT archived ===
+
+# --- KEEP ---
+# auto-aliasing
+# ch-digital-to-title
+# chdtitle-missing-image-backfill
+# CHDTitleQC
+# cstitle-to-chd-exporter
+# DID_AssignmentsDataEntry
+# DID_CourthouseLeasingEntry
+# DID_CourthouseLeasingQC
+# instrument-type-alias-enricher
+# land-team-databases
+# land.lando-utilities
+# LeaseGranteeAliasing
+# midland-map-shapefile-converter
+# mineral-appraisals-parsing
+# Mineral_Appraisal
+# parcel-enricher
+# subdivision-alias-enricher
+
+# --- KEEP? ---
+# bulk-fileviewer-updates
+# InstrumentTypeAliasing
+# land-prefect-agent
+# Retool
+# Retool-Dev
+
+# --- CHECK ---
+# Application-Utilities
+# assignment-exporter
+# automated-stapler
+# backlog-reporting-updater
+# bdd-di-producing-unit-datum-conversion
+# blm_state_lease_loader
+# brief-legals-parser
+# caddo-courthouse-custom-export
+# ch-database-exports
+# ch-lease-exporter
+# ch-lease-image-uploader
+# ch-reporting-service
+# chd-tif2pdf-s3batchop-csvgen
+# common-sql-scripts
+# courthouse-mfg
+# cs-digital-mfg
+# csdigital-to-assignments-etl
+# csdigital-to-cstitle
+# csdigital-to-ds9-etl
+# csdigital_manifests_prod2dev
+# cstitle-to-kafka-pres
+# cstitle_assignments_img_urlloader
+# di-courthouse2-image-exporter
+# DID_AssignmentsQC
+# DID_CourthouseLeasingEmployee
+# DID_CourthouseLeasingSendMail
+# DID_RSTIFAS
+# digital-clerk-handler
+# diml-depth-extractor
+# diml-loaders
+# gathered-batch-handler
+# ground-truth-editor
+# land-aws-glue
+# land-lease-ocr
+# land-lease-producer
+# land-manufacturing-scripts
+# land-sla-reporter
+# landtrac-unit-to-kafka
+# LDI-tools
+# lg-geoprocessing
+# LND-2643
+# LUG_Image_to_FTP
+# midland-maps-converter
+# midlandmaps-to-kafka
+# mineral-appraisal-parser
+# ndrin_url_scraper
+# nondigital-cstitle-loader
+# ok-county-records-scraper
+# process-digital-clerk
+# vault-helper

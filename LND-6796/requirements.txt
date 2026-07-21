@@ -1,0 +1,6 @@
+# Dependencies for the DIML tools (shared/diml_fetch_package.py; the LND-8451 dedupe check lives in its own repo). Not the full producer stack.
+# diml-api-helper is the same internal package/ref land-lease-producer uses.
+python-dateutil==2.8.1
+pyodbc
+python-dotenv
+git+ssh://git@git.drillinginfo.com/DIML-LIB/diml-api-helper.git@1.1.8
