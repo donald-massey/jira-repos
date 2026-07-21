@@ -1,0 +1,7 @@
+boto3==1.33.13
+botocore==1.33.13
+pypdf==3.17.4
+pikepdf==8.15.1
+Pillow==10.4.0
+python-dotenv==0.21.1
+pyodbc==5.0.0b3
