@@ -1,0 +1,267 @@
+﻿recordID,stateAbbreviation,countyName,cstitle_instrument,leaseId,div1_instrument,div1_category,div1_short_text,div1_lease_updated,div1_svg_updated,div1_reason
+1ac7af7d-8b02-45e6-a49b-408650a28212,KS,Decatur,OGL,4612282,0,6,unknown,2019-09-06 03:29:30.840,2019-09-06 03:29:31.083,Div1 category <> 2 (not treated as a lease)
+1ac7af7d-8b02-45e6-a49b-408650a28212,KS,Decatur,OGL,4612282,0,10,Not Selected,2019-09-06 03:29:30.840,2019-09-06 03:29:31.083,Div1 category <> 2 (not treated as a lease)
+a84865bb-ed21-434c-ae13-4ec4c5f5f6e6,KS,Greeley,OGL,4621210,0,6,unknown,2019-10-02 03:07:25.997,2019-10-02 03:07:26.083,Div1 category <> 2 (not treated as a lease)
+a84865bb-ed21-434c-ae13-4ec4c5f5f6e6,KS,Greeley,OGL,4621210,0,10,Not Selected,2019-10-02 03:07:25.997,2019-10-02 03:07:26.083,Div1 category <> 2 (not treated as a lease)
+908f5d4d-0848-4a45-8f52-bfb163be988d,LA,St. Landry,OP,4892559,2,1,well location,2023-01-13 20:05:39.377,NULL,Div1 category <> 2 (not treated as a lease)
+908f5d4d-0848-4a45-8f52-bfb163be988d,LA,St. Landry,OP,4892559,2,8,Data/IT,2023-01-13 20:05:39.377,NULL,Div1 category <> 2 (not treated as a lease)
+908f5d4d-0848-4a45-8f52-bfb163be988d,LA,St. Landry,OP,4892559,2,9,Data Provider,2023-01-13 20:05:39.377,NULL,Div1 category <> 2 (not treated as a lease)
+908f5d4d-0848-4a45-8f52-bfb163be988d,LA,St. Landry,OP,4892559,2,7,Surface,2023-01-13 20:05:39.377,NULL,Div1 category <> 2 (not treated as a lease)
+908f5d4d-0848-4a45-8f52-bfb163be988d,LA,St. Landry,OP,4892559,2,6,truck,2023-01-13 20:05:39.377,NULL,Div1 category <> 2 (not treated as a lease)
+908f5d4d-0848-4a45-8f52-bfb163be988d,LA,St. Landry,OP,4892559,2,10,Prod 88: (Rev. 7-69) w/ 640 Pooling,2023-01-13 20:05:39.377,NULL,Div1 category <> 2 (not treated as a lease)
+e5976dd8-1f11-441d-8ca6-3b0e798dbbfe,LA,St. Landry,OP,4892483,2,3,Heater Treater,2023-01-13 20:05:26.847,2023-01-13 20:05:26.727,Div1 category <> 2 (not treated as a lease)
+e5976dd8-1f11-441d-8ca6-3b0e798dbbfe,LA,St. Landry,OP,4892483,2,5,Gas,2023-01-13 20:05:26.847,2023-01-13 20:05:26.727,Div1 category <> 2 (not treated as a lease)
+e5976dd8-1f11-441d-8ca6-3b0e798dbbfe,LA,St. Landry,OP,4892483,2,4,New,2023-01-13 20:05:26.847,2023-01-13 20:05:26.727,Div1 category <> 2 (not treated as a lease)
+e5976dd8-1f11-441d-8ca6-3b0e798dbbfe,LA,St. Landry,OP,4892483,2,1,well location,2023-01-13 20:05:26.847,2023-01-13 20:05:26.727,Div1 category <> 2 (not treated as a lease)
+e5976dd8-1f11-441d-8ca6-3b0e798dbbfe,LA,St. Landry,OP,4892483,2,8,Data/IT,2023-01-13 20:05:26.847,2023-01-13 20:05:26.727,Div1 category <> 2 (not treated as a lease)
+e5976dd8-1f11-441d-8ca6-3b0e798dbbfe,LA,St. Landry,OP,4892483,2,9,Data Provider,2023-01-13 20:05:26.847,2023-01-13 20:05:26.727,Div1 category <> 2 (not treated as a lease)
+e5976dd8-1f11-441d-8ca6-3b0e798dbbfe,LA,St. Landry,OP,4892483,2,7,Surface,2023-01-13 20:05:26.847,2023-01-13 20:05:26.727,Div1 category <> 2 (not treated as a lease)
+e5976dd8-1f11-441d-8ca6-3b0e798dbbfe,LA,St. Landry,OP,4892483,2,6,truck,2023-01-13 20:05:26.847,2023-01-13 20:05:26.727,Div1 category <> 2 (not treated as a lease)
+e5976dd8-1f11-441d-8ca6-3b0e798dbbfe,LA,St. Landry,OP,4892483,2,10,Prod 88: (Rev. 7-69) w/ 640 Pooling,2023-01-13 20:05:26.847,2023-01-13 20:05:26.727,Div1 category <> 2 (not treated as a lease)
+0a84b72d-f2ac-41c2-8d3d-50e2c0a339ec,LA,St. Landry,OP,4892458,2,3,Heater Treater,2023-01-13 20:05:22.347,NULL,Div1 category <> 2 (not treated as a lease)
+0a84b72d-f2ac-41c2-8d3d-50e2c0a339ec,LA,St. Landry,OP,4892458,2,5,Gas,2023-01-13 20:05:22.347,NULL,Div1 category <> 2 (not treated as a lease)
+0a84b72d-f2ac-41c2-8d3d-50e2c0a339ec,LA,St. Landry,OP,4892458,2,4,New,2023-01-13 20:05:22.347,NULL,Div1 category <> 2 (not treated as a lease)
+0a84b72d-f2ac-41c2-8d3d-50e2c0a339ec,LA,St. Landry,OP,4892458,2,1,well location,2023-01-13 20:05:22.347,NULL,Div1 category <> 2 (not treated as a lease)
+0a84b72d-f2ac-41c2-8d3d-50e2c0a339ec,LA,St. Landry,OP,4892458,2,8,Data/IT,2023-01-13 20:05:22.347,NULL,Div1 category <> 2 (not treated as a lease)
+0a84b72d-f2ac-41c2-8d3d-50e2c0a339ec,LA,St. Landry,OP,4892458,2,9,Data Provider,2023-01-13 20:05:22.347,NULL,Div1 category <> 2 (not treated as a lease)
+0a84b72d-f2ac-41c2-8d3d-50e2c0a339ec,LA,St. Landry,OP,4892458,2,7,Surface,2023-01-13 20:05:22.347,NULL,Div1 category <> 2 (not treated as a lease)
+0a84b72d-f2ac-41c2-8d3d-50e2c0a339ec,LA,St. Landry,OP,4892458,2,6,truck,2023-01-13 20:05:22.347,NULL,Div1 category <> 2 (not treated as a lease)
+0a84b72d-f2ac-41c2-8d3d-50e2c0a339ec,LA,St. Landry,OP,4892458,2,10,Prod 88: (Rev. 7-69) w/ 640 Pooling,2023-01-13 20:05:22.347,NULL,Div1 category <> 2 (not treated as a lease)
+908f5d4d-0848-4a45-8f52-bfb163be988d,LA,St. Landry,OP,4892559,2,3,Heater Treater,2023-01-13 20:05:39.377,NULL,Div1 category <> 2 (not treated as a lease)
+908f5d4d-0848-4a45-8f52-bfb163be988d,LA,St. Landry,OP,4892559,2,5,Gas,2023-01-13 20:05:39.377,NULL,Div1 category <> 2 (not treated as a lease)
+908f5d4d-0848-4a45-8f52-bfb163be988d,LA,St. Landry,OP,4892559,2,4,New,2023-01-13 20:05:39.377,NULL,Div1 category <> 2 (not treated as a lease)
+147408fb-ca78-41eb-bb08-e5ad07a349cc,PA,Washington,OGLAMD,4893932,10,9,Oil Field Services,2023-01-23 02:04:20.763,2023-03-01 03:38:48.237,Div1 category <> 2 (not treated as a lease)
+147408fb-ca78-41eb-bb08-e5ad07a349cc,PA,Washington,OGLAMD,4893932,10,3,Hydraulic Pumping Unit,2023-01-23 02:04:20.763,2023-03-01 03:38:48.237,Div1 category <> 2 (not treated as a lease)
+147408fb-ca78-41eb-bb08-e5ad07a349cc,PA,Washington,OGLAMD,4893932,10,1,plugged oil/gas well,2023-01-23 02:04:20.763,2023-03-01 03:38:48.237,Div1 category <> 2 (not treated as a lease)
+147408fb-ca78-41eb-bb08-e5ad07a349cc,PA,Washington,OGLAMD,4893932,10,8,Oil & Gas Purchasing/Marketing,2023-01-23 02:04:20.763,2023-03-01 03:38:48.237,Div1 category <> 2 (not treated as a lease)
+147408fb-ca78-41eb-bb08-e5ad07a349cc,PA,Washington,OGLAMD,4893932,10,7,Other,2023-01-23 02:04:20.763,2023-03-01 03:38:48.237,Div1 category <> 2 (not treated as a lease)
+147408fb-ca78-41eb-bb08-e5ad07a349cc,PA,Washington,OGLAMD,4893932,10,6,scrubber oil,2023-01-23 02:04:20.763,2023-03-01 03:38:48.237,Div1 category <> 2 (not treated as a lease)
+147408fb-ca78-41eb-bb08-e5ad07a349cc,PA,Washington,OGLAMD,4893932,10,10,Prod 88: (Paid Up) (Rev. 4-89) w/ 640 Pooling,2023-01-23 02:04:20.763,2023-03-01 03:38:48.237,Div1 category <> 2 (not treated as a lease)
+f98d1a0d-f424-4c8c-8e78-8940fc64ef3a,TX,Guadalupe,OGL,4989831,0,6,unknown,2023-11-28 23:05:38.993,NULL,Div1 category <> 2 (not treated as a lease)
+f98d1a0d-f424-4c8c-8e78-8940fc64ef3a,TX,Guadalupe,OGL,4989831,0,10,Not Selected,2023-11-28 23:05:38.993,NULL,Div1 category <> 2 (not treated as a lease)
+ea719dca-edf2-4e41-baca-a36f8e489698,TX,McMullen,OGL,4245391,0,6,unknown,2019-12-25 17:32:19.517,2018-04-12 03:38:17.960,Div1 category <> 2 (not treated as a lease)
+ea719dca-edf2-4e41-baca-a36f8e489698,TX,McMullen,OGL,4245391,0,10,Not Selected,2019-12-25 17:32:19.517,2018-04-12 03:38:17.960,Div1 category <> 2 (not treated as a lease)
+c723fc9a-2d40-45e0-8b72-006b9121ac87,TX,McMullen,MOGL,4233745,1,4,Unknown,2018-01-29 23:54:34.620,2018-02-21 15:08:25.497,Div1 category <> 2 (not treated as a lease)
+c723fc9a-2d40-45e0-8b72-006b9121ac87,TX,McMullen,MOGL,4233745,1,5,Oil,2018-01-29 23:54:34.620,2018-02-21 15:08:25.497,Div1 category <> 2 (not treated as a lease)
+c723fc9a-2d40-45e0-8b72-006b9121ac87,TX,McMullen,MOGL,4233745,1,3,Tank,2018-01-29 23:54:34.620,2018-02-21 15:08:25.497,Div1 category <> 2 (not treated as a lease)
+995fc18f-f9ed-4ddb-a8f7-28a193867820,TX,McMullen,MOGL,4238366,1,4,Unknown,2019-06-19 13:39:41.050,2018-04-11 03:39:06.473,Div1 category <> 2 (not treated as a lease)
+995fc18f-f9ed-4ddb-a8f7-28a193867820,TX,McMullen,MOGL,4238366,1,5,Oil,2019-06-19 13:39:41.050,2018-04-11 03:39:06.473,Div1 category <> 2 (not treated as a lease)
+995fc18f-f9ed-4ddb-a8f7-28a193867820,TX,McMullen,MOGL,4238366,1,3,Tank,2019-06-19 13:39:41.050,2018-04-11 03:39:06.473,Div1 category <> 2 (not treated as a lease)
+c7125da7-c6b1-49b1-ac5d-e210ce5cda4b,TX,McMullen,MOGL,4240362,1,10,Prod 88: (Rev. 1-68) w/ 640 Pooling,2018-02-01 22:40:21.407,2018-02-21 15:07:46.053,Div1 category <> 2 (not treated as a lease)
+c7125da7-c6b1-49b1-ac5d-e210ce5cda4b,TX,McMullen,MOGL,4240362,1,6,pipeline,2018-02-01 22:40:21.407,2018-02-21 15:07:46.053,Div1 category <> 2 (not treated as a lease)
+c7125da7-c6b1-49b1-ac5d-e210ce5cda4b,TX,McMullen,MOGL,4240362,1,7,Spud,2018-02-01 22:40:21.407,2018-02-21 15:07:46.053,Div1 category <> 2 (not treated as a lease)
+c7125da7-c6b1-49b1-ac5d-e210ce5cda4b,TX,McMullen,MOGL,4240362,1,9,Consultant,2018-02-01 22:40:21.407,2018-02-21 15:07:46.053,Div1 category <> 2 (not treated as a lease)
+c7125da7-c6b1-49b1-ac5d-e210ce5cda4b,TX,McMullen,MOGL,4240362,1,8,Clerical,2018-02-01 22:40:21.407,2018-02-21 15:07:46.053,Div1 category <> 2 (not treated as a lease)
+c7125da7-c6b1-49b1-ac5d-e210ce5cda4b,TX,McMullen,MOGL,4240362,1,4,Unknown,2018-02-01 22:40:21.407,2018-02-21 15:07:46.053,Div1 category <> 2 (not treated as a lease)
+c7125da7-c6b1-49b1-ac5d-e210ce5cda4b,TX,McMullen,MOGL,4240362,1,5,Oil,2018-02-01 22:40:21.407,2018-02-21 15:07:46.053,Div1 category <> 2 (not treated as a lease)
+c7125da7-c6b1-49b1-ac5d-e210ce5cda4b,TX,McMullen,MOGL,4240362,1,3,Tank,2018-02-01 22:40:21.407,2018-02-21 15:07:46.053,Div1 category <> 2 (not treated as a lease)
+c723fc9a-2d40-45e0-8b72-006b9121ac87,TX,McMullen,MOGL,4233745,1,10,Prod 88: (Rev. 1-68) w/ 640 Pooling,2018-01-29 23:54:34.620,2018-02-21 15:08:25.497,Div1 category <> 2 (not treated as a lease)
+c723fc9a-2d40-45e0-8b72-006b9121ac87,TX,McMullen,MOGL,4233745,1,6,pipeline,2018-01-29 23:54:34.620,2018-02-21 15:08:25.497,Div1 category <> 2 (not treated as a lease)
+c723fc9a-2d40-45e0-8b72-006b9121ac87,TX,McMullen,MOGL,4233745,1,7,Spud,2018-01-29 23:54:34.620,2018-02-21 15:08:25.497,Div1 category <> 2 (not treated as a lease)
+c723fc9a-2d40-45e0-8b72-006b9121ac87,TX,McMullen,MOGL,4233745,1,9,Consultant,2018-01-29 23:54:34.620,2018-02-21 15:08:25.497,Div1 category <> 2 (not treated as a lease)
+c723fc9a-2d40-45e0-8b72-006b9121ac87,TX,McMullen,MOGL,4233745,1,8,Clerical,2018-01-29 23:54:34.620,2018-02-21 15:08:25.497,Div1 category <> 2 (not treated as a lease)
+995fc18f-f9ed-4ddb-a8f7-28a193867820,TX,McMullen,MOGL,4238366,1,10,Prod 88: (Rev. 1-68) w/ 640 Pooling,2019-06-19 13:39:41.050,2018-04-11 03:39:06.473,Div1 category <> 2 (not treated as a lease)
+995fc18f-f9ed-4ddb-a8f7-28a193867820,TX,McMullen,MOGL,4238366,1,6,pipeline,2019-06-19 13:39:41.050,2018-04-11 03:39:06.473,Div1 category <> 2 (not treated as a lease)
+995fc18f-f9ed-4ddb-a8f7-28a193867820,TX,McMullen,MOGL,4238366,1,7,Spud,2019-06-19 13:39:41.050,2018-04-11 03:39:06.473,Div1 category <> 2 (not treated as a lease)
+995fc18f-f9ed-4ddb-a8f7-28a193867820,TX,McMullen,MOGL,4238366,1,9,Consultant,2019-06-19 13:39:41.050,2018-04-11 03:39:06.473,Div1 category <> 2 (not treated as a lease)
+995fc18f-f9ed-4ddb-a8f7-28a193867820,TX,McMullen,MOGL,4238366,1,8,Clerical,2019-06-19 13:39:41.050,2018-04-11 03:39:06.473,Div1 category <> 2 (not treated as a lease)
+9dcd0169-ce07-410b-aa25-0d46e22f7cd8,TX,McMullen,OGL,4547898,0,6,unknown,2019-04-03 02:26:31.913,NULL,Div1 category <> 2 (not treated as a lease)
+9dcd0169-ce07-410b-aa25-0d46e22f7cd8,TX,McMullen,OGL,4547898,0,10,Not Selected,2019-04-03 02:26:31.913,NULL,Div1 category <> 2 (not treated as a lease)
+ab78f977-04dc-48df-aad7-cf296d95e0a8,TX,McMullen,MOGL,4238794,1,10,Prod 88: (Rev. 1-68) w/ 640 Pooling,2018-02-01 00:34:26.410,2018-02-21 15:07:15.267,Div1 category <> 2 (not treated as a lease)
+ab78f977-04dc-48df-aad7-cf296d95e0a8,TX,McMullen,MOGL,4238794,1,6,pipeline,2018-02-01 00:34:26.410,2018-02-21 15:07:15.267,Div1 category <> 2 (not treated as a lease)
+ab78f977-04dc-48df-aad7-cf296d95e0a8,TX,McMullen,MOGL,4238794,1,7,Spud,2018-02-01 00:34:26.410,2018-02-21 15:07:15.267,Div1 category <> 2 (not treated as a lease)
+ab78f977-04dc-48df-aad7-cf296d95e0a8,TX,McMullen,MOGL,4238794,1,9,Consultant,2018-02-01 00:34:26.410,2018-02-21 15:07:15.267,Div1 category <> 2 (not treated as a lease)
+ab78f977-04dc-48df-aad7-cf296d95e0a8,TX,McMullen,MOGL,4238794,1,8,Clerical,2018-02-01 00:34:26.410,2018-02-21 15:07:15.267,Div1 category <> 2 (not treated as a lease)
+ab78f977-04dc-48df-aad7-cf296d95e0a8,TX,McMullen,MOGL,4238794,1,4,Unknown,2018-02-01 00:34:26.410,2018-02-21 15:07:15.267,Div1 category <> 2 (not treated as a lease)
+ab78f977-04dc-48df-aad7-cf296d95e0a8,TX,McMullen,MOGL,4238794,1,5,Oil,2018-02-01 00:34:26.410,2018-02-21 15:07:15.267,Div1 category <> 2 (not treated as a lease)
+ab78f977-04dc-48df-aad7-cf296d95e0a8,TX,McMullen,MOGL,4238794,1,3,Tank,2018-02-01 00:34:26.410,2018-02-21 15:07:15.267,Div1 category <> 2 (not treated as a lease)
+1c3f8812-913f-4af3-82d0-9ebeb9aa3de4,TX,McMullen,MOGL,4232753,1,4,Unknown,2018-01-29 03:51:39.870,2018-02-21 15:08:07.823,Div1 category <> 2 (not treated as a lease)
+1c3f8812-913f-4af3-82d0-9ebeb9aa3de4,TX,McMullen,MOGL,4232753,1,5,Oil,2018-01-29 03:51:39.870,2018-02-21 15:08:07.823,Div1 category <> 2 (not treated as a lease)
+1c3f8812-913f-4af3-82d0-9ebeb9aa3de4,TX,McMullen,MOGL,4232753,1,3,Tank,2018-01-29 03:51:39.870,2018-02-21 15:08:07.823,Div1 category <> 2 (not treated as a lease)
+3bfc2172-d7df-43d8-8b45-efb24d689a6c,TX,McMullen,OGL,4547893,0,6,unknown,2019-04-03 02:26:31.807,NULL,Div1 category <> 2 (not treated as a lease)
+3bfc2172-d7df-43d8-8b45-efb24d689a6c,TX,McMullen,OGL,4547893,0,10,Not Selected,2019-04-03 02:26:31.807,NULL,Div1 category <> 2 (not treated as a lease)
+1218f1e7-4a3e-4b5b-aa88-7dbebdb2dab2,TX,McMullen,OGL,4547894,0,6,unknown,2019-04-03 02:26:31.837,NULL,Div1 category <> 2 (not treated as a lease)
+1218f1e7-4a3e-4b5b-aa88-7dbebdb2dab2,TX,McMullen,OGL,4547894,0,10,Not Selected,2019-04-03 02:26:31.837,NULL,Div1 category <> 2 (not treated as a lease)
+1b8d765f-0d20-4a58-9ada-48b8f80fd1df,TX,McMullen,OGL,4547896,0,6,unknown,2019-04-03 02:26:31.867,NULL,Div1 category <> 2 (not treated as a lease)
+1b8d765f-0d20-4a58-9ada-48b8f80fd1df,TX,McMullen,OGL,4547896,0,10,Not Selected,2019-04-03 02:26:31.867,NULL,Div1 category <> 2 (not treated as a lease)
+1c3f8812-913f-4af3-82d0-9ebeb9aa3de4,TX,McMullen,MOGL,4232753,1,10,Prod 88: (Rev. 1-68) w/ 640 Pooling,2018-01-29 03:51:39.870,2018-02-21 15:08:07.823,Div1 category <> 2 (not treated as a lease)
+1c3f8812-913f-4af3-82d0-9ebeb9aa3de4,TX,McMullen,MOGL,4232753,1,6,pipeline,2018-01-29 03:51:39.870,2018-02-21 15:08:07.823,Div1 category <> 2 (not treated as a lease)
+1c3f8812-913f-4af3-82d0-9ebeb9aa3de4,TX,McMullen,MOGL,4232753,1,7,Spud,2018-01-29 03:51:39.870,2018-02-21 15:08:07.823,Div1 category <> 2 (not treated as a lease)
+1c3f8812-913f-4af3-82d0-9ebeb9aa3de4,TX,McMullen,MOGL,4232753,1,9,Consultant,2018-01-29 03:51:39.870,2018-02-21 15:08:07.823,Div1 category <> 2 (not treated as a lease)
+1c3f8812-913f-4af3-82d0-9ebeb9aa3de4,TX,McMullen,MOGL,4232753,1,8,Clerical,2018-01-29 03:51:39.870,2018-02-21 15:08:07.823,Div1 category <> 2 (not treated as a lease)
+064e5d99-8bfe-4157-a1c5-3724c2370b85,TX,McMullen,OGL,4547897,0,6,unknown,2019-04-03 02:26:31.897,NULL,Div1 category <> 2 (not treated as a lease)
+064e5d99-8bfe-4157-a1c5-3724c2370b85,TX,McMullen,OGL,4547897,0,10,Not Selected,2019-04-03 02:26:31.897,NULL,Div1 category <> 2 (not treated as a lease)
+8a80e1d7-3533-422a-93ed-2dd315ff074d,TX,McMullen,MOGL,4201285,1,4,Unknown,2017-11-13 22:01:09.503,2017-11-22 03:39:56.607,Div1 category <> 2 (not treated as a lease)
+8a80e1d7-3533-422a-93ed-2dd315ff074d,TX,McMullen,MOGL,4201285,1,5,Oil,2017-11-13 22:01:09.503,2017-11-22 03:39:56.607,Div1 category <> 2 (not treated as a lease)
+8a80e1d7-3533-422a-93ed-2dd315ff074d,TX,McMullen,MOGL,4201285,1,3,Tank,2017-11-13 22:01:09.503,2017-11-22 03:39:56.607,Div1 category <> 2 (not treated as a lease)
+7d321a52-931a-4040-9ace-f084d06babf4,TX,McMullen,OGL,4547892,0,6,unknown,2019-04-03 02:26:31.790,NULL,Div1 category <> 2 (not treated as a lease)
+7d321a52-931a-4040-9ace-f084d06babf4,TX,McMullen,OGL,4547892,0,10,Not Selected,2019-04-03 02:26:31.790,NULL,Div1 category <> 2 (not treated as a lease)
+8a80e1d7-3533-422a-93ed-2dd315ff074d,TX,McMullen,MOGL,4201285,1,10,Prod 88: (Rev. 1-68) w/ 640 Pooling,2017-11-13 22:01:09.503,2017-11-22 03:39:56.607,Div1 category <> 2 (not treated as a lease)
+8a80e1d7-3533-422a-93ed-2dd315ff074d,TX,McMullen,MOGL,4201285,1,6,pipeline,2017-11-13 22:01:09.503,2017-11-22 03:39:56.607,Div1 category <> 2 (not treated as a lease)
+8a80e1d7-3533-422a-93ed-2dd315ff074d,TX,McMullen,MOGL,4201285,1,7,Spud,2017-11-13 22:01:09.503,2017-11-22 03:39:56.607,Div1 category <> 2 (not treated as a lease)
+8a80e1d7-3533-422a-93ed-2dd315ff074d,TX,McMullen,MOGL,4201285,1,9,Consultant,2017-11-13 22:01:09.503,2017-11-22 03:39:56.607,Div1 category <> 2 (not treated as a lease)
+8a80e1d7-3533-422a-93ed-2dd315ff074d,TX,McMullen,MOGL,4201285,1,8,Clerical,2017-11-13 22:01:09.503,2017-11-22 03:39:56.607,Div1 category <> 2 (not treated as a lease)
+79c04b09-5604-4245-956d-e2f8917a3709,TX,McMullen,MOGL,4235962,1,10,Prod 88: (Rev. 1-68) w/ 640 Pooling,2018-01-30 23:28:23.213,2018-02-21 15:09:08.037,Div1 category <> 2 (not treated as a lease)
+79c04b09-5604-4245-956d-e2f8917a3709,TX,McMullen,MOGL,4235962,1,6,pipeline,2018-01-30 23:28:23.213,2018-02-21 15:09:08.037,Div1 category <> 2 (not treated as a lease)
+79c04b09-5604-4245-956d-e2f8917a3709,TX,McMullen,MOGL,4235962,1,7,Spud,2018-01-30 23:28:23.213,2018-02-21 15:09:08.037,Div1 category <> 2 (not treated as a lease)
+79c04b09-5604-4245-956d-e2f8917a3709,TX,McMullen,MOGL,4235962,1,9,Consultant,2018-01-30 23:28:23.213,2018-02-21 15:09:08.037,Div1 category <> 2 (not treated as a lease)
+79c04b09-5604-4245-956d-e2f8917a3709,TX,McMullen,MOGL,4235962,1,8,Clerical,2018-01-30 23:28:23.213,2018-02-21 15:09:08.037,Div1 category <> 2 (not treated as a lease)
+79c04b09-5604-4245-956d-e2f8917a3709,TX,McMullen,MOGL,4235962,1,4,Unknown,2018-01-30 23:28:23.213,2018-02-21 15:09:08.037,Div1 category <> 2 (not treated as a lease)
+79c04b09-5604-4245-956d-e2f8917a3709,TX,McMullen,MOGL,4235962,1,5,Oil,2018-01-30 23:28:23.213,2018-02-21 15:09:08.037,Div1 category <> 2 (not treated as a lease)
+79c04b09-5604-4245-956d-e2f8917a3709,TX,McMullen,MOGL,4235962,1,3,Tank,2018-01-30 23:28:23.213,2018-02-21 15:09:08.037,Div1 category <> 2 (not treated as a lease)
+80db494e-e73b-4c6c-81ba-741a9d890685,TX,McMullen,OGL,4547895,0,6,unknown,2019-04-03 02:26:31.850,NULL,Div1 category <> 2 (not treated as a lease)
+80db494e-e73b-4c6c-81ba-741a9d890685,TX,McMullen,OGL,4547895,0,10,Not Selected,2019-04-03 02:26:31.850,NULL,Div1 category <> 2 (not treated as a lease)
+52e835bb-a7c3-4e57-8aac-5e90a7afda7a,TX,McMullen,MOGL,4233081,1,4,Unknown,2018-01-29 22:00:46.010,2018-02-21 15:07:40.533,Div1 category <> 2 (not treated as a lease)
+52e835bb-a7c3-4e57-8aac-5e90a7afda7a,TX,McMullen,MOGL,4233081,1,5,Oil,2018-01-29 22:00:46.010,2018-02-21 15:07:40.533,Div1 category <> 2 (not treated as a lease)
+52e835bb-a7c3-4e57-8aac-5e90a7afda7a,TX,McMullen,MOGL,4233081,1,3,Tank,2018-01-29 22:00:46.010,2018-02-21 15:07:40.533,Div1 category <> 2 (not treated as a lease)
+66d99bf5-949e-4f25-9655-cb41beb55092,TX,McMullen,OGL,4233079,0,6,unknown,2018-01-29 22:00:45.667,2018-02-21 15:09:00.017,Div1 category <> 2 (not treated as a lease)
+66d99bf5-949e-4f25-9655-cb41beb55092,TX,McMullen,OGL,4233079,0,10,Not Selected,2018-01-29 22:00:45.667,2018-02-21 15:09:00.017,Div1 category <> 2 (not treated as a lease)
+672e6a07-8e81-4952-9b81-c875f3df2afd,TX,McMullen,MOGL,4233080,1,10,Prod 88: (Rev. 1-68) w/ 640 Pooling,2018-07-23 05:51:04.663,2018-04-12 03:36:16.167,Div1 category <> 2 (not treated as a lease)
+672e6a07-8e81-4952-9b81-c875f3df2afd,TX,McMullen,MOGL,4233080,1,6,pipeline,2018-07-23 05:51:04.663,2018-04-12 03:36:16.167,Div1 category <> 2 (not treated as a lease)
+672e6a07-8e81-4952-9b81-c875f3df2afd,TX,McMullen,MOGL,4233080,1,7,Spud,2018-07-23 05:51:04.663,2018-04-12 03:36:16.167,Div1 category <> 2 (not treated as a lease)
+672e6a07-8e81-4952-9b81-c875f3df2afd,TX,McMullen,MOGL,4233080,1,9,Consultant,2018-07-23 05:51:04.663,2018-04-12 03:36:16.167,Div1 category <> 2 (not treated as a lease)
+672e6a07-8e81-4952-9b81-c875f3df2afd,TX,McMullen,MOGL,4233080,1,8,Clerical,2018-07-23 05:51:04.663,2018-04-12 03:36:16.167,Div1 category <> 2 (not treated as a lease)
+52e835bb-a7c3-4e57-8aac-5e90a7afda7a,TX,McMullen,MOGL,4233081,1,10,Prod 88: (Rev. 1-68) w/ 640 Pooling,2018-01-29 22:00:46.010,2018-02-21 15:07:40.533,Div1 category <> 2 (not treated as a lease)
+52e835bb-a7c3-4e57-8aac-5e90a7afda7a,TX,McMullen,MOGL,4233081,1,6,pipeline,2018-01-29 22:00:46.010,2018-02-21 15:07:40.533,Div1 category <> 2 (not treated as a lease)
+52e835bb-a7c3-4e57-8aac-5e90a7afda7a,TX,McMullen,MOGL,4233081,1,7,Spud,2018-01-29 22:00:46.010,2018-02-21 15:07:40.533,Div1 category <> 2 (not treated as a lease)
+52e835bb-a7c3-4e57-8aac-5e90a7afda7a,TX,McMullen,MOGL,4233081,1,9,Consultant,2018-01-29 22:00:46.010,2018-02-21 15:07:40.533,Div1 category <> 2 (not treated as a lease)
+52e835bb-a7c3-4e57-8aac-5e90a7afda7a,TX,McMullen,MOGL,4233081,1,8,Clerical,2018-01-29 22:00:46.010,2018-02-21 15:07:40.533,Div1 category <> 2 (not treated as a lease)
+672e6a07-8e81-4952-9b81-c875f3df2afd,TX,McMullen,MOGL,4233080,1,4,Unknown,2018-07-23 05:51:04.663,2018-04-12 03:36:16.167,Div1 category <> 2 (not treated as a lease)
+672e6a07-8e81-4952-9b81-c875f3df2afd,TX,McMullen,MOGL,4233080,1,5,Oil,2018-07-23 05:51:04.663,2018-04-12 03:36:16.167,Div1 category <> 2 (not treated as a lease)
+672e6a07-8e81-4952-9b81-c875f3df2afd,TX,McMullen,MOGL,4233080,1,3,Tank,2018-07-23 05:51:04.663,2018-04-12 03:36:16.167,Div1 category <> 2 (not treated as a lease)
+73b8adcf-d36c-4dfb-8436-a23eac7aa867,TX,McMullen,MOGL,4233997,1,10,Prod 88: (Rev. 1-68) w/ 640 Pooling,2018-01-30 01:59:20.923,2018-02-21 15:08:41.747,Div1 category <> 2 (not treated as a lease)
+73b8adcf-d36c-4dfb-8436-a23eac7aa867,TX,McMullen,MOGL,4233997,1,6,pipeline,2018-01-30 01:59:20.923,2018-02-21 15:08:41.747,Div1 category <> 2 (not treated as a lease)
+73b8adcf-d36c-4dfb-8436-a23eac7aa867,TX,McMullen,MOGL,4233997,1,7,Spud,2018-01-30 01:59:20.923,2018-02-21 15:08:41.747,Div1 category <> 2 (not treated as a lease)
+73b8adcf-d36c-4dfb-8436-a23eac7aa867,TX,McMullen,MOGL,4233997,1,9,Consultant,2018-01-30 01:59:20.923,2018-02-21 15:08:41.747,Div1 category <> 2 (not treated as a lease)
+73b8adcf-d36c-4dfb-8436-a23eac7aa867,TX,McMullen,MOGL,4233997,1,8,Clerical,2018-01-30 01:59:20.923,2018-02-21 15:08:41.747,Div1 category <> 2 (not treated as a lease)
+73b8adcf-d36c-4dfb-8436-a23eac7aa867,TX,McMullen,MOGL,4233997,1,4,Unknown,2018-01-30 01:59:20.923,2018-02-21 15:08:41.747,Div1 category <> 2 (not treated as a lease)
+73b8adcf-d36c-4dfb-8436-a23eac7aa867,TX,McMullen,MOGL,4233997,1,5,Oil,2018-01-30 01:59:20.923,2018-02-21 15:08:41.747,Div1 category <> 2 (not treated as a lease)
+73b8adcf-d36c-4dfb-8436-a23eac7aa867,TX,McMullen,MOGL,4233997,1,3,Tank,2018-01-30 01:59:20.923,2018-02-21 15:08:41.747,Div1 category <> 2 (not treated as a lease)
+1ac7af7d-8b02-45e6-a49b-408650a28212,KS,Decatur,OGL,4612282,0,2,Lease,2019-09-06 03:29:30.840,2019-09-06 03:29:31.083,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+a84865bb-ed21-434c-ae13-4ec4c5f5f6e6,KS,Greeley,OGL,4621210,0,2,Lease,2019-10-02 03:07:25.997,2019-10-02 03:07:26.083,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+e5976dd8-1f11-441d-8ca6-3b0e798dbbfe,LA,St. Landry,OP,4892483,2,2,Lease option,2023-01-13 20:05:26.847,2023-01-13 20:05:26.727,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+0a84b72d-f2ac-41c2-8d3d-50e2c0a339ec,LA,St. Landry,OP,4892458,2,2,Lease option,2023-01-13 20:05:22.347,NULL,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+908f5d4d-0848-4a45-8f52-bfb163be988d,LA,St. Landry,OP,4892559,2,2,Lease option,2023-01-13 20:05:39.377,NULL,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+147408fb-ca78-41eb-bb08-e5ad07a349cc,PA,Washington,OGLAMD,4893932,10,2,Lease amendment,2023-01-23 02:04:20.763,2023-03-01 03:38:48.237,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+f98d1a0d-f424-4c8c-8e78-8940fc64ef3a,TX,Guadalupe,OGL,4989831,0,2,Lease,2023-11-28 23:05:38.993,NULL,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+80db494e-e73b-4c6c-81ba-741a9d890685,TX,McMullen,OGL,4547895,0,2,Lease,2019-04-03 02:26:31.850,NULL,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+9dcd0169-ce07-410b-aa25-0d46e22f7cd8,TX,McMullen,OGL,4547898,0,2,Lease,2019-04-03 02:26:31.913,NULL,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+ea719dca-edf2-4e41-baca-a36f8e489698,TX,McMullen,OGL,4245391,0,2,Lease,2019-12-25 17:32:19.517,2018-04-12 03:38:17.960,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+c723fc9a-2d40-45e0-8b72-006b9121ac87,TX,McMullen,MOGL,4233745,1,2,Memo of lease,2018-01-29 23:54:34.620,2018-02-21 15:08:25.497,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+c7125da7-c6b1-49b1-ac5d-e210ce5cda4b,TX,McMullen,MOGL,4240362,1,2,Memo of lease,2018-02-01 22:40:21.407,2018-02-21 15:07:46.053,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+ab78f977-04dc-48df-aad7-cf296d95e0a8,TX,McMullen,MOGL,4238794,1,2,Memo of lease,2018-02-01 00:34:26.410,2018-02-21 15:07:15.267,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+995fc18f-f9ed-4ddb-a8f7-28a193867820,TX,McMullen,MOGL,4238366,1,2,Memo of lease,2019-06-19 13:39:41.050,2018-04-11 03:39:06.473,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+1c3f8812-913f-4af3-82d0-9ebeb9aa3de4,TX,McMullen,MOGL,4232753,1,2,Memo of lease,2018-01-29 03:51:39.870,2018-02-21 15:08:07.823,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+3bfc2172-d7df-43d8-8b45-efb24d689a6c,TX,McMullen,OGL,4547893,0,2,Lease,2019-04-03 02:26:31.807,NULL,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+1b8d765f-0d20-4a58-9ada-48b8f80fd1df,TX,McMullen,OGL,4547896,0,2,Lease,2019-04-03 02:26:31.867,NULL,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+064e5d99-8bfe-4157-a1c5-3724c2370b85,TX,McMullen,OGL,4547897,0,2,Lease,2019-04-03 02:26:31.897,NULL,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+1218f1e7-4a3e-4b5b-aa88-7dbebdb2dab2,TX,McMullen,OGL,4547894,0,2,Lease,2019-04-03 02:26:31.837,NULL,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+8a80e1d7-3533-422a-93ed-2dd315ff074d,TX,McMullen,MOGL,4201285,1,2,Memo of lease,2017-11-13 22:01:09.503,2017-11-22 03:39:56.607,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+66d99bf5-949e-4f25-9655-cb41beb55092,TX,McMullen,OGL,4233079,0,2,Lease,2018-01-29 22:00:45.667,2018-02-21 15:09:00.017,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+7d321a52-931a-4040-9ace-f084d06babf4,TX,McMullen,OGL,4547892,0,2,Lease,2019-04-03 02:26:31.790,NULL,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+79c04b09-5604-4245-956d-e2f8917a3709,TX,McMullen,MOGL,4235962,1,2,Memo of lease,2018-01-30 23:28:23.213,2018-02-21 15:09:08.037,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+73b8adcf-d36c-4dfb-8436-a23eac7aa867,TX,McMullen,MOGL,4233997,1,2,Memo of lease,2018-01-30 01:59:20.923,2018-02-21 15:08:41.747,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+52e835bb-a7c3-4e57-8aac-5e90a7afda7a,TX,McMullen,MOGL,4233081,1,2,Memo of lease,2018-01-29 22:00:46.010,2018-02-21 15:07:40.533,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+672e6a07-8e81-4952-9b81-c875f3df2afd,TX,McMullen,MOGL,4233080,1,2,Memo of lease,2018-07-23 05:51:04.663,2018-04-12 03:36:16.167,eligible in Div1 -> not modified in run window (LND-8093 bumped no timestamp)
+57a38887-006f-4e54-bccf-89e22e96d625,LA,St. Landry,SMEM,4892588,-1,NULL,NULL,2023-01-13 20:05:44.783,NULL,instrument has no tblDisplayText match
+5cf0bce8-29d7-4e55-aea0-4bf8e953787a,LA,St. Landry,SMEM,4892576,-1,NULL,NULL,2023-01-13 20:05:43.313,NULL,instrument has no tblDisplayText match
+5d01e468-d5d3-4aaa-8946-05ac71a77b36,LA,St. Landry,SMEM,4892606,-1,NULL,NULL,2023-01-13 20:05:49.790,NULL,instrument has no tblDisplayText match
+6427984d-2f32-410f-9ae4-0c3651009481,LA,St. Landry,SMEM,4892574,-1,NULL,NULL,2023-01-13 20:05:43.170,NULL,instrument has no tblDisplayText match
+658778e2-70ea-4113-9bd7-ade9ddf741e5,LA,St. Landry,SMEM,4892649,-1,NULL,NULL,2023-01-16 02:03:59.753,NULL,instrument has no tblDisplayText match
+66755933-9112-4eb6-83de-75738f39a6bf,LA,St. Landry,SMEM,4892698,-1,NULL,NULL,2023-01-16 20:04:58.767,NULL,instrument has no tblDisplayText match
+68e7cc09-bc15-49a2-b27e-d69478b56893,LA,St. Landry,SMEM,4892599,-1,NULL,NULL,2023-01-13 20:05:46.837,NULL,instrument has no tblDisplayText match
+6b159650-fe6d-4aba-ba57-0a03481fce9c,LA,St. Landry,SMEM,4892449,-1,NULL,NULL,2023-01-13 20:05:19.890,2023-01-13 20:05:19.757,instrument has no tblDisplayText match
+71504a3a-7288-4721-b89a-43d0447331e8,LA,St. Landry,SMEM,4892563,-1,NULL,NULL,2023-01-13 20:05:39.833,2023-01-13 20:05:40.277,instrument has no tblDisplayText match
+73bd37d6-4b43-4459-b867-b7a8085fffab,LA,St. Landry,SMEM,4892607,-1,NULL,NULL,2023-01-13 20:05:49.907,NULL,instrument has no tblDisplayText match
+75a1acde-ef08-4651-8c73-423cfb3dbe67,LA,St. Landry,SMEM,4892651,-1,NULL,NULL,2023-01-16 02:03:59.937,NULL,instrument has no tblDisplayText match
+7657724e-c0b4-4b08-a1c0-71090cbdbae3,LA,St. Landry,SMEM,4892564,-1,NULL,NULL,2023-01-13 20:05:40.867,NULL,instrument has no tblDisplayText match
+76ea2cd6-e201-4164-90b8-dc7130108ae0,LA,St. Landry,SMEM,4892435,-1,NULL,NULL,2023-01-13 20:05:17.567,NULL,instrument has no tblDisplayText match
+79c68617-3f27-4779-b1f0-12779c5ed916,LA,St. Landry,SMEM,4892667,-1,NULL,NULL,2023-01-16 20:04:50.870,NULL,instrument has no tblDisplayText match
+7cb4ccd7-f91d-4df9-9bc7-b176965ac70c,LA,St. Landry,SMEM,4892526,-1,NULL,NULL,2023-01-13 20:05:34.083,NULL,instrument has no tblDisplayText match
+81f6adf0-033b-4226-80d9-4bb2ed634d91,LA,St. Landry,SOP,4892491,-1,NULL,NULL,2023-01-13 20:05:28.717,NULL,instrument has no tblDisplayText match
+831f88ac-86d3-4ce8-b445-d31b7266fb57,LA,St. Landry,SMEM,4892586,-1,NULL,NULL,2023-01-13 20:05:44.533,NULL,instrument has no tblDisplayText match
+85959478-6abc-480a-8d43-330dffb27f10,LA,St. Landry,SMEM,4892779,-1,NULL,NULL,2023-01-16 20:05:16.027,NULL,instrument has no tblDisplayText match
+859f26a5-ea7d-42d1-894e-607301a0ed9e,LA,St. Landry,SMEM,4892605,-1,NULL,NULL,2023-01-13 20:05:49.707,NULL,instrument has no tblDisplayText match
+87ea6daf-f3be-4de6-b0b2-757a5250238f,LA,St. Landry,SMEM,4892542,-1,NULL,NULL,2023-01-13 20:05:36.613,NULL,instrument has no tblDisplayText match
+893537e6-72a7-4cf2-8ddd-af7dc47523c1,LA,St. Landry,SMEM,4892823,-1,NULL,NULL,2023-01-16 20:05:24.030,NULL,instrument has no tblDisplayText match
+7edc0255-7fbd-4f34-a6af-d2470ff83824,LA,St. Landry,SMEM,4892558,-1,NULL,NULL,2023-01-13 20:05:39.307,NULL,instrument has no tblDisplayText match
+8b1def48-b839-493b-a9e1-4ff7f7f63bdd,LA,St. Landry,SMEM,4892525,-1,NULL,NULL,2023-01-13 20:05:33.993,NULL,instrument has no tblDisplayText match
+8b867c71-cacb-4fc6-8eed-4d6b74faedbe,LA,St. Landry,SMEM,4892535,-1,NULL,NULL,2023-01-13 20:05:35.087,NULL,instrument has no tblDisplayText match
+16822fa4-5e4e-4d97-97bd-b9a9a267b68d,LA,St. Landry,SMEM,4892439,-1,NULL,NULL,2023-01-13 20:05:18.253,NULL,instrument has no tblDisplayText match
+20e410e0-e0f2-43f4-b7b8-633f61becea1,LA,St. Landry,SMEM,4906149,-1,NULL,NULL,2023-03-01 16:57:01.533,NULL,instrument has no tblDisplayText match
+25fa4f95-2cd6-4151-b8b2-548a0699ac86,LA,St. Landry,SMEM,4892593,-1,NULL,NULL,2023-01-13 20:05:45.457,NULL,instrument has no tblDisplayText match
+274849fb-80cb-478c-b3aa-b72664994c6e,LA,St. Landry,SMEM,4892446,-1,NULL,NULL,2023-01-13 20:05:19.297,NULL,instrument has no tblDisplayText match
+2af8d826-c213-4a30-b443-66c7eb89e1b4,LA,St. Landry,SMEM,4892598,-1,NULL,NULL,2023-01-13 20:05:46.710,NULL,instrument has no tblDisplayText match
+2cedc306-b19e-469b-85db-df00b2d10bea,LA,St. Landry,SMEM,4892629,-1,NULL,NULL,2023-01-16 02:03:57.040,NULL,instrument has no tblDisplayText match
+2f06ab6f-1514-4e11-81a5-ee91f3ee53c0,LA,St. Landry,SMEM,4892621,-1,NULL,NULL,2023-01-16 02:03:55.863,NULL,instrument has no tblDisplayText match
+30222d4f-568e-4ec5-aecc-de5886fd0a36,LA,St. Landry,SMEM,4892439,-1,NULL,NULL,2023-01-13 20:05:18.253,NULL,instrument has no tblDisplayText match
+31402f5e-2a2b-4efc-b903-163226174ed3,LA,St. Landry,SMEM,4892562,-1,NULL,NULL,2023-01-13 20:05:39.740,NULL,instrument has no tblDisplayText match
+319e3860-7826-4f32-8b45-371f67daa784,LA,St. Landry,SMEM,4892516,-1,NULL,NULL,2023-01-13 20:05:33.140,NULL,instrument has no tblDisplayText match
+31ab9391-43d3-4a90-9fb2-8fdf2cabde1e,LA,St. Landry,SMEM,4906268,-1,NULL,NULL,2023-03-01 16:57:33.967,NULL,instrument has no tblDisplayText match
+35281b7d-ce97-4bf9-b4c7-f0e0bb6bf89b,LA,St. Landry,SMEM,4892645,-1,NULL,NULL,2023-01-16 02:03:59.370,NULL,instrument has no tblDisplayText match
+3c92e85c-06b4-4468-9c0f-80b83fb9f4cd,LA,St. Landry,SMEM,4892594,-1,NULL,NULL,2023-01-13 20:05:45.757,NULL,instrument has no tblDisplayText match
+3cf9a86b-787f-4230-b1d5-017a76022906,LA,St. Landry,SMEM,4892556,-1,NULL,NULL,2023-01-13 20:05:39.100,NULL,instrument has no tblDisplayText match
+3d055130-0eb7-4f9b-9db2-a99ababfd67f,LA,St. Landry,SMEM,4892551,-1,NULL,NULL,2023-01-13 20:05:37.953,NULL,instrument has no tblDisplayText match
+3d971139-bd7e-447b-97ca-d45eac8001d6,LA,St. Landry,SOP,4892555,-1,NULL,NULL,2023-01-13 20:05:39.020,NULL,instrument has no tblDisplayText match
+4041ab0f-6a86-4251-942e-2f7a68f516af,LA,St. Landry,SMEM,4906213,-1,NULL,NULL,2023-03-01 16:57:21.847,2023-03-01 16:57:21.560,instrument has no tblDisplayText match
+41f9b952-52a8-41a5-8054-870a350d8816,LA,St. Landry,SMEM,4892604,-1,NULL,NULL,2023-01-13 20:05:48.063,NULL,instrument has no tblDisplayText match
+41fb52d1-2010-4f09-9576-a4d7b6472b5f,LA,St. Landry,SMEM,4892552,-1,NULL,NULL,2023-01-13 20:05:38.113,NULL,instrument has no tblDisplayText match
+4500140d-f968-46eb-a72f-d900ca3c2fc5,LA,St. Landry,SMEM,4892622,-1,NULL,NULL,2023-01-16 02:03:55.953,NULL,instrument has no tblDisplayText match
+4620ca1b-525b-49db-a459-e3e3f5687ea4,LA,St. Landry,SMEM,4892568,-1,NULL,NULL,2023-01-13 20:05:42.280,NULL,instrument has no tblDisplayText match
+4a0db64b-732c-4a21-b187-13e5c97330f0,LA,St. Landry,SMEM,4892515,-1,NULL,NULL,2023-01-13 20:05:33.027,NULL,instrument has no tblDisplayText match
+4b56ae4a-3881-4303-a16a-3ee494e2ad12,LA,St. Landry,SMEM,4892567,-1,NULL,NULL,2023-01-13 20:05:42.163,NULL,instrument has no tblDisplayText match
+4b5eafba-20c8-4a9d-ae13-3ab01486c2e1,LA,St. Landry,SMEM,4892578,-1,NULL,NULL,2023-01-13 20:05:43.520,NULL,instrument has no tblDisplayText match
+4bc09311-7034-404b-aa53-758c207e538c,LA,St. Landry,SMEM,4892614,-1,NULL,NULL,2023-01-16 02:03:54.783,NULL,instrument has no tblDisplayText match
+4cd0f58b-5972-45ae-8627-ab2471dc3f7c,LA,St. Landry,SMEM,4892457,-1,NULL,NULL,2023-01-13 20:05:22.257,NULL,instrument has no tblDisplayText match
+123ccd48-c6ee-4d32-9c0b-0e532152771b,LA,St. Landry,SMEM,4892432,-1,NULL,NULL,2023-01-13 20:05:16.807,2023-01-13 20:05:16.840,instrument has no tblDisplayText match
+12f96e00-1ffe-41f9-a85f-d813b01e0331,LA,St. Landry,SMEM,4892626,-1,NULL,NULL,2023-01-16 02:03:56.720,NULL,instrument has no tblDisplayText match
+13b4141d-cfe6-4fb0-ba6d-7ad8ce85967e,LA,St. Landry,SMEM,4892438,-1,NULL,NULL,2023-01-13 20:05:18.153,NULL,instrument has no tblDisplayText match
+119efe01-f457-4e48-9567-67e096acb738,LA,St. Landry,SMEM,4892465,-1,NULL,NULL,2023-01-13 20:05:23.647,NULL,instrument has no tblDisplayText match
+06625948-9d8e-4c42-a2bd-e72729db5a7d,LA,St. Landry,SMEM,4892454,-1,NULL,NULL,2023-01-13 20:05:21.003,NULL,instrument has no tblDisplayText match
+084868d5-8684-4c05-b219-7bc12266367d,LA,St. Landry,SMEM,4892537,-1,NULL,NULL,2023-01-13 20:05:35.447,NULL,instrument has no tblDisplayText match
+01ae8b92-9301-4b88-9687-ee606960cac4,LA,St. Landry,SMEM,4892481,-1,NULL,NULL,2023-01-13 20:05:26.107,NULL,instrument has no tblDisplayText match
+01dc490e-c681-49a3-bb39-e7f3c6373b3d,LA,St. Landry,SMEM,4906320,-1,NULL,NULL,2023-03-01 16:57:45.500,NULL,instrument has no tblDisplayText match
+032ffc75-cb13-4afc-bd36-dc7ee4ac2b2d,LA,St. Landry,SMEM,4906215,-1,NULL,NULL,2023-03-01 16:57:22.207,NULL,instrument has no tblDisplayText match
+05042e58-b49b-46b3-896b-59dd41df2165,LA,St. Landry,SMEM,4892441,-1,NULL,NULL,2023-01-13 20:05:18.627,NULL,instrument has no tblDisplayText match
+0584217a-359e-4045-ad07-5d5e5ee73bf5,LA,St. Landry,SMEM,4892982,-1,NULL,NULL,2023-01-16 20:05:50.913,NULL,instrument has no tblDisplayText match
+91af602a-8e9b-43e2-a9c5-883847c9f375,LA,St. Landry,SMEM,4892627,-1,NULL,NULL,2023-01-16 02:03:56.793,NULL,instrument has no tblDisplayText match
+a1a8a309-87a9-4745-bfea-77d248b39fef,LA,St. Landry,SMEM,4892502,-1,NULL,NULL,2023-01-13 20:05:30.120,NULL,instrument has no tblDisplayText match
+a1c1758c-e46c-430d-98fa-89fbb260a4b1,LA,St. Landry,SMEM,4892543,-1,NULL,NULL,2023-01-13 20:05:36.690,NULL,instrument has no tblDisplayText match
+a21fd263-7adb-49bc-8c4c-28e61e4a7644,LA,St. Landry,SMEM,4892648,-1,NULL,NULL,2023-01-16 02:03:59.670,NULL,instrument has no tblDisplayText match
+a3bb9288-c92d-4cc0-afc7-023f4e3c8cd8,LA,St. Landry,SMEM,4892580,-1,NULL,NULL,2023-01-13 20:05:43.797,NULL,instrument has no tblDisplayText match
+a4e4c3bd-8aa8-4d83-8eeb-81824f2fef07,LA,St. Landry,SMEM,4892492,-1,NULL,NULL,2023-01-13 20:05:28.793,NULL,instrument has no tblDisplayText match
+a4ea070a-2e6c-4fba-b348-5977455edccb,LA,St. Landry,SMEM,4892485,-1,NULL,NULL,2023-01-13 20:05:27.097,NULL,instrument has no tblDisplayText match
+a5c9098e-6c08-4d10-a164-6da2438ffe69,LA,St. Landry,SMEM,4892503,-1,NULL,NULL,2023-01-13 20:05:30.557,NULL,instrument has no tblDisplayText match
+a7485d41-81c6-4a92-8303-6bf3a4bf5306,LA,St. Landry,SMEM,4892583,-1,NULL,NULL,2023-01-13 20:05:44.170,NULL,instrument has no tblDisplayText match
+accd1bd6-f58a-4b87-ba78-6c4b0fad0622,LA,St. Landry,SMEM,4892484,-1,NULL,NULL,2023-01-13 20:05:26.973,NULL,instrument has no tblDisplayText match
+aeec8de2-59d3-4557-8a56-3c650ecdd174,LA,St. Landry,SMEM,4892496,-1,NULL,NULL,2023-01-13 20:05:29.397,NULL,instrument has no tblDisplayText match
+afeff1e2-9453-4b33-99e7-ec6ad1ce5689,LA,St. Landry,SMEM,4892478,-1,NULL,NULL,2023-01-13 20:05:25.573,NULL,instrument has no tblDisplayText match
+b73f3f51-1f42-41b5-a9a6-591bdabbb4ea,LA,St. Landry,SMEM,4892451,-1,NULL,NULL,2023-01-13 20:05:20.147,NULL,instrument has no tblDisplayText match
+b787ee9e-263f-4924-b7d3-95d960a51256,LA,St. Landry,SMEM,4907215,-1,NULL,NULL,2023-03-02 03:05:48.417,NULL,instrument has no tblDisplayText match
+ba05fa71-0107-40a2-a4d8-f9585287cf9d,LA,St. Landry,SMEM,4892469,-1,NULL,NULL,2023-01-13 20:05:24.133,NULL,instrument has no tblDisplayText match
+ba464518-bc40-402d-81c1-1daaaba0345d,LA,St. Landry,SMEM,4892577,-1,NULL,NULL,2023-01-13 20:05:43.423,NULL,instrument has no tblDisplayText match
+bc2916b6-f071-4da0-b028-f163f96de286,LA,St. Landry,SMEM,4892463,-1,NULL,NULL,2023-01-13 20:05:23.430,NULL,instrument has no tblDisplayText match
+bf814b09-5682-4699-859b-089dbac5b22e,LA,St. Landry,SMEM,4892531,-1,NULL,NULL,2023-01-13 20:05:34.727,NULL,instrument has no tblDisplayText match
+c04160bd-b831-492b-9eff-b1ee4ebea7c8,LA,St. Landry,SMEM,4892645,-1,NULL,NULL,2023-01-16 02:03:59.370,NULL,instrument has no tblDisplayText match
+c42687ae-cf4a-4cd8-a0fb-65f435fa1083,LA,St. Landry,SOP,4892575,-1,NULL,NULL,2023-01-13 20:05:43.277,NULL,instrument has no tblDisplayText match
+99a3f63f-5286-4907-b26f-e95faf769b30,LA,St. Landry,SMEM,4892464,-1,NULL,NULL,2023-01-13 20:05:23.513,NULL,instrument has no tblDisplayText match
+9a077904-f00d-4115-beee-c05f5dfecdad,LA,St. Landry,SMEM,4892519,-1,NULL,NULL,2023-01-13 20:05:33.347,NULL,instrument has no tblDisplayText match
+9b78716d-fb28-453d-85ff-8c7673cbc125,LA,St. Landry,SMEM,4892467,-1,NULL,NULL,2023-01-13 20:05:23.923,NULL,instrument has no tblDisplayText match
+c7e5b344-bb6f-46e7-9d88-49a53b731cac,LA,St. Landry,SMEM,4892513,-1,NULL,NULL,2023-01-13 20:05:32.680,NULL,instrument has no tblDisplayText match
+c93fc15f-e9fc-49e8-aa26-f7e5fdc6f7a2,LA,St. Landry,SMEM,4892497,-1,NULL,NULL,2023-01-13 20:05:29.447,NULL,instrument has no tblDisplayText match
+ca1dc150-8718-4219-8141-93f59f32596b,LA,St. Landry,SMEM,4892534,-1,NULL,NULL,2023-01-13 20:05:35.013,NULL,instrument has no tblDisplayText match
+cc3d5c2f-aa69-4526-bef5-9b3e4d8290b3,LA,St. Landry,SMEM,4892655,-1,NULL,NULL,2023-01-16 03:04:02.587,NULL,instrument has no tblDisplayText match
+ce046a1a-02a4-4b2f-9dfe-a7313ac4d2eb,LA,St. Landry,SMEM,4892633,-1,NULL,NULL,2023-01-16 02:03:57.460,NULL,instrument has no tblDisplayText match
+d00743d3-b971-4d77-ac0f-abfab789d200,LA,St. Landry,SMEM,4892459,-1,NULL,NULL,2023-01-13 20:05:22.527,NULL,instrument has no tblDisplayText match
+d83b9a7a-b4ae-479c-afa5-08bab5afd4b0,LA,St. Landry,SMEM,4892579,-1,NULL,NULL,2023-01-13 20:05:43.613,NULL,instrument has no tblDisplayText match
+db37ece7-d8c2-4d5e-99b2-1e91e62a728e,LA,St. Landry,SMEM,4908394,-1,NULL,NULL,2023-03-03 12:01:52.653,NULL,instrument has no tblDisplayText match
+dcda897a-7f1a-4fe5-8f99-bc895ab01016,LA,St. Landry,SMEM,4892461,-1,NULL,NULL,2023-01-13 20:05:22.897,NULL,instrument has no tblDisplayText match
+e50fc001-69f2-435f-9882-de92361bcbf2,LA,St. Landry,SMEM,4892514,-1,NULL,NULL,2023-01-13 20:05:32.767,NULL,instrument has no tblDisplayText match
+e52f4d17-d6c3-4739-96b0-64953273f5ae,LA,St. Landry,SMEM,4892466,-1,NULL,NULL,2023-01-13 20:05:23.743,2023-01-13 20:05:23.650,instrument has no tblDisplayText match
+ec471570-5865-4ca5-b6fe-52c2aeef844f,LA,St. Landry,SMEM,4892611,-1,NULL,NULL,2023-01-16 02:03:52.650,NULL,instrument has no tblDisplayText match
+ee5ad56e-33d4-4168-bc0d-ca5c16f0f5df,LA,St. Landry,SMEM,4892520,-1,NULL,NULL,2023-01-13 20:05:33.443,NULL,instrument has no tblDisplayText match
+f2f9e1f0-a31e-4534-a15e-3e5c558923b7,LA,St. Landry,SMEM,4892623,-1,NULL,NULL,2023-01-16 02:03:56.007,2023-01-16 02:03:55.877,instrument has no tblDisplayText match
+f4b54be5-7497-4b97-be63-dcbefd300f07,LA,St. Landry,SMEM,4892615,-1,NULL,NULL,2023-01-16 02:03:54.990,NULL,instrument has no tblDisplayText match
+f64648ac-dd78-404e-9718-03203498d2d8,LA,St. Landry,SMEM,4892590,-1,NULL,NULL,2023-01-13 20:05:44.990,NULL,instrument has no tblDisplayText match
+fa069514-2eab-4ce3-9a86-31dd1d242087,LA,St. Landry,SMEM,4892606,-1,NULL,NULL,2023-01-13 20:05:49.790,NULL,instrument has no tblDisplayText match
+fe0a2da3-ca32-46f0-9cbf-75596c05d180,LA,St. Landry,SMEM,4892499,-1,NULL,NULL,2023-01-13 20:05:29.620,NULL,instrument has no tblDisplayText match

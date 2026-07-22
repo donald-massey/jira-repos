@@ -4,3 +4,7 @@ __pycache__/
 *.pyo
 *.pyw
 .DS_Store
+
+# Oversized artifacts (>50 MB — GitHub limit)
+LND-8093/artifacts/LND-8093_backfill_cstitle_s3images_20260715T174442Z.csv
+LND-8065_BriefLegals/CSV Files/ParsingScript_Ellis_2026-04-21.csv

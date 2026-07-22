@@ -1,0 +1,52 @@
+Kibana Dev Tools — check the 26 group-3 lease_ids against the legal_lease index.
+Producer keys Kafka messages by lease_id (lease::{lease_id}); the ES _id is most
+likely the bare lease_id. Run the _id path first; if it returns nothing, the field
+name differs — use the terms query and adjust the field to whatever holds lease_id.
+
+# 1) Fastest: assume _id == lease_id. found=true means it's indexed.
+GET legal_lease/_mget
+{
+  "ids": [
+    "4612282","4621210","4892483","4892458","4892559","4893932","4989831",
+    "4547895","4547898","4245391","4233745","4240362","4238794","4238366",
+    "4232753","4547893","4547896","4547897","4547894","4201285","4233079",
+    "4547892","4235962","4233997","4233081","4233080"
+  ]
+}
+
+# 2) Field-based fallback (change leaseId to the actual field if needed).
+#    Returns which of the 26 exist + a couple of fields to see freshness/image.
+GET legal_lease/_search
+{
+  "size": 26,
+  "query": { "terms": { "leaseId": [
+    4612282,4621210,4892483,4892458,4892559,4893932,4989831,
+    4547895,4547898,4245391,4233745,4240362,4238794,4238366,
+    4232753,4547893,4547896,4547897,4547894,4201285,4233079,
+    4547892,4235962,4233997,4233081,4233080
+  ] } },
+  "_source": ["leaseId","imageLocation","image","modifiedDateTime","countyName","stateAbbreviation"]
+}
+
+# 3) Count only — how many of the 26 are present.
+GET legal_lease/_count
+{
+  "query": { "terms": { "leaseId": [
+    4612282,4621210,4892483,4892458,4892559,4893932,4989831,
+    4547895,4547898,4245391,4233745,4240362,4238794,4238366,
+    4232753,4547893,4547896,4547897,4547894,4201285,4233079,
+    4547892,4235962,4233997,4233081,4233080
+  ] } }
+}
+
+Interpretation:
+- 0 of 26 present  -> never made it to the index. Selection was fine (full reload),
+  so the drop is in publish or the Kafka->Glue/Databricks->ES consumer. Pull the
+  producer run logs for these lease_ids ("Lease IDs to send to Kafka" debug line in
+  land_lease_producer.py:398) to confirm they were produced to the topic.
+- All 26 present, imageLocation populated with the s3://...prod-chd-plants path from
+  LND-8093 -> they ARE indexed; the original "not seeing them" was a search/field
+  mismatch. Done.
+- Present but imageLocation null/old -> indexed before the backfill and not refreshed;
+  they need a re-produce (the full reload should have done this — investigate why the
+  message wasn't re-sent or the consumer didn't upsert).

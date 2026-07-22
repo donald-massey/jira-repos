@@ -1,4 +1,5 @@
 /*
+
 1. Check tblexportlog joined to tblrecord for LeaseID, recordIsLease, statusID IN (4,10)
 	1a. These are the values used in the land-lease-producer job to identify candidate leases
 	1b. Need to identify why ch-lease-exporter didn't match on the DIV1 natural keys, that's blocking '46e238a6-4e63-4f1e-95bf-916083355f24'
@@ -13,8 +14,6 @@ https://cerebro.drillinginfo.com/#/overview?host=Elasticsearch%20DI%20Regulatory
 4. If record isn't available on the ElasticSearch index, create a branch in land-lease-producer to gather only the effected record
 	and place a break point before publishing to kafka. This will verify if the record should publish and the investigation needs
 	to continue with https://git.drillinginfo.com/Land/land-aws-glue
-
-5. 
 
 */
 
