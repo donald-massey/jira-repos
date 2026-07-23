@@ -20,10 +20,14 @@ ORDER BY l._OCRModifiedDateTime DESC;
 -- Records uploaded by LND-8093 with no entry in tblRecordProcessingLogs
 SELECT
     s.recordID,
-    s.s3FilePath,
-    x.package_id
+    c.countyName,
+    tls.stateAbbreviation,
+    s.s3FilePath AS imageLocation
 FROM [AUS2-DTF-PAP01V].countyScansTitle.dbo.tblS3Image s
-LEFT JOIN CS_Digital.dbo.tblDimlXref x ON x.recordID = s.recordID  -- verify column name
+JOIN [AUS2-DTF-PAP01V].countyScansTitle.dbo.tblrecord r ON r.recordID = s.recordID
+JOIN [AUS2-DTF-PAP01V].countyScansTitle.dbo.tbllookupCounties c ON c.countyID = r.countyID
+JOIN [AUS2-DTF-PAP01V].countyScansTitle.dbo.tbllookupStates tls ON tls.stateID = c.stateID
+LEFT JOIN CS_Digital.dbo.tblDimlXref x ON x.recordID = s.recordID
 LEFT JOIN CS_Digital.cole.tblRecordProcessingLogs l ON l.package_id = x.package_id
 WHERE s._ModifiedBy = 'LND-8093'
   AND l.package_id IS NULL

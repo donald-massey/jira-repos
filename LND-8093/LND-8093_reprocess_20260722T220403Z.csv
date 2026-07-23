@@ -1,0 +1,14 @@
+recordID,countyName,stateAbbreviation,imageLocation
+2a293963-d1d2-4c81-a938-eb00aea8f419,Ward,TX,s3://enverus-courthouse-prod-chd-plants/tx/ward/2a29/2a293963-d1d2-4c81-a938-eb00aea8f419.pdf
+33606EE5-29DC-44D5-A894-2A63B5C6394B,TRAINING_Johnson,TX,s3://enverus-courthouse-prod-chd-plants/tx/training_johnson/3360/33606EE5-29DC-44D5-A894-2A63B5C6394B.pdf
+386625a7-80f1-4f8a-ab2f-74a5178d8cd5,EOG_McMullen,TX,s3://enverus-courthouse-prod-chd-plants/tx/eog_mcmullen/3866/386625a7-80f1-4f8a-ab2f-74a5178d8cd5.pdf
+3AEB7F10-6C3D-4531-B3AB-3E9FC85EF57F,TRAINING_Reeves,TX,s3://enverus-courthouse-prod-chd-plants/tx/training_reeves/3AEB/3AEB7F10-6C3D-4531-B3AB-3E9FC85EF57F.pdf
+4dbc0087-ef22-c84e-b0e6-6599fc14f319,Eddy,NM,s3://enverus-courthouse-prod-chd-plants/nm/eddy/4dbc/4dbc0087-ef22-c84e-b0e6-6599fc14f319.pdf
+61a94ea0-dfe4-4ed1-9087-593b63a58732,EOG_Atascosa,TX,s3://enverus-courthouse-prod-chd-plants/tx/eog_atascosa/61a9/61a94ea0-dfe4-4ed1-9087-593b63a58732.pdf
+6b7e2ceb-4451-418f-ab2b-ac4760a89d70,EOG_LaSalle,TX,s3://enverus-courthouse-prod-chd-plants/tx/eog_lasalle/6b7e/6b7e2ceb-4451-418f-ab2b-ac4760a89d70.pdf
+6c81d69e-3a9e-4c79-adc0-44a5053136f7,EOG_Karnes,TX,s3://enverus-courthouse-prod-chd-plants/tx/eog_karnes/6c81/6c81d69e-3a9e-4c79-adc0-44a5053136f7.pdf
+6e5e572a-8f56-4355-ab8b-1fe083b85ef6,CHD_Lea,NM,s3://enverus-courthouse-prod-chd-plants/nm/chd_lea/6e5e/6e5e572a-8f56-4355-ab8b-1fe083b85ef6.pdf
+a26f7e22-9845-4874-9459-d6a3871ce5d6,CHD_Lea,NM,s3://enverus-courthouse-prod-chd-plants/nm/chd_lea/a26f/a26f7e22-9845-4874-9459-d6a3871ce5d6.pdf
+B5F8F4FB-E051-410D-B611-2102DDCBC89D,TRAINING_Andrews,TX,s3://enverus-courthouse-prod-chd-plants/tx/training_andrews/B5F8/B5F8F4FB-E051-410D-B611-2102DDCBC89D.pdf
+d0c73bec-d8c0-4858-9c35-4ab2808f0bdf,EOG_Karnes,TX,s3://enverus-courthouse-prod-chd-plants/tx/eog_karnes/d0c7/d0c73bec-d8c0-4858-9c35-4ab2808f0bdf.pdf
+f8294e82-7616-0343-ae19-52152ec6a348,Eddy,NM,s3://enverus-courthouse-prod-chd-plants/nm/eddy/f829/f8294e82-7616-0343-ae19-52152ec6a348.pdf

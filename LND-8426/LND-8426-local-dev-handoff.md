@@ -14,6 +14,16 @@ against **production** data — it is not a pipeline bug in the producer or glue
 `tblLandDescription`, and the lease was never mapped to an abstract in DIV1). See
 `LND-8426-pa-mapping-checks.sql` and the finding section below.
 
+**Update — why the legal is missing for 4696618 (COLUMBIA):** the "upstream gap" is not a COLE
+queue miss or a failed OCR/IIE run. COLE *did* process the image cleanly (2025-03-19, no OCR/IIE
+errors). The staged PDF was later replaced 2026-06-17 (455 days after COLE ran, confirmed by S3
+`LastModified`), making it a technical reprocess candidate — but inspecting the current PDF settles
+it: the document is a **map-only coal-lease Memorandum** (Pagnotti Enterprises → Blaschak Coal Corp)
+whose demised premises is defined only as "~834 acres in Conyngham Twp / Mount Carmel Twp" shown on
+Exhibit A. There is no metes-and-bounds, section/range, or textual legal to extract. A reprocess
+would at best yield county + township + acreage. **4696618 is a document-type limitation, not a
+recoverable extraction miss.** See `query_4/LND-8426-cole-processing-check.sql`.
+
 ## Data flow
 
 ```
@@ -162,14 +172,74 @@ The record still has a document image (`image_link`) and a landtrac polygon (via
 `legacy_polygon_group_id`, a separate path), which is why it can appear in `landtrac_lease` but
 never `legal_lease`.
 
-## Open question for the team
+**COLE follow-up (resolved the "why").** A later check ruled out the reprocess theory for 4696618.
+COLE processed the image cleanly on 2025-03-19 (`CS_Digital.cole.tblRecordProcessingLogs`: both
+`OCRErrorMessage` and `IIEErrorMessage` NULL) — not a queue miss, not a failed run. The staged PDF
+was overwritten 2026-06-17 (`tblS3Image._ModifiedDateTime`; S3 object `LastModified` matches to the
+millisecond), 455 days after COLE ran, which alone would justify a reprocess. But the current
+document is a **coal-lease Memorandum with a map-only boundary** (Exhibit A: "~834 acres" in
+Conyngham/Mount Carmel Twp, stamped not-for-real-estate-use) — no metes-and-bounds, no section/range,
+no parseable textual legal. COLE extracting nothing is correct given the input; a reprocess cannot
+manufacture a legal the document does not contain. This is a **document-type limitation**, distinct
+from a genuine parse failure. Query chain: `query_4/LND-8426-cole-processing-check.sql`.
 
-Working hypothesis (to confirm): PA/OH/WV may lack the land grid used to derive abstract-level
-land descriptions, so land descriptions aren't gathered for these areas. If intended, the
-resolution is likely an explicit exception for these states rather than a pipeline fix — needs a
-team decision on eventual land-description acquisition for PA/OH/WV. Next: confirm the pattern
-generalizes on the Jefferson record (`46e238a6-4e63-4f1e-95bf-916083355f24`) and other missing PA
-leases.
+## Per-state drop-rate analysis (resolved)
+
+The Marcellus (PA/OH/WV) hypothesis was **refuted**. Full candidate-universe analysis run against
+CSTitle publish universe (records with `recordIsLease=1`, `statusID IN (4,10)`) joined to DIV1
+abstract mappings via the CSTitle→DIV1 linked server. Per-state drop rates (`no_mapping_id /
+candidate_leases`):
+
+| State | Candidate leases | No mapping_id | % dropped |
+|-------|-----------------|---------------|-----------|
+| OH    | ~100k           | ~16k          | 16.08%    |
+| TX    | ~520k           | ~62k          | 11.92%    |
+| WV    | ~185k           | ~17.6k        | 9.54%     |
+| LA    | —               | —             | 5.11%     |
+| **PA**| ~79k            | ~904          | **1.15%** |
+| OK    | —               | —             | 0.33%     |
+
+PA is one of the *best*-mapped states. TX (not Marcellus) is second-worst. Coverage effort should
+target **TX and OH**, not PA/Marcellus. Queries: `query_2/LND-8426-mapping-split.sql`. Result CSVs:
+`query_2/mapped_vs_unmapped_byState.csv`, `query_2/mapped_vs_unmapped_Marcellus.csv`,
+`query_2/columbia_pa_mapped_vs_unmapped.csv`.
+
+Lease 4696618 (COLUMBIA, PA) is a **near-singleton edge case**: only 4 candidate leases in
+COLUMBIA, 2 unmapped. The record existed during COLUMBIA's active mapping window (last mapping
+2020-09-19, record created 2020-06) but was never mapped — a genuine per-record miss in DIV1, not
+a systemic gap.
+
+## Potential fix path — CSTitle fallback for mapping_id
+
+**How `mapping_id` works in the Glue job** (`kafka_to_adl.py`,
+`filter_records_without_mapping_id`, line 326-330): it is a **presence gate + dedup key**, not a
+join to external data. The filter is `where(mapping_id IS NOT NULL)`, followed immediately by
+`groupBy('mapping_id')` to collapse multiple land_description rows for the same mapping into one
+ES document. Nothing downstream in the job fetches data from DIV1 using `mapping_id`.
+
+`mapping_id` arrives in the Kafka payload as `land_descriptions[].legacy_mapping_id` (cast at
+line 272). It originates from DIV1 `tblleaseAbstractMapping.mappingid` in land-lease-producer.
+
+**Proposed approach:** In land-lease-producer, when a lease has no DIV1 abstract mapping, fall
+back to CSTitle's `tblLandDescription.LandDescriptionId` as a synthetic `legacy_mapping_id`. It
+is unique per land description row, so the groupBy dedup in Glue still produces one ES doc per
+mapping. The fix is in the producer, not the Glue job.
+
+**Two things to verify before implementing:**
+
+1. **ID space collision** — DIV1 `tblleaseAbstractMapping.mappingid` and CSTitle
+   `tblLandDescription.LandDescriptionId` are both integers. Run `MAX(mappingid)` on DIV1 and
+   `MIN/MAX(LandDescriptionId)` on CSTitle to confirm the ranges don't overlap. A collision means
+   a downstream consumer back-referencing `mapping_id` to DIV1 would silently match the wrong
+   record.
+
+2. **Downstream consumers of `mapping_id` in ES** — the Glue job itself is clean, but something
+   may query the `legal_lease` index and join `mapping_id` back to DIV1 (a Databricks notebook,
+   an API, etc.). Confirm nothing back-references it before using a synthetic ID.
+
+Note: `landtrac_lease` already sidesteps this — it groups by `lease_id` and filters on
+`geom_wkt IS NOT NULL`, not `mapping_id`. The two datasets have different identity models by
+design.
 
 ## References
 
