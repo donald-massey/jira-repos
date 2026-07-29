@@ -1,0 +1,165 @@
+// CH3.0 county investigation — Elasticsearch DSL playbook
+// Replace {COUNTY} ({STATE}) with the exact County field value from the index (e.g. "CIBOLA (NM)").
+// Replace {LIVE-INDEX} with the current live index name (from step C / D below).
+// Run queries top-to-bottom; stop at the first that returns 0 hits to localize the gap.
+
+// ===========================================================================
+// DEBUG — run first to orient yourself
+// ===========================================================================
+
+// 1. Peek at one doc to confirm field names (InstrumentNumber vs instrumentNumber,
+//    County vs countyName, etc.) and spot nested fields.
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 1
+}
+
+// 2. County filter alone. If 0, the field name or the value string is wrong —
+//    check step 4 for the exact spelling in this index.
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 0,
+  "track_total_hits": true,
+  "query": { "term": { "County": "{COUNTY} ({STATE})" } }
+}
+
+// 3. InstrumentNumber existence check (no county). If 0, the value isn't indexed
+//    under this field — check the mapping, and whether it needs .keyword or is text.
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 5,
+  "track_total_hits": true,
+  "query": { "term": { "InstrumentNumber": "REPLACE_WITH_KNOWN_VALUE" } }
+}
+
+// 4. Distinct County values present in this index (spot the exact spelling).
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 0,
+  "aggs": { "counties": { "terms": { "field": "County", "size": 50 } } }
+}
+
+// 5. Field mappings for key fields (text, keyword, or both?).
+GET courthouse-chdplants_{LIVE-INDEX}/_mapping/field/InstrumentNumber,County,Tractinfo,LandDescriptions,OCRs3Path
+
+// ===========================================================================
+// ALIAS / INDEX DISCOVERY — find the live index the UI actually reads
+// ===========================================================================
+
+// C. List every chdplants index by date + doc count (newest last).
+GET _cat/indices/courthouse-chdplants*?v&s=index&h=index,docs.count,store.size,creation.date.string
+
+// D. What alias does the UI query? (the read alias points at the live index)
+GET _alias/courthouse-chdplants*
+
+// ===========================================================================
+// TRACT-INFO GAP — does this county carry Tractinfo / LandDescriptions?
+// ===========================================================================
+
+// A. Docs WITH vs WITHOUT Tractinfo. Compare no_tractinfo to the total count from step 2.
+//    NOTE: LandDescriptions is a NESTED field — use nested-wrapped exists, not flat exists.
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 0,
+  "track_total_hits": true,
+  "query": { "term": { "County": "{COUNTY} ({STATE})" } },
+  "aggs": {
+    "no_tractinfo": { "filter": { "bool": { "must_not": { "exists": { "field": "Tractinfo" } } } } },
+    "no_landdesc": {
+      "filter": {
+        "bool": { "must_not": { "nested": { "path": "LandDescriptions",
+          "query": { "exists": { "field": "LandDescriptions.County" } } } } }
+      }
+    }
+  }
+}
+
+// B. Sample docs to eyeball Tractinfo / LandDescriptions / OCRs3Path.
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 5,
+  "_source": ["RecordId", "InstrumentNumber", "OCRs3Path", "Tractinfo", "LandDescriptions"],
+  "query": { "term": { "County": "{COUNTY} ({STATE})" } }
+}
+
+// H. Of docs MISSING Tractinfo, what instrument types are they?
+//    Marriage licenses / business registrations missing tract info = expected, not a bug.
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 0,
+  "track_total_hits": true,
+  "query": {
+    "bool": {
+      "filter": [ { "term": { "County": "{COUNTY} ({STATE})" } } ],
+      "must_not": [ { "exists": { "field": "Tractinfo" } } ]
+    }
+  },
+  "aggs": { "by_type": { "terms": { "field": "InstrumentType", "size": 40 } } }
+}
+
+// I. Miss RATE per instrument type — total docs vs those missing Tractinfo.
+//    High missing/total ratio on WARRANTY DEED / DEED OF TRUST / MORTGAGE = real gap.
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 0,
+  "query": { "term": { "County": "{COUNTY} ({STATE})" } },
+  "aggs": {
+    "by_type": {
+      "terms": { "field": "InstrumentType", "size": 60 },
+      "aggs": {
+        "missing_tractinfo": {
+          "filter": { "bool": { "must_not": { "exists": { "field": "Tractinfo" } } } }
+        }
+      }
+    }
+  }
+}
+
+// J. Sample docs of the highest-miss instrument type (fill in from step I).
+//    Pull RecordId + OCRs3Path — read the IIE TSVs in di-diml-silver-prod to confirm
+//    whether legal description IS in the TSV (enrichment gap) or NOT (IIE extraction gap).
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 20,
+  "_source": ["RecordId", "InstrumentNumber", "InstrumentType", "OCRs3Path", "ImageLocation"],
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "County": "{COUNTY} ({STATE})" } },
+        { "term": { "InstrumentType": "REPLACE_WITH_TARGET_TYPE" } }
+      ],
+      "must_not": [ { "exists": { "field": "Tractinfo" } } ]
+    }
+  }
+}
+
+// ===========================================================================
+// OCR PUBLISH-GAP SCOPE — is OCRs3Path missing for a batch of docs?
+// ===========================================================================
+
+// M. Docs with OCRs3Path present vs missing.
+//    If COLE OCR'd most of these but ES shows null, it's a publish gap.
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 0,
+  "track_total_hits": true,
+  "query": { "term": { "County": "{COUNTY} ({STATE})" } },
+  "aggs": {
+    "has_ocr":     { "filter": { "exists": { "field": "OCRs3Path" } } },
+    "missing_ocr": { "filter": { "bool": { "must_not": { "exists": { "field": "OCRs3Path" } } } } }
+  }
+}
+
+// N. Do the missing-OCR docs cluster by manufacture date (never re-touched after a cutoff)?
+//    One-batch staleness: all missing docs in a single monthly bucket = publish gap confirmed.
+GET courthouse-chdplants_{LIVE-INDEX}/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter": [ { "term": { "County": "{COUNTY} ({STATE})" } } ],
+      "must_not": [ { "exists": { "field": "OCRs3Path" } } ]
+    }
+  },
+  "aggs": { "by_month": { "date_histogram": { "field": "MfgUpdatedAt", "calendar_interval": "month" } } }
+}
