@@ -1,0 +1,360 @@
+GET courthouse-chdplants_dbpipeline-20260305/_search
+{
+  "size": 20,
+  "track_total_hits": true,
+  "query": {
+    "bool": {
+      "must": [
+        { "term": { "InstrumentNumber": "199703131" } }
+      ],
+      "filter": [
+        { "term": { "County": "CIBOLA (NM)" } }
+      ]
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Batch existence check — do these CHD Cibola instrument_numbers exist in the
+// CH3.0 index? Returns matching docs; compare hits.total.value to the value count.
+// ---------------------------------------------------------------------------
+GET courthouse-chdplants_dbpipeline-20260305/_search
+{
+  "size": 100,
+  "track_total_hits": true,
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "County": "CIBOLA (NM)" } }
+      ],
+      "must": [
+        {
+          "terms": {
+            "InstrumentNumber": [
+        "04973",
+        "199703131",
+        "202100519",
+        "199700646",
+        "202001446",
+        "200202610",
+        "200603909",
+        "199654582",
+        "201300811",
+        "199703250",
+        "201500195",
+        "202402480",
+        "199653330",
+        "199902362",
+        "200801130",
+        "200200744",
+        "201602406",
+        "202501543",
+        "200602558",
+        "201300864",
+        "200504927",
+        "200003242",
+        "200901673",
+        "200900173",
+        "199702533",
+        "201901355",
+        "200504394",
+        "199654822",
+        "201802254",
+        "200600196",
+        "199701313",
+        "199701875",
+        "199700005",
+        "200003267",
+        "202401478",
+        "199701198",
+        "202000698",
+        "200400368",
+        "200105246",
+        "201601572",
+        "201800491",
+        "202501322",
+        "199902789",
+        "201700600",
+        "202202194",
+        "202301949",
+        "200106216",
+        "201502165",
+        "199655040",
+        "199700796"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+
+// ===========================================================================
+// DEBUG — run top to bottom, stop at the first that returns 0 hits.
+// ===========================================================================
+
+// 1. Does the index have any docs, and what do the field names ACTUALLY look
+//    like? Inspect _source of one doc — confirm it's "InstrumentNumber"/"County"
+//    and not instrumentNumber / instrument_number / countyName / a nested field.
+GET courthouse-chdplants_dbpipeline-20260305/_search
+{
+  "size": 1
+}
+
+// 2. County filter alone. If this is 0, the field name or the value string is
+//    wrong (maybe it's just "CIBOLA", or "Cibola (NM)", or split county+state).
+GET courthouse-chdplants_dbpipeline-20260305/_search
+{
+  "size": 0,
+  "track_total_hits": true,
+  "query": { "term": { "County": "CIBOLA (NM)" } }
+}
+
+// 3. InstrumentNumber alone (no county). If 0, that value isn't indexed under
+//    this field — check the mapping, and whether it needs .keyword or is text.
+GET courthouse-chdplants_dbpipeline-20260305/_search
+{
+  "size": 5,
+  "track_total_hits": true,
+  "query": { "term": { "InstrumentNumber": "202600001" } }
+}
+
+// 4. See the distinct County values actually present (spot the exact spelling).
+GET courthouse-chdplants_dbpipeline-20260305/_search
+{
+  "size": 0,
+  "aggs": { "counties": { "terms": { "field": "County", "size": 50 } } }
+}
+
+// 5. Field mappings for both fields (are they text, keyword, or both?).
+GET courthouse-chdplants_dbpipeline-20260305/_mapping/field/InstrumentNumber,County
+
+// ===========================================================================
+// TRACT-INFO GAP — CIBOLA (NM) docs ARE in the index (105,700). Question is
+// whether they actually carry Tractinfo / LandDescriptions, or are published empty.
+// ===========================================================================
+
+// A. Cibola docs WITH vs WITHOUT Tractinfo. Compare 'no_tractinfo' to 105,700.
+GET courthouse-chdplants_dbpipeline-20260305/_search
+{
+  "size": 0,
+  "track_total_hits": true,
+  "aggs": {
+    "no_tractinfo":  { "filter": { "bool": { "must_not": { "exists": { "field": "Tractinfo" } } } } },
+    "no_landdesc":   { "filter": { "bool": { "must_not": { "exists": { "field": "LandDescriptions" } } } } }
+  },
+  "query": { "term": { "County": "CIBOLA (NM)" } }
+}
+
+// B. Sample a few Cibola docs to eyeball Tractinfo / LandDescriptions / OCRs3Path.
+GET courthouse-chdplants_dbpipeline-20260305/_search
+{
+  "size": 5,
+  "_source": ["RecordId", "InstrumentNumber", "OCRs3Path", "Tractinfo", "LandDescriptions"],
+  "query": { "term": { "County": "CIBOLA (NM)" } }
+}
+
+// ===========================================================================
+// STALE-INDEX CHECK — UI shows Cibola 202600001 but the 20260305 snapshot
+// doesn't have it. Is there a NEWER chdplants index the UI actually reads?
+// ===========================================================================
+
+// C. List every chdplants index by date + doc count (newest last).
+GET _cat/indices/courthouse-chdplants*?v&s=index&h=index,docs.count,store.size,creation.date.string
+
+// D. What alias does the UI query? (the read alias points at the live index)
+GET _alias/courthouse-chdplants*
+
+// E. Is the MIERA 202600001 record in THIS snapshot at all? Pin it by Vol/Page,
+//    not instrument number — if 0 here, it was published after 2026-03-05.
+GET courthouse-chdplants_dbpipeline-20260305/_search
+{
+  "size": 5,
+  "_source": ["RecordId", "InstrumentNumber", "Volume", "Page", "Grantor", "MfgCreatedAt"],
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "County": "CIBOLA (NM)" } },
+        { "term": { "Volume": "32" } },
+        { "term": { "Page": "1179" } }
+      ]
+    }
+  }
+}
+
+// G. CORRECT LandDescriptions check — nested-wrapped exists (against live index).
+GET courthouse-chdplants_dbpipeline-20260608/_search
+{
+  "size": 0,
+  "track_total_hits": true,
+  "query": { "term": { "County": "CIBOLA (NM)" } },
+  "aggs": {
+    "no_landdesc": {
+      "filter": {
+        "bool": { "must_not": { "nested": { "path": "LandDescriptions",
+          "query": { "exists": { "field": "LandDescriptions.County" } } } } }
+      }
+    }
+  }
+}
+
+// H. Of the Cibola docs MISSING Tractinfo, what instrument types are they? If they
+//    are marriage licenses / business registrations, the gap is expected, not a bug.
+GET courthouse-chdplants_dbpipeline-20260608/_search
+{
+  "size": 0,
+  "track_total_hits": true,
+  "query": {
+    "bool": {
+      "filter": [ { "term": { "County": "CIBOLA (NM)" } } ],
+      "must_not": [ { "exists": { "field": "Tractinfo" } } ]
+    }
+  },
+  "aggs": { "by_type": { "terms": { "field": "InstrumentType", "size": 40 } } }
+}
+
+// I. Miss RATE per instrument type — total docs vs those missing Tractinfo.
+//    Focus on WARRANTY DEED / DEED OF TRUST / MORTGAGE / QUIT CLAIM DEED: a high
+//    missing/total ratio there = real enrichment gap; a low ratio = noise.
+GET courthouse-chdplants_dbpipeline-20260608/_search
+{
+  "size": 0,
+  "query": { "term": { "County": "CIBOLA (NM)" } },
+  "aggs": {
+    "by_type": {
+      "terms": { "field": "InstrumentType", "size": 60 },
+      "aggs": {
+        "missing_tractinfo": {
+          "filter": { "bool": { "must_not": { "exists": { "field": "Tractinfo" } } } }
+        }
+      }
+    }
+  }
+}
+
+// J. Sample DEED OF TRUST docs missing Tractinfo (the 39% anomaly). Pull RecordId +
+//    OCRs3Path, then read those IIE TSVs in di-diml-silver-prod: if the legal
+//    description IS in the TSV -> manufacture/enrichment bug (data not attached);
+//    if it's NOT -> IIE extraction gap upstream for this doc type.
+GET courthouse-chdplants_dbpipeline-20260608/_search
+{
+  "size": 20,
+  "_source": ["RecordId", "InstrumentNumber", "InstrumentType", "OCRs3Path", "ImageLocation"],
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "County": "CIBOLA (NM)" } },
+        { "term": { "InstrumentType": "DEED OF TRUST" } }
+      ],
+      "must_not": [ { "exists": { "field": "Tractinfo" } } ]
+    }
+  }
+}
+
+// K. The exact Instrument Numbers from the CH3.0 screenshot (Cibola, Jan 2026).
+//    Shows each one's InstrumentType + whether Tractinfo is populated. Sorted so
+//    you can eyeball which rows are missing tract info against the UI.
+GET courthouse-chdplants_dbpipeline-20260608/_search
+{
+  "size": 100,
+  "track_total_hits": true,
+  "_source": ["InstrumentNumber", "InstrumentType", "Volume", "Page", "OCRs3Path", "Tractinfo"],
+  "sort": [ { "InstrumentNumber": "asc" } ],
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "County": "CIBOLA (NM)" } },
+        { "terms": { "InstrumentNumber": [
+          "202600001", "202600002", "202600003", "202600004", "202600005",
+          "202600006", "202600007", "202600008", "202600009", "202600010",
+          "202606487", "202606489", "202607362", "202607363", "202607364"
+        ] } }
+      ]
+    }
+  }
+}
+
+// K2. Same set, but return ONLY those missing Tractinfo (the ones to investigate).
+GET courthouse-chdplants_dbpipeline-20260608/_search
+{
+  "size": 100,
+  "track_total_hits": true,
+  "_source": ["InstrumentNumber", "InstrumentType", "Volume", "Page", "OCRs3Path"],
+  "sort": [ { "InstrumentNumber": "asc" } ],
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "County": "CIBOLA (NM)" } },
+        { "terms": { "InstrumentNumber": [
+          "202600001", "202600002", "202600003", "202600004", "202600005",
+          "202600006", "202600007", "202600008", "202600009", "202600010",
+          "202606487", "202606489", "202607362", "202607363", "202607364"
+        ] } }
+      ],
+      "must_not": [ { "exists": { "field": "Tractinfo" } } ]
+    }
+  }
+}
+
+// L. Second screenshot (the initial-issue rows) — 202600018..202600029.
+//    Same view: InstrumentType + Tractinfo + OCRs3Path to sort real gaps from expected.
+GET courthouse-chdplants_dbpipeline-20260608/_search
+{
+  "size": 100,
+  "track_total_hits": true,
+  "_source": ["InstrumentNumber", "InstrumentType", "Volume", "Page", "Grantor", "OCRs3Path", "Tractinfo"],
+  "sort": [ { "InstrumentNumber": "asc" } ],
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "County": "CIBOLA (NM)" } },
+        { "terms": { "InstrumentNumber": [
+          "202600018", "202600019", "202600020", "202600021", "202600022", "202600023",
+          "202600024", "202600025", "202600026", "202600027", "202600028", "202600029"
+        ] } }
+      ]
+    }
+  }
+}
+
+// M. Scope of the publish gap: Cibola docs with OCRs3Path present vs missing.
+//    COLE OCR'd ~97% of these; anything null here = OCR ran but ES never re-published.
+GET courthouse-chdplants_dbpipeline-20260608/_search
+{
+  "size": 0,
+  "track_total_hits": true,
+  "query": { "term": { "County": "CIBOLA (NM)" } },
+  "aggs": {
+    "has_ocr":     { "filter": { "exists": { "field": "OCRs3Path" } } },
+    "missing_ocr": { "filter": { "bool": { "must_not": { "exists": { "field": "OCRs3Path" } } } } }
+  }
+}
+
+// N. Do the missing-OCR docs cluster by a manufacture date (i.e. never re-touched
+//    after a cutoff)? Buckets MfgUpdatedAt for Cibola docs missing OCRs3Path.
+GET courthouse-chdplants_dbpipeline-20260608/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter": [ { "term": { "County": "CIBOLA (NM)" } } ],
+      "must_not": [ { "exists": { "field": "OCRs3Path" } } ]
+    }
+  },
+  "aggs": { "by_month": { "date_histogram": { "field": "MfgUpdatedAt", "calendar_interval": "month" } } }
+}
+
+// F. Re-run the 202600001 + Cibola match against the NEWEST index from step C
+//    (swap the index name below), to confirm it lands there.
+GET courthouse-chdplants_dbpipeline-20260608/_search
+{
+  "size": 5,
+  "track_total_hits": true,
+  "query": {
+    "bool": {
+      "must":   [ { "term": { "InstrumentNumber": "202600001" } } ],
+      "filter": [ { "term": { "County": "CIBOLA (NM)" } } ]
+    }
+  }
+}
+// ---------------------------------------------------------------------------

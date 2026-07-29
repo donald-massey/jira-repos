@@ -21,6 +21,7 @@
    STEP 1 — Stage DIV1 mapped leases across the linked server (pulled once).
    DISTINCT runs on the DIV1 side so only deduped ids ship, not the full table.
    ---------------------------------------------------------------------------- */
+IF OBJECT_ID('tempdb..#mapped_leases') IS NOT NULL DROP TABLE #mapped_leases;
 CREATE TABLE #mapped_leases (LeaseID BIGINT PRIMARY KEY);
 INSERT INTO #mapped_leases (LeaseID)
 SELECT LeaseID
@@ -34,17 +35,17 @@ FROM OPENQUERY([LinktoDiv1Repl],
    status, how many have no entry in DIV1 tblleaseAbstractMapping?
    State joins from tblRecord.stateID -> tblLookupStates (same path as LND-8426).
    ---------------------------------------------------------------------------- */
-SELECT S.stateAbbreviation,
+SELECT ISNULL(S.stateAbbreviation, 'UNKNOWN')                          AS stateAbbreviation,
        COUNT(DISTINCT E.LeaseID)                                        AS zero_mapping_leases
 FROM dbo.tblexportLog E
-JOIN dbo.tblRecord       R  ON R.RecordID = E.recordID
-JOIN dbo.tblLookupStates S  ON S.StateID  = R.stateID
-LEFT JOIN #mapped_leases ml ON ml.LeaseID = E.LeaseID
+JOIN dbo.tblRecord            R  ON R.recordID = E.recordID
+LEFT JOIN dbo.tblLookupStates S  ON S.StateID  = R.stateID   -- LEFT: keep null/unmatched stateID as UNKNOWN so STEP 2 reconciles to STEP 3
+LEFT JOIN #mapped_leases      ml ON ml.LeaseID = E.LeaseID
 WHERE R.recordIsLease = 1
   AND R.statusID IN (4, 10)
   AND E.LeaseID IS NOT NULL
   AND ml.LeaseID IS NULL          -- anti-join: no mapping in DIV1
-GROUP BY S.stateAbbreviation
+GROUP BY ISNULL(S.stateAbbreviation, 'UNKNOWN')
 ORDER BY zero_mapping_leases DESC;
 
 
@@ -53,7 +54,7 @@ ORDER BY zero_mapping_leases DESC;
    ---------------------------------------------------------------------------- */
 SELECT COUNT(DISTINCT E.LeaseID) AS total_zero_mapping_leases
 FROM dbo.tblexportLog E
-JOIN dbo.tblRecord       R  ON R.RecordID = E.recordID
+JOIN dbo.tblRecord       R  ON R.recordID = E.recordID
 LEFT JOIN #mapped_leases ml ON ml.LeaseID = E.LeaseID
 WHERE R.recordIsLease = 1
   AND R.statusID IN (4, 10)

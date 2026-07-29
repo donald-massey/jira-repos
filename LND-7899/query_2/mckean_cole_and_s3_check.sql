@@ -15,7 +15,7 @@ SELECT
     s.recordID,
     s.s3FilePath,
     s.pageCount,
-    s.fileSize,
+    s.fileSizeBytes,
     s._ModifiedDateTime,
     s._ModifiedBy
 FROM dbo.tblS3Image s
@@ -82,14 +82,58 @@ WHERE x.recordID IN (
 );
 
 
--- 4. Staleness check — image modified after COLE last ran?
+-- 4. COLE output — land descriptions written back by COLE
+--    Zero rows with a clean COLE run (query 3) confirms a real content gap, not a queue miss.
+SELECT
+    L.landDescriptionID,
+    L.recordId,
+    L.AbstractName,
+    L.section,
+    L.township,
+    L.rangeOrBlock,
+    L.IsDeleted
+FROM dbo.tblLandDescription L
+WHERE L.recordID IN (
+    '97820b78-78c3-11eb-87ba-00505681224b',
+    'a993c242-c03d-11eb-abaa-00505681224b',
+    '6109278c-221e-4a4c-b116-26dc42aded3c',
+    'bf4f0a7e-80cb-11ec-babc-00505681224b',
+    'cdfc6cc8-96cb-11ec-a054-00505681224b',
+    '17a9fb26-acc4-11ec-8364-00505681224b',
+    '68479647-ee74-402f-ba35-48c97a8f027c',
+    '6f292243-fa73-4548-8062-41dad64324d0',
+    'bd096468-d346-4c93-97a1-e5c64296125a',
+    'b6d7d6d9-8b83-4cc4-851e-59e7d4a7d80c'
+);
+
+
+-- 5. Additional fields / parcel data — PA parcel numbers extracted by COLE
+SELECT
+    af.recordID,
+    af.Pennsylvania_parcelNumber
+FROM dbo.TblAddsFields af
+WHERE af.recordID IN (
+    '97820b78-78c3-11eb-87ba-00505681224b',
+    'a993c242-c03d-11eb-abaa-00505681224b',
+    '6109278c-221e-4a4c-b116-26dc42aded3c',
+    'bf4f0a7e-80cb-11ec-babc-00505681224b',
+    'cdfc6cc8-96cb-11ec-a054-00505681224b',
+    '17a9fb26-acc4-11ec-8364-00505681224b',
+    '68479647-ee74-402f-ba35-48c97a8f027c',
+    '6f292243-fa73-4548-8062-41dad64324d0',
+    'bd096468-d346-4c93-97a1-e5c64296125a',
+    'b6d7d6d9-8b83-4cc4-851e-59e7d4a7d80c'
+);
+
+
+-- 6. Staleness check — image modified after COLE last ran?
 --    image_newer_than_cole = 1 -> possible reprocess candidate; confirm via S3 head-object
 --    image_newer_than_cole = 0 -> COLE saw the current image; content gap confirmed
 SELECT
     s.recordID,
     s.s3FilePath,
     s.pageCount,
-    s.fileSize,
+    s.fileSizeBytes,
     s._ModifiedDateTime                                             AS image_ModifiedDateTime,
     s._ModifiedBy                                                   AS image_ModifiedBy,
     l._OCRModifiedDateTime,

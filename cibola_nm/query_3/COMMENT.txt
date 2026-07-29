@@ -1,0 +1,14 @@
+Figured out the Cibola (NM) missing IA Summary / tract info issue. It's a courthouse-land-data-loader publish gap, not OCR / IIE / scan quality.
+
+What's happening:
+3,675 of ~107k Cibola docs (3.4% — roughly the set originally reported) ran OCR + IIE on June 27, 2026. COLE logs a valid OCRs3Path for each and the artifacts are in di-diml-silver-prod. But the loader last manufactured these into the live index (alias courthouse-chdplants_v2 -> dbpipeline-20260608, built June 9) before that OCR run, and hasn't re-published them since — so in Elasticsearch they have OCRs3Path = null.
+
+Why both symptoms appear:
+That single null explains both.
+ - No IA Summary — it's generated from the OCR text, which isn't attached.
+ - No nonkeyed tract info — the IIE-extracted tract was never published, so only the pre-existing KEYED tract shows.
+
+MfgUpdatedAt on the affected docs is 3,512 in June, 8 in July, and ~155 older — clearly one-batch staleness, not a broad failure.
+
+Fix:
+Re-manufacture / re-publish those recordIDs (or trigger the next dated-index build) so the June-27 artifacts land in ES.
