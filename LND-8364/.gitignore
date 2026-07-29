@@ -4,3 +4,4 @@ __pycache__/
 *.pyo
 *.pyw
 .DS_Store
+.idea/
