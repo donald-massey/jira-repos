@@ -100,6 +100,8 @@ Output: count of zero-mapping leases by state, for the scope-number acceptance c
 
 ### Query 2 — Pipeline-side emission (Dev run)
 
+> Runbook: `query_2/DEV-RUN-PLAN.md` (ES-only). Test-data selection: `query_2/sample-zero-mapping-leaseids.sql`. **Gated on the team discussion** — do not execute until the SUMMARY.md questions are resolved.
+
 **Implementation under test — union-split inside `filter_records_without_mapping_id`:**
 
 Parameterize the method `filter_records_without_mapping_id(flat_df, include_unmapped=False)`:
@@ -128,4 +130,4 @@ Callers: ES and S3 pass `include_unmapped=True`; DS9 keeps the default `False`. 
 
 ## Completed
 
-<!-- Updated as work is finished -->
+- **Query 1 — scope count (2026-07-29).** 88,643 zero-mapping published leases total (= expected df2 volume). TX 53,085 (60%), WV 15,573, OH 13,436 (top 3 = 93%); PA only 658. By-state reconciles exactly to the total (no `UNKNOWN` bucket → clean `stateID`). Results: `query_1/scope-count-results.md`.

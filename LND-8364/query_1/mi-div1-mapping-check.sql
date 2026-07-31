@@ -15,7 +15,8 @@ FROM OPENQUERY(
     [LinktoDiv1Repl],
     'SELECT LeaseID
      FROM div1_Daily.dbo.tblleaseAbstractMapping
-     WHERE LeaseID IN (<leaseID_alcona>, <leaseID_alpena>, <leaseID_missaukee>)'
+     WHERE LeaseID IN (5250533)'
+    -- ALCONA (cd130801) and ALPENA (2f27f271) have NULL leaseID — Level 1 failures, excluded
 )
 GROUP BY LeaseID;
 

@@ -6,15 +6,20 @@ Full detail in `CLAUDE.md`. Scope-count query in `query_1/unmapped-leases-scope-
 
 ---
 
-## Open questions for the team
+## Open Questions for the Team
 
-1. **DS9 — do we ever want these leases there?** Recommendation is to **exclude** zero-mapping leases from DS9 (`include_unmapped=False`) — DS9 already drops them today, so it's zero change / no regression. `mapping_id` is DS9's grain key and almost certainly has a PK / unique index / NOT NULL (Tyler flagged this). If we later *do* want them in DS9, that's a schema decision: **(B)** synthetic sentinel `mapping_id` vs **(C)** alter the DS9 schema. Is exclude-for-now acceptable, and who owns the B/C call if it comes up?
+0. **⛔ BLOCKER — Product decision pending: these leases are searchable but cause a hard map-render failure.** The website's georendering service reads the geometry from a column **in DS9** to place a lease on the map. Under the union-split, df2 publishes to the ES `legal_lease` index — so the lease is **searchable and appears in results** — but df2 is **excluded from DS9** (`include_unmapped=False`), so georendering finds **no DS9 row at all**. That's a lookup miss → **hard render failure**, not a present-but-null geometry that could degrade gracefully. This is inherent to the population: `no mapping_id` ⟺ `no land descriptions` ⟺ no geometry to write. A customer would get a search hit that breaks when they try to view it on the map, which is likely worse than the lease being absent entirely (today's behavior). **Confirm desired behavior with product before scoping the implementation ticket** — the real options are (a) leave them dropped, (b) publish to ES only and have the site handle the missing-geometry case gracefully (no map pin rather than an error), or (c) also land them in DS9 with real or sentinel geometry (the B/C DS9 decision in Q2). Note: the `polygon_group_id` on the ES doc does **not** rescue this — georendering reads DS9's geometry column, not ES, so a populated polygon id is never consulted on the render path unless georendering is repointed. Owner: D. Massey taking to senior manager / product.
 
-2. **ES consumers — does anything assume `mapping_id` is non-null?** The change makes docs with null `mapping_id` appear in the `legal_lease` index **the website reads**. Before prod, someone who owns the consumers (website, any Databricks/API join) needs to confirm nothing back-references `mapping_id` or assumes it's present. Who can verify this?
+1. **Fix in the pipeline or upstream?** Recommendation: emit these leases in the pipeline via the union-split in `land-aws-glue`'s `kafka-to-adl` (`filter_records_without_mapping_id`, `jobs/kafka_to_adl/src/kafka_to_adl.py:326`), so leases with no `tblleaseAbstractMapping` entry get emitted as one lean doc per zero-mapping lease. The alternative is backfilling the mappings in DIV1 (LND-8426's upstream path). Agree the pipeline is the direction, with upstream backfill tracked separately?
 
-3. **Ratify the emission method (union-split).** Emit one lean doc per zero-mapping lease, grained by `lease_id`, unioned onto the untouched mapped path. Alternative is the LND-8426 "fix upstream" path (backfill the mappings in DIV1). Are we agreed the pipeline-side union-split is the direction, with upstream backfill tracked separately?
+2. **DS9 — do we ever want these leases there?** Recommendation: **exclude** them (`include_unmapped=False`).
+   - **Zero change / no regression** — DS9 already drops these today.
+   - **Why it must opt out:** `mapping_id` is DS9's grain key, almost certainly PK / unique / NOT NULL (Tyler flagged this).
+   - **Wiring:** new `include_unmapped=False` param on `filter_records_without_mapping_id` (`kafka_to_adl.py:326`), threaded through the shared `create_legal_lease_dataframe` (`:333`). ES → `True` (`:721`), S3 → `True` (`:559`), DS9 → default `False` (`:488`), so DS9 stays byte-identical.
+   - **If we later want them in DS9:** schema decision — **(B)** synthetic sentinel `mapping_id` vs **(C)** alter the schema.
+   - **Ask:** exclude-for-now acceptable, and who owns the B/C call?
 
-4. **Scope universe.** The count is defined as *currently-publishable and exported* (`tblexportLog` membership + `recordIsLease=1` + `statusID IN (4,10)`). Is that the right denominator, or do we want *ever-exported* regardless of current status?
+3. **ES consumers — does the site assume `mapping_id` is present?** The change makes docs with null `mapping_id` appear in the `legal_lease` index (alias `legal-leases`) **the website reads**. `mapping_id` is a real queryable field in the index (`type: long`), so df2 docs won't break indexing — they'll just omit the field — but any read that does `exists: mapping_id`, filters/sorts on it, or dedups on one-doc-per-`mapping_id` would silently exclude or mis-handle them. **The Dev run tests this directly:** it's a **local, no-Jenkins** run (see below) that repoints the **real dev `legal-leases` alias** at an index containing df2 docs, exercises the dev site, then swaps the alias back — so the dev-site consumer half *is* covered, not just ES indexing mechanics. The remaining gate is any **consumer beyond the dev site** (prod site build, other `legal_lease`/`legal-leases` readers): confirm none depend on `mapping_id` being present before shipping to Prod. Pre-Prod consideration, not a blocker for the Dev test.
 
 ---
 
@@ -49,9 +54,9 @@ Note: this is `land-aws-glue`'s `DS9Cache` (writes `pres.legal_lease`). The DS9 
 
 ## Deliverables & how we'll verify
 
-- **Scope number (SQL):** distinct zero-mapping published leases, by state — this equals the expected df2 doc volume. Expect **OH (~16%) / TX (~12%) / WV (~9.5%)** to dominate, **not** PA (~1.15%, well-mapped) per LND-8426.
-- **Dev run (ES-only):** reuse the LND-8426 local harness (already runs only `ElasticSearch6Cache`, isolated index) + the union-split edit; publish a couple of zero-mapping lease IDs; capture df2 field population.
-- **Clobber check:** assert `df1.lease_id ∩ df2.lease_id = ∅` and df1 count == baseline (structurally guaranteed by the coalesce; confirmed empirically in the ES run).
+- **Scope number (SQL) — DONE:** **88,643** zero-mapping published leases = the expected df2 doc volume added to the `legal_lease` index. **TX 53,085 (60%)**, WV 15,573, OH 13,436 — top 3 = 93%. PA only 658 (confirms LND-8426: PA well-mapped, TX is the real weight). By-state rows reconcile exactly to the total (no unmatched-`stateID` tail). Full table: `query_1/scope-count-results.md`.
+- **Dev run (ES-only, local / no Jenkins):** control volume at the **producer** — publish 1,000 mapped + 1,000 unmapped leases (`query_2/sample-2000-split-leaseids.sql`) to a **fresh test topic**, so the glue Kafka read is fast and no in-job `.limit()` caps are needed. Glue runs the union-split, stamps df2 with the **Washington-coast sentinel** (§7), writes a new `legal_lease_<ts>` index with `manage_alias=False`, then **manually swaps the real dev `legal-leases` alias** to it (no-delete → instant swap-back), exercises the dev site, and swaps back. One run answers **three** things: df2 emit, ES-consumer tolerance (Q3), and the sentinel behaves (excluded from county searches). Runbook: `query_2/DEV-RUN-PLAN.md`.
+- **Clobber check:** assert `df1.lease_id ∩ df2.lease_id = ∅` (load-bearing; structurally guaranteed by the coalesce). With volume controlled at the producer (no caps), also diff the **PINNED_MAPPED `lease_id`** doc against an `include_unmapped=False` baseline — it must be identical (df1 is untouched by the union-split and the df2-only WA stamp). See runbook §6.
 - **DS9:** no live test — "unchanged" is guaranteed by the `include_unmapped=False` path plus the existing DS9 unit-test fixture staying green.
 
 ## Out of scope

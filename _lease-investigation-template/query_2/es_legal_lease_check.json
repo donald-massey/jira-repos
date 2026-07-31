@@ -1,0 +1,9 @@
+{
+  "_comment": "{TICKET} Level 2 step D — is the LeaseID in the legal_lease index? Run against cerebro 'Elasticsearch DI Regulatory 6x Client'. Zero hits = dropped; a hit = present (check file_date/version). Replace {LEASEIDS} with the DIV1 LeaseID(s).",
+  "size": 20,
+  "query": {
+    "terms": {
+      "lease_id": [ {LEASEIDS} ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+Post-reprocess verification — partial fix confirmed, full reload still needed.
+
+853 of ~3,675 missing OCRs3Path docs were fixed. The remaining 2,822 require a full reload;
+further status-date manipulation won't reach them. COLE doesn't update _ModifiedDateTime on
+CHD records, so the import's date filter can't detect OCR-only changes regardless of how far
+back the rewind goes.
+
+What I did:
+Rewound import/full/status.json and stage/full/status.json to 2026-06-26 and ran
+import -> manufacture -> publish. Goal was to recapture the June 27 COLE OCR batch
+(1,674 docs) that had been manufactured before OCR ran.
+
+  Before: ~3,675 Cibola docs with OCRs3Path = null
+  After:    2,822 Cibola docs with OCRs3Path = null
+  Fixed:      ~853
+
+Why going further back on the date doesn't help:
+Import re-pulls CHD records based on _ModifiedDateTime in courthouseDirectTitle. COLE
+doesn't update that field — it only writes to CSD (_OCRModifiedDateTime in
+cole.tblRecordProcessingLogs). A record with _ModifiedDateTime = 2024-03-15 stays that
+way after COLE runs in June. Setting the rewind to June 1 instead of June 26 changes
+nothing for those records.
+
+The 853 that got fixed came through the OCR increment cache path. When the chaining check
+passes (stage/full.last_processed_date == import/increment.data_newer_than, byte-exact),
+manufacture pulls those parent records regardless of _ModifiedDateTime. That check passed
+for 853 but not the other 821. More date changes won't fix it.
+
+Remaining 2,822 breakdown:
+  2,659 — June 2026 MfgUpdatedAt; not re-touched by reprocess
+      8 — July 2026 MfgUpdatedAt; new CHD records, not yet through COLE
+    ~155 — 2020–2021 MfgUpdatedAt; COLE has never processed these (legitimate floor)
+
+Full reload is already planned — re-manufactures every record unconditionally with no
+_ModifiedDateTime filter. That closes out the 2,659. The 8 July records need COLE to
+run first. The ~155 are a separate COLE coverage question.

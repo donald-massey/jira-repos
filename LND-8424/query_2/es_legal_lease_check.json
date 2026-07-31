@@ -1,0 +1,9 @@
+{
+  "_comment": "LND-8424 Level 2 step D — is LeaseID 5067911 in legal_lease? Run against cerebro 'Elasticsearch DI Regulatory 6x Client'. Zero hits = dropped; a hit = present (check file_date/version vs 2024-07-20 / 2024-07-23).",
+  "size": 20,
+  "query": {
+    "terms": {
+      "lease_id": [ 5067911 ]
+    }
+  }
+}

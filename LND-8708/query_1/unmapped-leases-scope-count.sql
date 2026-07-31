@@ -62,4 +62,14 @@ WHERE R.recordIsLease = 1
   AND ml.LeaseID IS NULL;
 
 
-DROP TABLE #mapped_leases;
+--DROP TABLE #mapped_leases;
+
+
+SELECT r.*
+FROM dbo.tblexportLog E
+JOIN dbo.tblRecord       R  ON R.recordID = E.recordID
+LEFT JOIN #mapped_leases ml ON ml.LeaseID = E.LeaseID
+WHERE R.recordIsLease = 1
+  AND R.statusID IN (4, 10)
+  AND E.LeaseID IS NOT NULL
+  AND ml.LeaseID IS NULL;
