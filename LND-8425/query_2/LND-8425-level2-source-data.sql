@@ -45,7 +45,9 @@ SELECT L.landDescriptionID, L.AbstractName, L.section, L.township,
        L.rangeOrBlock, L.survey, L.IsDeleted
 FROM [countyScansTitle].[dbo].[tblRecord] R
 JOIN [countyScansTitle].[dbo].[tblLandDescription] L ON R.recordID = L.recordID
-WHERE R.recordID = '68125b82-1ae2-4058-a46f-f3e46709e47b';
+WHERE R.recordID IN (
+    '68125b82-1ae2-4058-a46f-f3e46709e47b'   -- 2025-03537  LeaseID 5184347  (ticket target)
+);
 
 
 -- 3) [CSTitle] Record shell — confirm it exists and its publishable status.

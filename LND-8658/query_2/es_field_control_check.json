@@ -1,0 +1,20 @@
+// CONTROL 1 — inspect actual field names on a real doc. If the id field is not
+// "lease_id" (e.g. "leaseId"), the presence check above was a false negative.
+GET legal-leases/_search
+{
+  "size": 1,
+  "query": { "match_all": {} }
+}
+
+// CONTROL 2 — confirm the lease_id field exists and its type in the mapping.
+GET legal-leases/_mapping/field/lease_id
+
+// CONTROL 3 — query a lease_id KNOWN to be published (replace with a mapped WV
+// lease from Braxton/Preston/Randolph/Upshur). Non-zero here + zero above =
+// the affected 10 are genuinely absent from ES, not a field-name artifact.
+GET legal-leases/_search
+{
+  "query": { "terms": { "lease_id": [ REPLACE_WITH_KNOWN_PUBLISHED_LEASE_ID ] } },
+  "_source": ["lease_id", "mapping_id", "county_parish"],
+  "size": 5
+}

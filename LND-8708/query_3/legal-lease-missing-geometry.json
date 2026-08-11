@@ -1,0 +1,65 @@
+-- Target: legal_lease ES index (date-stamped: legal_lease_20260810 as of 2026-08-10)
+-- Goal: identify published leases with no geometry (location + location_shape both absent)
+-- A lease missing both fields cannot render on the map regardless of polygon_group_id.
+--
+-- Cerebro usage (REST tab):
+--   Path:   legal_lease_20260810/_search   (or use alias: legal_leases/_search)
+--   Method: POST
+--   Body:   paste one query block at a time (omit the comment lines)
+
+-- 1. COUNT: total docs missing both geometry fields
+POST /legal_lease_20260810/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "must_not": [
+        { "exists": { "field": "location" } },
+        { "exists": { "field": "location_shape" } }
+      ]
+    }
+  }
+}
+
+-- 2. SAMPLE: inspect individual docs (raise size as needed)
+POST /legal_lease_20260810/_search
+{
+  "size": 10,
+  "query": {
+    "bool": {
+      "must_not": [
+        { "exists": { "field": "location" } },
+        { "exists": { "field": "location_shape" } }
+      ]
+    }
+  },
+  "_source": [
+    "lease_id", "mapping_id", "county_state", "state_province",
+    "location", "location_shape", "polygon_group_id",
+    "latitude", "longitude"
+  ]
+}
+
+-- 3. BREAKDOWN BY STATE
+-- polygon_group_id populated vs null in sample reveals whether it is a pipeline
+-- gap (polygon row exists, geometry never wrote through) vs a data gap (no polygon at all).
+POST /legal_lease_20260810/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "must_not": [
+        { "exists": { "field": "location" } },
+        { "exists": { "field": "location_shape" } }
+      ]
+    }
+  },
+  "aggs": {
+    "by_state": {
+      "terms": {
+        "field": "state_province.keyword",
+        "size": 60
+      }
+    }
+  }
+}

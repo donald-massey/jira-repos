@@ -1,0 +1,10 @@
+GET legal-leases/_search
+{
+  "query": {
+    "terms": {
+      "lease_id": [4952552, 5210926, 4840326, 4539306, 4493428, 5238497, 4899098, 4508437, 4580728, 4954715]
+    }
+  },
+  "_source": ["lease_id", "mapping_id", "county_parish", "record_date"],
+  "size": 50
+}

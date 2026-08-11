@@ -357,4 +357,135 @@ GET courthouse-chdplants_v2/_search
     }
   }
 }
+
+// ===========================================================================
+// POST-RELOAD RESIDUAL — 2,822 Cibola docs still missing OCRs3Path after full
+// reload. Goal: determine if these were never OCR'd (expected) vs a remaining
+// gap (bug). Run P → Q → R → S in order; stop when you have an answer.
+// ===========================================================================
+
+// P. Were the 2,822 actually touched by the reload? MfgUpdatedAt histogram
+//    on missing-OCR docs. If they cluster on today's date (or the reload date),
+//    the loader re-manufactured them fresh and the source truly has no OCR.
+//    If they show an old date (pre-reload), the reload skipped them — that's a
+//    separate bug (wrong status rewind, or increment mode filter still applied).
+GET courthouse-chdplants_v2/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter":   [ { "term": { "County": "CIBOLA (NM)" } } ],
+      "must_not": [ { "exists": { "field": "OCRs3Path" } } ]
+    }
+  },
+  "aggs": {
+    "by_mfg_date": {
+      "date_histogram": {
+        "field": "MfgUpdatedAt",
+        "calendar_interval": "day",
+        "min_doc_count": 1
+      }
+    }
+  }
+}
+
+// Q. Sample 50 of the still-missing docs. Pull RecordId + ImageLocation +
+//    InstrumentType + MfgUpdatedAt. If ImageLocation is null -> no scan ->
+//    COLE never had anything to process; if it's populated, cross-check
+//    RecordId against CS_Digital cole.tblRecordProcessingLogs.
+GET courthouse-chdplants_v2/_search
+{
+  "size": 50,
+  "_source": ["RecordId", "InstrumentNumber", "InstrumentType", "ImageLocation", "MfgUpdatedAt"],
+  "query": {
+    "bool": {
+      "filter":   [ { "term": { "County": "CIBOLA (NM)" } } ],
+      "must_not": [ { "exists": { "field": "OCRs3Path" } } ]
+    }
+  }
+}
+
+// R. Instrument-type breakdown of the 2,822. If they cluster on non-land types
+//    (plats, misc filings, UCC, vital records) that COLE does not process,
+//    the null OCRs3Path is expected behavior, not a gap.
+GET courthouse-chdplants_v2/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter":   [ { "term": { "County": "CIBOLA (NM)" } } ],
+      "must_not": [ { "exists": { "field": "OCRs3Path" } } ]
+    }
+  },
+  "aggs": {
+    "by_type": {
+      "terms": { "field": "InstrumentType", "size": 60, "order": { "_count": "desc" } }
+    }
+  }
+}
+
+// S. How many of the 2,822 have NO ImageLocation at all? Those never had a
+//    scan attached — COLE submission impossible, null OCR is correct.
+//    'no_image' + 'has_image_no_ocr' should sum to 2,822.
+GET courthouse-chdplants_v2/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter":   [ { "term": { "County": "CIBOLA (NM)" } } ],
+      "must_not": [ { "exists": { "field": "OCRs3Path" } } ]
+    }
+  },
+  "aggs": {
+    "no_image":       { "filter": { "bool": { "must_not": { "exists": { "field": "ImageLocation" } } } } },
+    "has_image_no_ocr": { "filter": { "exists": { "field": "ImageLocation" } } }
+  }
+}
+
+// ===========================================================================
+// POST-RELOAD RESIDUAL — continued investigation after P/R/S results.
+// P showed three groups: 2,659 (re-manufactured 2026-06-26, no source OCR),
+// 155 (2021 dates — reload SKIPPED them), 8 (2026-07-16 incremental).
+// R showed ~1,700 land-relevant types in the 2,822 — not all dismissible.
+// ===========================================================================
+
+// T. Isolate the 155 docs the full reload skipped (MfgUpdatedAt < 2022).
+//    Inspect their characteristics vs the 2,659 to find what's different.
+//    If their RecordIds are absent from CS_Digital tblDimlXref they may be
+//    orphaned records that manufacture silently filtered out.
+GET courthouse-chdplants_v2/_search
+{
+  "size": 50,
+  "_source": ["RecordId", "InstrumentNumber", "InstrumentType", "ImageLocation", "MfgUpdatedAt", "Grantor"],
+  "sort": [ { "MfgUpdatedAt": "asc" } ],
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "County": "CIBOLA (NM)" } },
+        { "range": { "MfgUpdatedAt": { "lt": "2022-01-01" } } }
+      ],
+      "must_not": [ { "exists": { "field": "OCRs3Path" } } ]
+    }
+  }
+}
+
+// U. Instrument-type breakdown for ONLY the 155 skipped docs (pre-2022).
+//    If they're all non-land types, the reload skipping them may be intentional
+//    (e.g. a record-type exclude list). If land types appear, it's a real gap.
+GET courthouse-chdplants_v2/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "County": "CIBOLA (NM)" } },
+        { "range": { "MfgUpdatedAt": { "lt": "2022-01-01" } } }
+      ],
+      "must_not": [ { "exists": { "field": "OCRs3Path" } } ]
+    }
+  },
+  "aggs": {
+    "by_type": { "terms": { "field": "InstrumentType", "size": 40, "order": { "_count": "desc" } } }
+  }
+}
 // ---------------------------------------------------------------------------

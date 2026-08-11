@@ -120,6 +120,7 @@ Callers: ES and S3 pass `include_unmapped=True`; DS9 keeps the default `False`. 
 
 ### Open investigations before implementation ticket
 
+- **Mechanism decision (mapping_id generation for non-geom records)**: to surface these records we need to generate `mapping_id` values. Two options — (a) adapt an existing script in the legal-lease pipeline, or (b) add a new dedicated script. This and the DS9 B-vs-C item below are candidates to move to the task card; **hold on creating the task card until a mechanism is chosen.** Records can be validated through the Dev pipeline in the meantime.
 - **DS9 handling (B vs C)**: if the implementation ticket later wants zero-mapping leases in DS9 too, decide between a synthetic sentinel `mapping_id` (e.g. negative id derived from `lease_id`, avoiding collision with positive DIV1 `mappingid`; check the LND-8426 ID-space warning) vs. a DS9 schema change (drop NOT NULL / repoint the key). Out of scope here.
 - **ES-consumer assumption**: confirm nothing querying the `legal_lease` index assumes `mapping_id` is non-null before shipping the change to prod.
 
@@ -131,3 +132,8 @@ Callers: ES and S3 pass `include_unmapped=True`; DS9 keeps the default `False`. 
 ## Completed
 
 - **Query 1 — scope count (2026-07-29).** 88,643 zero-mapping published leases total (= expected df2 volume). TX 53,085 (60%), WV 15,573, OH 13,436 (top 3 = 93%); PA only 658. By-state reconciles exactly to the total (no `UNKNOWN` bucket → clean `stateID`). Results: `query_1/scope-count-results.md`.
+
+- **Query 3 — geometryless leases + georendering behavior (2026-08-11).** Identified leases already published *without geometry* in the ES `legal_lease` index: **219,765** docs missing both `location` and `location_shape`. Sample of 10 → all **mapped** (`mapping_id` populated, `svgPolygonGroupDetailId` NULL in DIV1), i.e. a **different population** from this card's zero-mapping leases. Traced to DS9 `pres.legal_lease`:
+  - Geometry is **`mapping_id`-grained**; the geometry-typed `GEOM` column is **null table-wide** — the real point source is `geom_wkt` / `latitude` / `longitude`, derived from the abstract/survey PLSS lookup in producer `land_descriptions.py:28-40` (TX: `county_id+abstract_number`; non-TX: `county+section/township/block`). A mapping with no lookup match gets a null point. Separate from the SVG polygon path (`location_shape`), null when DIV1 `svgPolygonGroupDetailId` is null.
+  - **Blocker result:** 113,655 leases (178,913 mappings) already live in prod DS9 with null geometry and the site does **not** break — georendering degrades to **searchable-but-unpinned** (map/tile spatial query skips null-geometry rows; attribute/search path returns them). Geometry-null is therefore tolerated and is **NOT** the DS9 blocker (that's `mapping_id` NOT NULL/PK). This refutes the "hard render failure" hypothesis in comment 5097097.
+  - Decomposition: 219,765 geometryless mappings = 178,913 in 113,655 fully-unrenderable leases (fix target) + 40,852 tract-level gaps on leases that still pin via a sibling mapping. Behavioral confirmation on live site still pending (`query_3/ds9-sample-unrenderable-leases.sql`). Queries: `query_3/`.

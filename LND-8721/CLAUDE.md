@@ -7,17 +7,18 @@ show **no IA Summary and no tract info**, and determine the fix. Investigation o
 pipeline code changes live here; the actionable output is the root cause plus the exact
 `courthouse-land-data-loader` status-file rewind needed to republish.
 
-**Status:** Root cause confirmed. Fix is an operational reprocess (see *The fix*).
+**Status:** Complete — full reload ran 2026-08-10; post-reload ES verification confirms original publish gap resolved. See *Post-reload verification* below.
 
 ## Conclusion (one line)
 
-It is a **`courthouse-land-data-loader` publish gap, not an OCR / IIE / scan-quality
+It was a **`courthouse-land-data-loader` publish gap, not an OCR / IIE / scan-quality
 problem.** ~3,675 of ~107k Cibola docs (≈3.4%) were OCR'd + IIE'd by COLE on **2026-06-27**,
 but the loader last manufactured/published these into the live index (alias
 `courthouse-chdplants_v2` → `dbpipeline-20260608`, built June 9) **before** that OCR run and
-never re-published them. So in Elasticsearch `OCRs3Path = null`, which cascades to both
-symptoms: no IA Summary (generated from OCR text) and no nonkeyed tract info (IIE-extracted
-tract was never published — only the pre-existing KEYED tract shows). See `query_3/COMMENT.txt`.
+never re-published them. A full reload re-manufactured all Cibola docs unconditionally and
+published. Post-reload ES state: **104,845 docs carry `OCRs3Path`** (fixed); **2,822 have
+`ImageLocation = null`** in the source — no scan was ever attached, so null `OCRs3Path` is
+correct. Original gap is closed. See `query_3/COMMENT.txt` and *Post-reload verification*.
 
 ## Data-source topology
 
@@ -57,6 +58,7 @@ Numbered task folders, per repo convention. Each folder holds its SQL, scripts, 
 - `es_instrument_number_query.json` — Elasticsearch DSL playbook (ES8). Existence checks, `Tractinfo`/`LandDescriptions` exists-aggs (nested-wrapped), instrument-type miss-rate breakdown, and the `OCRs3Path` present-vs-missing scope agg with `MfgUpdatedAt` date-histogram that pinned the one-batch staleness. Query against the **live** index (`dbpipeline-20260608`), not the stale `20260305` snapshot.
 - `verify_ocr_publish_gap.py` — **Databricks notebook** (`# Databricks notebook source`). Traces where `OCRs3Path` drops out across import → manufacture → publish so you know how far up to rewind. Widgets: `env`, `version` (blank = read `chldl_version.json`), `county`, `state`. Reads `stage/full/records` (decisive: is `OCRs3Path` populated post-manufacture?) and the `import/.../record_ocr_s3_path` OCR caches.
 - `COMMENT.txt` — the written-up finding (posted to the ticket).
+- `es_instrument_number_query.json` queries P–U — post-reload verification queries. P (MfgUpdatedAt histogram) confirmed three groups: 2,659 re-manufactured 2026-06-26 with no source OCR; 155 with 2021 dates (no `_ModifiedDateTime` update in CHD, skipped by full reload — all have `ImageLocation = null`); 8 from 2026-07-16 incremental. S (image presence) was decisive: `no_image = 2,822`, `has_image_no_ocr = 0` — all 2,822 residual docs have no scan in `courthouseDirectTitle`; null `OCRs3Path` is correct.
 
 ## The fix — republish via the increment path
 
@@ -79,6 +81,21 @@ unconditionally (no date filter), then publish.
 
 Run order: import → manufacture → publish. Pick the 06-26 timestamp just before the earliest
 06-27 OCR row to keep the increment scope small (further back = more harmless upsert churn).
+
+## Post-reload verification (2026-08-10)
+
+Full reload ran (all records re-manufactured unconditionally, then published). ES verification
+against `courthouse-chdplants_v2`:
+
+| Bucket | Count | Status |
+|---|---|---|
+| `OCRs3Path` present | 104,845 | Fixed — original publish gap resolved |
+| `OCRs3Path` null, `ImageLocation` null | 2,822 | Expected — no scan in source, COLE had nothing to process |
+| Total | 107,667 | |
+
+Query S (`no_image: 2822`, `has_image_no_ocr: 0`) was the decisive check. Every doc missing
+`OCRs3Path` also has `ImageLocation = null` in the published record — this is a source-data
+characteristic, not a pipeline defect. No further action required.
 
 ## Conventions / gotchas
 

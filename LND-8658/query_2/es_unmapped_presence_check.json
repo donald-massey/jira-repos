@@ -1,0 +1,16 @@
+// Docs in legal-leases with NO mapping_id (null/absent). RESULT 2026-08-11: 0.
+// NOT a clean tiebreaker for "is LND-8708 live?":
+//   count > 0  -> split is live AND publishes unmapped leases with null mapping_id.
+//   count == 0 -> AMBIGUOUS: either (a) split not live, OR (b) split live but MINTS a
+//                 synthetic non-null mapping_id (the approach we favor) so unmapped-origin
+//                 docs still have a mapping_id and this exists-check can't see them.
+// Confirm LND-8708 prod state from the land-aws-glue deploy/release, not this query.
+// Firm finding regardless: the affected 10 are ABSENT from ES (terms check) and DS9 (query_2).
+GET legal-leases/_count
+{
+  "query": {
+    "bool": {
+      "must_not": [ { "exists": { "field": "mapping_id" } } ]
+    }
+  }
+}
