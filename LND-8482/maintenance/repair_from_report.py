@@ -239,29 +239,43 @@ def _pdf_s3_key(s3_path: str) -> str:
 
 
 def commit_db(conn, record_id: str, s3_path: str, page_count: int, file_size: int, update_ext: bool) -> None:
-    """Upsert tblS3Image and (for converted TIFs) update tblrecord.fileExtension in one txn."""
+    """Upsert tblS3Image and (for converted TIFs) update tblrecord.fileExtension in one txn.
+
+    The upsert decision is made server-side with @@ROWCOUNT rather than the driver's
+    cursor.rowcount: SET NOCOUNT never affects @@ROWCOUNT, so a deleted-then-recreated
+    row can't silently skip the INSERT. recordID is the tblS3Image primary key, so the
+    UPDATE/INSERT targets exactly one row. Values are parameterised, not interpolated.
+    """
     conn.begin_transaction()
     try:
-        updated = conn.execute_update(f"""
+        conn.execute_update(
+            f"""
             UPDATE {S3_TABLE}
-               SET s3FilePath        = '{s3_path}',
-                   pageCount         = {page_count},
-                   fileSizeBytes     = {file_size},
-                   _ModifiedBy       = '{MODIFIED_BY}',
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
                    _ModifiedDateTime = GETDATE()
-             WHERE recordID = '{record_id}'
-        """)
-        if updated == 0:
-            conn.execute_update(f"""
-                INSERT INTO {S3_TABLE} (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
-                VALUES ('{record_id}', '{s3_path}', {page_count}, {file_size}, '{MODIFIED_BY}', GETDATE())
-            """)
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO {S3_TABLE}
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE());
+            """,
+            [s3_path, page_count, file_size, MODIFIED_BY, record_id,
+             record_id, s3_path, page_count, file_size, MODIFIED_BY],
+        )
         if update_ext:
-            conn.execute_update(f"""
+            conn.execute_update(
+                f"""
                 UPDATE {RECORD_TABLE}
-                   SET fileExtension = '.pdf'
-                 WHERE recordID = '{record_id}'
-            """)
+                   SET fileExtension     = '.pdf',
+                       _ModifiedBy       = ?,
+                       _ModifiedDateTime = GETDATE()
+                 WHERE recordID = ?
+                """,
+                [MODIFIED_BY, record_id],
+            )
         conn.commit()
     except Exception:
         conn.rollback()
