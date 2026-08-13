@@ -74,7 +74,7 @@ S3_TABLE = "countyScansTitle.dbo.tblS3Image"
 RECORD_TABLE = "countyScansTitle.dbo.tblrecord"
 IN_SCOPE_STATUS = (4, 10)
 MODIFIED_BY = "LND-8093-repair"
-MAX_FILE_BYTES = int(os.environ.get("MAX_FILE_MB", 200)) * 1024 * 1024
+MAX_FILE_BYTES = int(os.environ.get("MAX_FILE_MB", 500)) * 1024 * 1024
 
 PDF_MAGIC = b"%PDF"
 TIFF_MAGICS = (b"II*\x00", b"MM\x00*")
@@ -115,7 +115,10 @@ def lookup_source_records(conn, record_ids: list[str]) -> dict[str, dict]:
             WHERE recordID IN ({placeholders})
         """)
         for r in rows:
-            source[r["recordID"]] = r
+            # Key on upper-cased recordID: SQL Server's IN (...) is case-insensitive but
+            # the Python dict lookup below is not, so normalise both sides or a casing
+            # mismatch between report and tblrecord falsely reports "not found".
+            source[r["recordID"].upper()] = r
     return source
 
 
@@ -178,7 +181,7 @@ def read_or_recover_pdf(data: bytes) -> tuple[bytes, int, str] | None:
     try:
         import pikepdf
         out = io.BytesIO()
-        with pikepdf.open(io.BytesIO(data), recovery=True) as pdf:
+        with pikepdf.open(io.BytesIO(data), attempt_recovery=True) as pdf:
             pdf.save(out)
         recovered = out.getvalue()
     except Exception as exc:
@@ -307,8 +310,14 @@ def repair_one(row: dict, source: dict | None, conn, s3: S3Client, dry_run: bool
         result["reason"] = f"file exceeds MAX_FILE_MB ({size_on_disk} bytes)"
         return result
 
-    with open(local_path, "rb") as fh:
-        data = fh.read()
+    try:
+        with open(local_path, "rb") as fh:
+            data = fh.read()
+    except OSError as exc:
+        # A single unreadable file (SMB hiccup, offline/HSM-stubbed file) must not
+        # kill the whole run — record it as failed and move on.
+        result["reason"] = f"file read error: {exc}"
+        return result
 
     kind = sniff_kind(data)
     if kind is None:
@@ -395,7 +404,7 @@ def run(report_path: Path, dry_run: bool) -> None:
         last_log = start
 
         for i, row in enumerate(report_rows, 1):
-            result = repair_one(row, source_map.get(row["recordID"]), conn, s3, dry_run)
+            result = repair_one(row, source_map.get(row["recordID"].upper()), conn, s3, dry_run)
             counts[result["status"]] = counts.get(result["status"], 0) + 1
             results.append(result)
 
