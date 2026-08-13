@@ -266,15 +266,17 @@ def commit_db(conn, record_id: str, s3_path: str, page_count: int, file_size: in
              record_id, s3_path, page_count, file_size, MODIFIED_BY],
         )
         if update_ext:
+            # Only fileExtension — tblrecord's tr_tblrecord_PopulateCreatedModified
+            # AFTER-UPDATE trigger owns _ModifiedBy/_ModifiedDateTime and would
+            # overwrite any stamp we set here. (tblS3Image has no such trigger, so
+            # the audit stamp on that write above is real.)
             conn.execute_update(
                 f"""
                 UPDATE {RECORD_TABLE}
-                   SET fileExtension     = '.pdf',
-                       _ModifiedBy       = ?,
-                       _ModifiedDateTime = GETDATE()
+                   SET fileExtension = '.pdf'
                  WHERE recordID = ?
                 """,
-                [MODIFIED_BY, record_id],
+                [record_id],
             )
         conn.commit()
     except Exception:
