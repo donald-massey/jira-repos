@@ -398,13 +398,23 @@ def repair_one(row: dict, source: dict | None, conn, s3: S3Client, dry_run: bool
 # Driver
 # ----------------------------------------------------------------------
 
-def run(report_path: Path, dry_run: bool) -> None:
+def run(report_path: Path, dry_run: bool, limit: int | None = None, record_ids: list[str] | None = None) -> None:
     report_rows = load_report_csv(report_path)
-    if not report_rows:
-        logger.info("Report CSV is empty — nothing to repair.")
-        return
-
     logger.info("Loaded %d record(s) from %s", len(report_rows), report_path.name)
+
+    # Optional narrowing for smoke tests: pin to specific recordID(s) and/or cap the
+    # count. --record-id is matched case-insensitively (report casing can differ).
+    if record_ids:
+        wanted = {r.strip().upper() for r in record_ids}
+        report_rows = [r for r in report_rows if r["recordID"].upper() in wanted]
+        logger.info("Filtered to %d row(s) matching %d requested recordID(s)", len(report_rows), len(wanted))
+    if limit is not None:
+        report_rows = report_rows[:limit]
+        logger.info("Limited to first %d row(s)", len(report_rows))
+
+    if not report_rows:
+        logger.info("No records to repair after filtering — nothing to do.")
+        return
 
     conn = connect_countyscanstitle()
     s3 = S3Client(bucket=BUCKET, region=REGION)
@@ -461,6 +471,18 @@ if __name__ == "__main__":
         action="store_true",
         help="Apply repairs to the share, S3, and DB. Without this flag the script runs as a dry run.",
     )
+    parser.add_argument(
+        "--record-id",
+        action="append",
+        metavar="ID",
+        help="Only process this recordID (repeatable). Use for a single-record --commit smoke test.",
+    )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Process at most N records (applied after --record-id).",
+    )
     args = parser.parse_args()
 
     if not args.report_csv.exists():
@@ -471,4 +493,4 @@ if __name__ == "__main__":
         "Mode: %s | Report: %s | Bucket: %s",
         "DRY RUN" if is_dry_run else "COMMIT", args.report_csv.name, BUCKET,
     )
-    run(args.report_csv, is_dry_run)
+    run(args.report_csv, is_dry_run, limit=args.limit, record_ids=args.record_id)
