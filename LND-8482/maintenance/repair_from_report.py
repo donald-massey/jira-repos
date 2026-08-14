@@ -48,10 +48,25 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from botocore.exceptions import ClientError
+from botocore.exceptions import ClientError, NoCredentialsError, CredentialRetrievalError
 
 from utils.database_utils import connect_countyscanstitle
 from utils.s3_utils import S3Client
+
+
+class CredentialsExpired(Exception):
+    """Raised when AWS creds die mid-run (e.g. VPN/SSO session lapses).
+
+    Environmental, not per-record: every subsequent record would fail identically,
+    so the driver aborts the whole run instead of mass-marking failures for hours.
+    """
+
+
+# S3 error codes that mean the session token is dead — refresh required, no point retrying.
+EXPIRED_CRED_CODES = {
+    "ExpiredToken", "ExpiredTokenException", "InvalidToken",
+    "TokenRefreshRequired", "RequestExpired",
+}
 
 
 def _load_env() -> None:
@@ -381,8 +396,13 @@ def repair_one(row: dict, source: dict | None, conn, s3: S3Client, dry_run: bool
     try:
         s3.upload_bytes(pdf_bytes, s3_key)
     except ClientError as exc:
+        code = exc.response.get("Error", {}).get("Code", "")
+        if code in EXPIRED_CRED_CODES:
+            raise CredentialsExpired(f"{code}: {exc}") from exc
         result["reason"] = f"S3 error: {exc}"
         return result
+    except (NoCredentialsError, CredentialRetrievalError) as exc:
+        raise CredentialsExpired(str(exc)) from exc
 
     try:
         commit_db(conn, record_id, s3_key, page_count, len(pdf_bytes), update_ext=orig_ext != ".pdf")
@@ -417,7 +437,9 @@ def run(report_path: Path, dry_run: bool, limit: int | None = None, record_ids: 
         return
 
     conn = connect_countyscanstitle()
-    s3 = S3Client(bucket=BUCKET, region=REGION)
+    # Low retry count: a dead token or dropped VPN should fail fast, not burn ~5 min of
+    # exponential backoff per record (run 1 crawled to 2.5 rec/s for exactly this reason).
+    s3 = S3Client(bucket=BUCKET, region=REGION, max_attempts=3)
 
     try:
         record_ids = [r["recordID"] for r in report_rows]
@@ -430,7 +452,15 @@ def run(report_path: Path, dry_run: bool, limit: int | None = None, record_ids: 
         last_log = start
 
         for i, row in enumerate(report_rows, 1):
-            result = repair_one(row, source_map.get(row["recordID"].upper()), conn, s3, dry_run)
+            try:
+                result = repair_one(row, source_map.get(row["recordID"].upper()), conn, s3, dry_run)
+            except CredentialsExpired as exc:
+                logger.error(
+                    "ABORTING at record %d/%d — AWS credentials expired/unavailable (%s). "
+                    "Refresh creds (VPN/SSO) and re-run; %d repaired so far this run.",
+                    i, len(report_rows), exc, counts["repaired"],
+                )
+                break
             counts[result["status"]] = counts.get(result["status"], 0) + 1
             results.append(result)
 
