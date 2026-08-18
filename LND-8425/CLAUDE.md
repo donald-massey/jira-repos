@@ -61,6 +61,9 @@ query_6/LND-8425-cole-fixed-dataset-input.sql ← DIAGNOSTIC ONLY: emit COLE fix
 query_6/miami-ks_<UTC>Z.csv                   ← fixed-dataset input, named {county}-{state}_{YYYYMMDDThhmmss}Z.csv (e.g. miami-ks_20260810T145410Z.csv); upload to hardcoded_input/
 query_6/README.md                             ← how to run the COLE fixed-dataset flow (diagnostic; bucket, flow, computation type)
 query_7/LND-8425-reexport-duplicate-check.sql ← proves organic re-export re-matches the existing lease (no duplicate) from tblexportLog history
+query_8/check_pipeline_status.py             ← post-keying verifier: 4-link chain (tblLandDescription → status → tblexportLog re-export → tblleaseAbstractMapping)
+query_8/restore-tblexportlog.sql             ← REVERT: exact INSERT (IDENTITY_INSERT) to re-add the tblexportLog row deleted in remediation step 2
+query_8/exportlog-row-snapshot.json          ← raw full-column snapshot of the tblexportLog row (backup before delete)
 ```
 
 Recoverability approach: **query_5 (read the image) supersedes query_4 (COLE log)** — no AWS creds, direct PDF read tells us legal-present (reprocess) vs no-legal (write-off). query_4 kept as fallback for stale-COLE cases. Mirrors _lease-investigation-template query_1/doc_image_paths.sql (Level 1a).
@@ -101,6 +104,15 @@ The only lever that puts a land description into the lease path is a **title ana
 - Remaining verify-after (not a blocker): confirm IIF, on re-matching the existing lease, also creates the abstract mapping from the now-populated land description. Re-run query_2 after re-export — `tblleaseAbstractMapping` should now have a row for 5184347. If it doesn't, fall back to creating the mapping directly.
 - Document-only per the ticket decision: any tblexportLog DELETE is described in prose; Donald runs it after verifying statusID IN (4,16). No DELETE in .sql files.
 - Note: LND-8708 (publish unmapped leases to ES cache, skip DS9) would cover all 3 without abstracting — but only in ES, and it's blocked by the DS9 georendering geometry dependency for the website map. Abstracting is the full fix.
+
+## Post-keying status (2026-08-14, target record 68125b82 / LeaseID 5184347)
+Re-keying landed overnight, but the pipeline is stuck at remediation step 2. `query_8/check_pipeline_status.py` output:
+1. **CSTitle tblLandDescription — NOW POPULATED.** Two rows, both **Sec 5, T17S, R22E** — matches the image-read legal (E½SW¼ + N½W½SW¼). `tblRecord._ModifiedDateTime = 2026-08-14 04:02:25` confirms the overnight re-key. Status 4, recordIsLease 1 (exportable).
+2. **tblexportLog — STILL the OLD row only.** exportDate `2025-09-22`, zip `CH_09.22.2025.14.26_leases`, exportLogID 7536774. No re-export yet → `get_records()` (`recordID NOT IN tblexportLog`) will never re-select it while this row exists. **This is the blocker.**
+3. **DIV1 tblleaseAbstractMapping — STILL EMPTY** for 5184347 → mapping_id null → glue still drops. Won't change until re-export runs and IIF logs `Adding mapping for TRS`.
+- **Unblock — DONE (2026-08-14).** Donald ran `DELETE FROM [countyScansTitle].[dbo].[tblexportLog] WHERE recordID = '68125b82-...';` after confirming statusID = 4. Re-run of `query_8/check_pipeline_status.py` confirms link 2 now returns no rows → record is eligible for re-selection on the next daily export. Awaiting export → IIF mapping → publish. Duplicate-lease risk already cleared (query_7). Card updated: comment 5131940.
+- **Revert if needed:** the exact deleted row is backed up in `query_8/exportlog-row-snapshot.json`; run `query_8/restore-tblexportlog.sql` (IDENTITY_INSERT) to re-add it verbatim.
+- After delete + next daily export, re-run `query_8/check_pipeline_status.py` — links 2 and 3 should flip.
 
 ## Next
 - **Send the 3 records back for re-keying by the keyers** (= manual abstracting; the actual fix) — legals confirmed on the images.

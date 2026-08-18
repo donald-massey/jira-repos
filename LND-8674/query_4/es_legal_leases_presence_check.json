@@ -1,0 +1,18 @@
+{
+  "_comment": "LND-8674 - ES cross-check. Run against the legal-leases alias (Kibana/DSL, not SSMS). Terms query on the 49 affected Div1 LeaseIDs. ABSENT in ES + ABSENT in DS9 (query_3) + zero-mapping (query_2) = missing from both sinks, same as LND-8658 (WV). PRESENT in ES + ABSENT in DS9 = LND-8708 union-split live for ES but not DS9. Control: pick any known-published OH lease_id, add it to the list, confirm it returns to prove the field name/index are right (see LND-8658 control lease 5027303 pattern).",
+  "query": {
+    "terms": {
+      "lease_id": [
+        5185926, 4996359, 5191158, 5180672, 5205084, 4859233, 4859458, 4899128,
+        4937639, 5120740, 5222809, 4970359, 5120754, 5020243, 5077218, 4955678,
+        5194801, 5239151, 5272638, 5239283, 5230060, 5174648, 4966392, 5174593,
+        4966397, 4876680, 5174523, 4906804, 4966381, 4906938, 4907662, 4966383,
+        4906355, 5230862, 5214642, 5247783, 4854332, 5214488, 4826307, 5223734,
+        5224110, 5247954, 5223275, 5210917, 5229168, 5210875, 5239369, 5213574,
+        5214618
+      ]
+    }
+  },
+  "_source": ["lease_id", "mapping_id", "county_parish", "record_date", "state"],
+  "size": 60
+}

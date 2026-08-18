@@ -86,6 +86,20 @@ logger = logging.getLogger("LND-8482.repair")
 BUCKET = os.environ.get("S3_BUCKET", "enverus-courthouse-prod-chd-plants")
 REGION = os.environ.get("AWS_REGION", "us-east-1")
 S3_TABLE = "countyScansTitle.dbo.tblS3Image"
+
+# When running in Docker the share is CIFS-mounted at SHARE_MOUNT instead of
+# being accessible via a Windows UNC path.  _resolve_path() rewrites tblrecord's
+# storageFilePath to the container equivalent; on Windows (no SHARE_MOUNT) it
+# is a no-op.
+_SHARE_MOUNT = os.environ.get("SHARE_MOUNT", "")
+_UNC_PREFIX = r"\\aus2-cs-fss01.na.drillinginfo.com\CS_TitleImages"
+
+
+def _resolve_path(unc_path: str) -> str:
+    if not _SHARE_MOUNT or not unc_path.startswith(_UNC_PREFIX):
+        return unc_path
+    rel = unc_path[len(_UNC_PREFIX):].lstrip("\\").replace("\\", "/")
+    return f"{_SHARE_MOUNT}/{rel}"
 RECORD_TABLE = "countyScansTitle.dbo.tblrecord"
 IN_SCOPE_STATUS = (4, 10)
 MODIFIED_BY = "LND-8093-repair"
@@ -326,7 +340,7 @@ def repair_one(row: dict, source: dict | None, conn, s3: S3Client, dry_run: bool
         return result
 
     orig_ext = (source.get("fileExtension") or ".pdf").lower()
-    storage_dir = source["storageFilePath"]
+    storage_dir = _resolve_path(source["storageFilePath"])
     local_path = os.path.join(storage_dir, record_id + orig_ext)
 
     if not os.path.exists(local_path):

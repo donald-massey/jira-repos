@@ -20,6 +20,34 @@ flat_df = flat_df.groupBy("mapping_id").agg(*first_cols)    # grain = one doc pe
 
 The second line is the reason the filter exists: **one** `legal_lease` document = one lease->abstract mapping (`mapping_id`). A lease with no mapping has no document identity, not merely a dropped row. Naively removing the `where(...)` collapses every null-mapping row across the whole batch into a single `null` group — one garbage document — which is why the filter cannot simply be deleted.
 
+## End-to-end pipeline (from architecture diagram, 2026-08-11)
+
+Full legal-lease flow, source → website. Confirms **where the DIV1 lease row + abstract mapping originate** (the open question from this session): the **IIF (Java) Lease Importer** writes them into DIV1; the GIS team owns only the polygon path, not LeaseID/mapping creation.
+
+**1. Ingestion → DIV1 (the lease + mapping are born here)**
+- Data Entry (person) keys records into `CountyScansTitle` (`tblRecord`, `tblExportLog`).
+- **CH Lease Exports** pulls from CountyScansTitle and drops a file in the **Hot folder** (`\\smb.dc2isilon...\lease_data_entry\ch_lease_exporter\input`).
+- **IIF (Java code) Lease Importer** (`iifLegalLeaseLoader.jar` on prod-loader05) reads the hot folder and **writes lease rows into DIV1** — this is the step that creates the DIV1 `LeaseID` and the `tblleaseAbstractMapping` entry. (Source is Java in the GIS git, not in the local Python repos.)
+- **GIS workstation** feeds `Hendrix.[landtrac_lease].[sde].[LT_LEASE_POLYGON]` via **ProdLoader** (`\\smb.dc2isilon.na.drillinginfo.com\ProdLoader05`), which lands the SVG polygon in DIV1 `tblSVGPolygonGroupDetail` / `tblLegalLease` (also exposed as `vw.tblSVGPolygonGroupDetail`). This is the **polygon/geometry path only** — independent of the mapping.
+- Parallel OCR path: **Courthouse OCR Legals Extractor** → **S3 DIML** → **DIML Loaders** → **CSDigital MFG** → CS Digital DB.
+
+**2. DIV1 + sibling stores → Kafka (Land Lease Producer)**
+- `land-lease-producer` reads from: **CS Digital → CountyScansTitle**, **DIV1** (mapping + lease), **Hendrix.GIS Exports.diLandtrac_Polygons** (fed by **Landtracs Geom Update**), and **Hendrix.GIS_Aliasing** (grantee aliases).
+- Producer serializes and publishes to a **Kafka topic**; a second topic feeds the **Land Lease OCR / IIE Enricher**.
+
+**3. Kafka → Glue → sinks (`land-aws-glue`)**
+- **Glue Job** (the `kafka-to-adl` / `filter_records_without_mapping_id` code this spike touches) fans out to, per the diagram's Legal-Lease (cyan) vs Landtracs (purple) legend:
+  - **DS9 `pres.legal_lease`** + `pres.vw_lease_assignment_detail` (cyan) — the geometry/render source.
+  - **DS9 `pres.landtrac_lease`** + `pres.vw_lease_assignment_detail` + `pres.vw_depthseverance` (purple).
+  - **Elastic Search** (cyan `legal_lease` index) — the search source.
+  - **S3** (cyan and purple copies) → Dev API v2, GDS, GIS Tools, DIBI.
+
+**4. Sinks → website**
+- **DS9 `pres.legal_lease`** → **Export Service** and → **Airflow DAG** → **Georendering**.
+- **DS9 `pres.landtrac_lease`** → **Airflow DAG** → **BDD Job** → **ADL**.
+- **Elastic Search** → **DI Web**; **Georendering** → **DI Web**. Also **Prism** + **Dev API v3** → **CLI Export**.
+- Confirms the LND-8708 render model: the website reads **search** from Elastic Search but **map geometry** from DS9 via Georendering — two independent paths, which is why an ES-only publish makes a zero-mapping lease searchable but not pinnable.
+
 ## Scope of investigation
 
 **Key equivalence (verified in the producer SQL):** `no mapping_id` ⟺ `no land descriptions in DIV1`. Both `div1_get_land_descriptions.sql` and `div1_get_additional_fields.sql` select `FROM tblleaseAbstractMapping m JOIN tblAbstract a`, with `legacy_mapping_id = m.mappingid`. The land descriptions in the Kafka message *are* the mapping rows — every description element that exists carries a non-null `mapping_id` by construction, so there is no "has descriptions but null mapping_id" case. A lease with no `tblleaseAbstractMapping` entry emits zero land-description elements across **all five** arrays (`land_descriptions` + `ohio`/`ohio_plss`/`pennsylvania`/`west_virginia`), which yields a null `mapping_id` after `explode_outer`. This validates the scope-count anti-join and rules out LND-8426's synthetic-`mapping_id` fallback for this population (there is no CSTitle `LandDescriptionId` to synthesize from — those rows don't exist either).
@@ -120,7 +148,7 @@ Callers: ES and S3 pass `include_unmapped=True`; DS9 keeps the default `False`. 
 
 ### Open investigations before implementation ticket
 
-- **Mechanism decision (mapping_id generation for non-geom records)**: to surface these records we need to generate `mapping_id` values. Two options — (a) adapt an existing script in the legal-lease pipeline, or (b) add a new dedicated script. This and the DS9 B-vs-C item below are candidates to move to the task card; **hold on creating the task card until a mechanism is chosen.** Records can be validated through the Dev pipeline in the meantime.
+- **Mechanism decision (mapping_id generation for non-geom records)**: to surface these records we need to generate `mapping_id` values. **Resolved to "adapt an existing repo, not a new script"** — see the Recommendation section below for the repo-per-layer choice. This and the DS9 B-vs-C item below are candidates to move to the task card; **hold on creating the task card until the layer (searchable-only vs full) is chosen.** Records can be validated through the Dev pipeline in the meantime.
 - **DS9 handling (B vs C)**: if the implementation ticket later wants zero-mapping leases in DS9 too, decide between a synthetic sentinel `mapping_id` (e.g. negative id derived from `lease_id`, avoiding collision with positive DIV1 `mappingid`; check the LND-8426 ID-space warning) vs. a DS9 schema change (drop NOT NULL / repoint the key). Out of scope here.
 - **ES-consumer assumption**: confirm nothing querying the `legal_lease` index assumes `mapping_id` is non-null before shipping the change to prod.
 
@@ -128,6 +156,23 @@ Callers: ES and S3 pass `include_unmapped=True`; DS9 keeps the default `False`. 
 
 - **DatabricksCache** — resolved from code: emits no `legal_lease` doc and never gates on `mapping_id`; zero-mapping leases' assignment/depth rows already flow today. Unaffected.
 - **Partial-mapping clobber** — resolved by design: the coalesce prevents mapped leases from producing null-`mapping_id` rows, so df2 cannot contain a mapped lease; the anti-join is unnecessary. Confirmed by the clobber-check in the ES run.
+
+## Recommendation for the implementation ticket (2026-08-11)
+
+**Pick the layer first — it dictates the repo, and no new standalone script/repo is warranted either way.**
+
+**Origin of the mapping (why this is a generation problem):** the DIV1 lease row + `tblleaseAbstractMapping` are created by the **IIF (Java) Lease Importer** (source in the GIS git, not our Python repos) from CountyScansTitle land descriptions. Zero-mapping leases exist precisely because IIF never made a mapping for them — no land description → no abstract → no mapping. `mapping_id` is not a lease-level field: it rides as `legacy_mapping_id` **per land-description element** (producer `messages.py:146`, `cstitle_lease_data_provider.py:234-268`), which glue coalesces into the doc's `mapping_id`. A zero-mapping lease has no land-description element, so the value is null all the way down.
+
+**Refined design — single grain key, not a union-split (2026-08-12).** The df1/df2 `unionByName` under `include_unmapped` is unnecessary. The grain is `groupBy("mapping_id")` (`kafka_to_adl.py:329`); the reason the null rows can't simply survive the filter is **not** the DS9 table key — it's that a single `groupBy("mapping_id")` collapses **every** null-`mapping_id` row batch-wide into **one** group, so `agg(F.first(...))` yields a single garbage document. That collapse is Spark-side, upstream of every sink (ES has no key requirement — `_id` is auto-generated — yet still gets the one collapsed doc). So satisfying the DS9 key and fixing the grain are the **same action**: give each null row a **non-null, per-lease `mapping_id`**. Once every row has a valid id, the union-split, the `include_unmapped` flag, and the `where(mapping_id IS NULL)` branch all disappear — one dataframe, one groupBy. The synthetic id must be collision-safe with real DIV1 `mappingid` (positive ints), so derive it **negative from `lease_id`** (same ID-space caution as the DS9 B-vs-C note). This subsumes the old "searchable-only vs full" split: assigning a real id gets you DS9-capable for free, so the only remaining question is **which layer stamps the id.**
+
+**Two viable homes for stamping the synthetic id, both existing repos:**
+
+- **Inline in `land-aws-glue` (`kafka_to_adl.py`).** `flat_df = flat_df.withColumn("mapping_id", F.coalesce("mapping_id", <negative lease-derived key>))` **before** the existing `groupBy("mapping_id")`. Single dataframe; `filter_records_without_mapping_id` collapses back to the plain mapped-path groupBy with no union and no flag. Smallest diff; keeps the fix in the job this spike already touches.
+- **Upstream in `land-lease-producer` (recommended).** Emit a **synthetic placeholder land-description element carrying a synthetic `legacy_mapping_id`** when a lease has none, in the producer's existing message-assembly (the `legacy_*` plumbing and abstract/survey logic already live there). Then **no null-`mapping_id` rows ever reach glue** — you delete the `where(...)` filter entirely and glue needs zero special-casing. The record rides the **whole unmodified pipeline into DS9** — valid PK satisfied, null geometry (already proven tolerated: 113,655 such leases live in prod today, searchable-but-unpinned, site does not break). Collapses the glue change **and** the DS9 B-vs-C decision into one upstream fix.
+
+**Do not create a new dedicated script/repo.** It would have to re-connect to DIV1, re-derive the published-lease population, and duplicate either the producer's message assembly or glue's grain logic — fragmenting logic that already lives in one place and adding a drift/race surface. The only legitimate "new" flavor is a one-time **backfill** decoupled from the daily run, and even that belongs as a flag/mode inside `land-lease-producer`, not a separate repo.
+
+**Recommended:** the producer-side synthetic-mapping approach with the single-grain-key design, because it reuses a pipeline we've now confirmed handles null geometry gracefully, solves DS9 in the same stroke, and needs **no** ongoing special-case code in glue (delete the filter rather than parameterize it). The glue-inline coalesce is the fast Phase-1 if you want the fix contained to one job first. Note the current `filter_records_without_mapping_id` union-split (df1/df2 + `include_unmapped` + Washington-coast sentinel, `kafka_to_adl.py:326-346`) is the spike's ES-only proof scaffold — it is **superseded** by the single-grain-key design and should be reverted/replaced in the implementation, not shipped. Still open before shipping either: the DS9 B-vs-C sentinel-vs-schema call (moot once a real non-colliding negative `mapping_id` is stamped) and the ES-consumer null-`mapping_id` assumption check (also moot once `mapping_id` is always non-null).
 
 ## Completed
 

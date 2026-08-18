@@ -1,0 +1,70 @@
+-- Target: legal_lease ES index (prod). Verify the synthetic negative mapping_id
+-- population landed, and pull record_number (instrument number) to spot-check on the site.
+--
+-- Negative mapping_id = the zero-mapping leases stamped with a synthetic per-lease key
+-- (negative, derived from lease_id, so it can't collide with positive DIV1 mappingid).
+-- If these exist, the union-split / single-grain-key change actually shipped to prod.
+--
+-- Cerebro usage (REST tab):
+--   Path:   legal-leases/_search      (hit the ALIAS, not a date-stamped index)
+--   Method: POST
+--   Body:   paste one query block at a time (omit the comment lines)
+
+-- 1. COUNT: how many docs carry a negative mapping_id
+POST /legal-leases/_search
+{
+  "size": 0,
+  "query": {
+    "range": { "mapping_id": { "lt": 0 } }
+  }
+}
+
+-- 2. SAMPLE: pull docs + the fields you need to find them on the website.
+--    record_number is the instrument number surfaced on the site; di_link/image_link
+--    are the direct document links; county_state/state_province locate it.
+POST /legal-leases/_search
+{
+  "size": 20,
+  "query": {
+    "range": { "mapping_id": { "lt": 0 } }
+  },
+  "_source": [
+    "lease_id", "mapping_id", "record_number", "volume_page",
+    "instrument_type", "grantor_name", "grantee_name",
+    "county_state", "state_province", "api_state", "api_county",
+    "di_link", "image_link",
+    "location", "location_shape", "polygon_group_id"
+  ],
+  "sort": [ { "mapping_id": "asc" } ]
+}
+
+-- 3. LOOK UP A SPECIFIC INSTRUMENT: confirm a doc you found on the site is one of ours.
+--    Replace the value with the record_number you're checking. Use .keyword if the
+--    field is text-analyzed (record_number is typically keyword-mapped).
+POST /legal-leases/_search
+{
+  "size": 5,
+  "query": {
+    "bool": {
+      "must": [
+        { "term": { "record_number.keyword": "REPLACE_WITH_INSTRUMENT_NUMBER" } },
+        { "range": { "mapping_id": { "lt": 0 } } }
+      ]
+    }
+  }
+}
+
+-- 4. STATE BREAKDOWN: sanity-check the negative-mapping population shape vs the
+--    scope-count (query_1: TX 53,085 / WV 15,573 / OH 13,436 dominate).
+POST /legal-leases/_search
+{
+  "size": 0,
+  "query": {
+    "range": { "mapping_id": { "lt": 0 } }
+  },
+  "aggs": {
+    "by_state": {
+      "terms": { "field": "state_province.keyword", "size": 60 }
+    }
+  }
+}

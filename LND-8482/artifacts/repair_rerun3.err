@@ -1,0 +1,828 @@
+2026-08-17T09:42:51 [INFO] LND-8482.repair — Mode: COMMIT | Report: rerun_3_input.csv | Bucket: enverus-courthouse-prod-chd-plants
+2026-08-17T09:42:51 [INFO] LND-8482.repair — Loaded 1505 record(s) from rerun_3_input.csv
+2026-08-17T09:42:51 [INFO] utils.database_utils — DatabaseConnection initialised: server=AUS2-DTF-PAP01V.NA.DRILLINGINFO.COM db=countyScansTitle
+2026-08-17T09:42:52 [INFO] utils.database_utils — [countyScansTitle] Connected to AUS2-DTF-PAP01V.NA.DRILLINGINFO.COM (Windows auth)
+2026-08-17T09:42:52 [INFO] botocore.credentials — Found credentials in environment variables.
+2026-08-17T09:42:53 [INFO] utils.s3_utils — S3Client initialised: bucket=enverus-courthouse-prod-chd-plants region=us-east-1
+2026-08-17T09:42:53 [INFO] LND-8482.repair — Source lookup returned 1505/1505 records
+2026-08-17T09:43:00 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-17T09:43:00 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-17T09:43:01 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T09:43:01 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/grimes/0005/00051be0-bfa1-4534-8b30-b213c0f5dac1.pdf', 2, 98873, 'LND-8093-repair', '00051be0-bfa1-4534-8b30-b213c0f5dac1', '00051be0-bfa1-4534-8b30-b213c0f5dac1', 's3://enverus-courthouse-prod-chd-plants/tx/grimes/0005/00051be0-bfa1-4534-8b30-b213c0f5dac1.pdf', 2, 98873, 'LND-8093-repair']
+2026-08-17T09:43:08 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T09:43:08 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['00051be0-bfa1-4534-8b30-b213c0f5dac1']
+2026-08-17T09:43:11 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T09:43:11 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T09:43:12 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-17T09:43:12 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-17T09:43:13 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T09:43:13 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/grimes/0005/00051e27-d68a-4412-a310-ea27710bfb44.pdf', 2, 105135, 'LND-8093-repair', '00051e27-d68a-4412-a310-ea27710bfb44', '00051e27-d68a-4412-a310-ea27710bfb44', 's3://enverus-courthouse-prod-chd-plants/tx/grimes/0005/00051e27-d68a-4412-a310-ea27710bfb44.pdf', 2, 105135, 'LND-8093-repair']
+2026-08-17T09:43:16 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T09:43:16 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['00051e27-d68a-4412-a310-ea27710bfb44']
+2026-08-17T09:43:20 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T09:43:20 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T09:43:21 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-17T09:43:21 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-17T09:43:22 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T09:43:22 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/grimes/0005/00052349-f742-4ef7-aee9-ad9699948de6.pdf', 2, 264360, 'LND-8093-repair', '00052349-f742-4ef7-aee9-ad9699948de6', '00052349-f742-4ef7-aee9-ad9699948de6', 's3://enverus-courthouse-prod-chd-plants/tx/grimes/0005/00052349-f742-4ef7-aee9-ad9699948de6.pdf', 2, 264360, 'LND-8093-repair']
+2026-08-17T09:43:27 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T09:43:27 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['00052349-f742-4ef7-aee9-ad9699948de6']
+2026-08-17T09:43:31 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T09:43:31 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T09:43:52 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:44:04 [INFO] pikepdf._core — pikepdf C++ to Python logger bridge initialized
+2026-08-17T09:44:14 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA279940>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:44:31 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:44:32 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D45E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:44:40 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:44:40 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D48B0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:44:59 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:45:03 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:45:03 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA279940>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:45:04 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:45:04 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA278220>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:45:07 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:45:07 [WARNING] pypdf._reader — Object 1929 0 not defined.
+2026-08-17T09:45:07 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5260>: unable to find page tree
+2026-08-17T09:45:09 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:45:09 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5300>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:45:10 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:45:10 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-17T09:45:10 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA0ED440>: unable to find page tree
+2026-08-17T09:45:13 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-17T09:45:13 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:45:13 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-17T09:45:13 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA278090>: root of pages tree has no /Kids array
+2026-08-17T09:45:19 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:45:19 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5260>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:45:47 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:45:47 [WARNING] pypdf._reader — Object 89 0 not defined.
+2026-08-17T09:45:47 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5CB0>: unable to find page tree
+2026-08-17T09:45:56 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:45:56 [WARNING] pypdf._reader — Object 951 0 not defined.
+2026-08-17T09:45:56 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5490>: unable to find page tree
+2026-08-17T09:45:56 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:45:56 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5B70>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:46:15 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-17T09:46:15 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:46:15 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-17T09:46:15 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D52B0>: root of pages tree has no /Kids array
+2026-08-17T09:46:20 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:46:20 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6200>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:46:38 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:47:41 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:47:41 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5670>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:47:53 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:47:54 [INFO] LND-8482.repair — Processed 108/1505 — 0.4 rec/s — ETA 64m 51s | {'repaired': 3, 'would_repair': 0, 'skipped': 0, 'failed': 105}
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 9 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 10 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 11 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 12 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 13 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 14 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 15 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 16 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 17 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 18 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 19 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 20 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 21 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 22 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 23 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 24 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 25 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 26 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 27 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 28 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 29 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 30 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 31 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 32 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 33 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 34 in Xref table invalid but object found
+2026-08-17T09:48:32 [WARNING] pypdf._reader — entry 35 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 36 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 37 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 38 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 39 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 40 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 41 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 42 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 43 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 44 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 45 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 46 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 47 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 48 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 49 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 50 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 51 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 52 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 53 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 54 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 55 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 56 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 57 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 58 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 59 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 60 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 61 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 62 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 63 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 64 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 65 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 66 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 67 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 68 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 69 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 70 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 71 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 72 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 73 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 74 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 75 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 76 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 77 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 78 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 79 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 80 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 81 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 82 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 83 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 84 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 85 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 86 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 87 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 88 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 89 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 90 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 91 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 92 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 93 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 94 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 95 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 96 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 97 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 98 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 99 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 100 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 101 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 102 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 103 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 104 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 105 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 106 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 107 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 108 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 109 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 110 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 111 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 112 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 113 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 114 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 115 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 116 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 117 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 118 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 119 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 120 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 121 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 122 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 123 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 124 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 125 in Xref table invalid but object found
+2026-08-17T09:48:33 [WARNING] pypdf._reader — entry 126 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 127 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 128 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 129 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 130 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 131 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 132 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 133 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 134 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 135 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 136 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 137 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 138 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 139 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 140 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 141 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 142 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 143 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 144 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 145 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 146 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 147 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 148 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 149 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 150 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 151 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 152 in Xref table invalid but object found
+2026-08-17T09:48:34 [WARNING] pypdf._reader — entry 153 in Xref table invalid but object found
+2026-08-17T09:48:47 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:48:47 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3600>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:48:48 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:48:48 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3150>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:48:57 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:48:57 [WARNING] pypdf._reader — Object 8 0 not defined.
+2026-08-17T09:48:57 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B35B0>: unable to find page tree
+2026-08-17T09:49:00 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:49:40 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:49:41 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA508400>: root of pages tree has no /Kids array
+2026-08-17T09:49:45 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:49:45 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA51C0E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:49:49 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:49:49 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA51C5E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:49:59 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:49:59 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2D90>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:50:12 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:50:12 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA520950>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:50:14 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:50:14 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2D90>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:50:22 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:50:22 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2930>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:50:26 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:50:26 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B31F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:50:43 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:50:43 [WARNING] pypdf._reader — Object 1926 0 not defined.
+2026-08-17T09:50:43 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3100>: unable to find page tree
+2026-08-17T09:50:58 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:50:58 [WARNING] pypdf._reader — Object 170 0 not defined.
+2026-08-17T09:50:58 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3740>: unable to find page tree
+2026-08-17T09:51:09 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:51:09 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3BA0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:51:22 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:51:22 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3380>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:51:33 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:51:33 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2CA0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:51:39 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:51:39 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3AB0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:51:43 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:51:43 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3330>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:51:50 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:51:50 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-17T09:51:50 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2840>: unable to find page tree
+2026-08-17T09:51:55 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:51:55 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3650>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:52:01 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:52:01 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3100>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:52:31 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:52:31 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2E80>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:52:32 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:52:32 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2F20>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:52:39 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:52:39 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B1670>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:52:55 [INFO] LND-8482.repair — Processed 252/1505 — 0.4 rec/s — ETA 49m 51s | {'repaired': 3, 'would_repair': 0, 'skipped': 0, 'failed': 249}
+2026-08-17T09:52:59 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:52:59 [WARNING] pypdf._reader — Object 2 0 not defined.
+2026-08-17T09:52:59 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2700>: unable to find page tree
+2026-08-17T09:53:04 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:53:04 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3970>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:53:23 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:53:23 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B1670>: root of pages tree has no /Kids array
+2026-08-17T09:53:27 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:53:27 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3060>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:53:30 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:53:30 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3290>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:53:37 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:53:37 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2840>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:54:20 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:54:20 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2A20>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:54:34 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:54:34 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B1530>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:54:48 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:54:48 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3BF0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:54:53 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:54:53 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B1F80>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:55:13 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:55:13 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B29D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:55:19 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:55:19 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3BA0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:55:19 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:55:19 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B1210>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:55:50 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:55:50 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B2520>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:55:54 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T09:55:54 [WARNING] pypdf._reader — Object 212 0 not defined.
+2026-08-17T09:55:54 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3BF0>: unable to find page tree
+2026-08-17T09:56:01 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:56:24 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:56:24 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3560>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:56:26 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:56:26 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B1E40>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:56:27 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:56:27 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3060>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:56:34 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:56:34 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3C90>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:57:56 [INFO] LND-8482.repair — Processed 410/1505 — 0.5 rec/s — ETA 40m 10s | {'repaired': 3, 'would_repair': 0, 'skipped': 0, 'failed': 407}
+2026-08-17T09:59:32 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:59:32 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D77E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:59:42 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:59:42 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5E90>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:59:46 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:59:46 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6D90>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T09:59:47 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T09:59:47 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D7BF0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:00:03 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:00:03 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D76F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:00:20 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:00:50 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:00:50 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5620>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:00:56 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:00:56 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6C00>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:01:29 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:01:29 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D7560>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:01:44 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:01:44 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D55D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:01:55 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:01:55 [WARNING] pypdf._reader — Object 1998 0 not defined.
+2026-08-17T10:01:55 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6430>: unable to find page tree
+2026-08-17T10:01:56 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:01:56 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D58F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:02:36 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:02:36 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6020>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:02:41 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:02:41 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6DE0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:02:45 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:02:45 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D69D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:02:57 [INFO] LND-8482.repair — Processed 591/1505 — 0.5 rec/s — ETA 31m 01s | {'repaired': 3, 'would_repair': 0, 'skipped': 0, 'failed': 588}
+2026-08-17T10:03:03 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:03:03 [WARNING] pypdf._reader — Object 221 0 not defined.
+2026-08-17T10:03:03 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D7010>: unable to find page tree
+2026-08-17T10:03:18 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:18 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6700>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:03:19 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:19 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6660>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:03:29 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:29 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5670>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:03:32 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:32 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5620>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:03:43 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:43 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D71F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:03:46 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:46 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D7BF0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:03:51 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:51 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6200>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:03:53 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:54 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:54 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D53F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:03:57 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:57 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D7F60>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:03:59 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:03:59 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D71A0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:04:06 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:04:06 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D69D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:04:15 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:04:15 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D7740>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:04:27 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:04:27 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6980>: root of pages tree has no /Kids array
+2026-08-17T10:04:37 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:04:37 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6F20>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:04:38 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:04:48 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:04:48 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D71F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:04:50 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-17T10:04:50 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:04:50 [WARNING] pypdf._reader — Object 18 0 not defined.
+2026-08-17T10:04:50 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D75B0>: root of pages tree has no /Kids array
+2026-08-17T10:04:55 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:04:55 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6750>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:04:59 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:04:59 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6160>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:05:00 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:05:00 [WARNING] pypdf._reader — Object 2168 0 not defined.
+2026-08-17T10:05:00 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D5260>: unable to find page tree
+2026-08-17T10:05:03 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:05:03 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6980>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:05:08 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:05:39 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:05:39 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/8bb0/8bb0d496-17a6-4a10-bf67-5ab8eb2ef945.pdf', 2, 69595, 'LND-8093-repair', '8bb0d496-17a6-4a10-bf67-5ab8eb2ef945', '8bb0d496-17a6-4a10-bf67-5ab8eb2ef945', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/8bb0/8bb0d496-17a6-4a10-bf67-5ab8eb2ef945.pdf', 2, 69595, 'LND-8093-repair']
+2026-08-17T10:05:41 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:05:41 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['8bb0d496-17a6-4a10-bf67-5ab8eb2ef945']
+2026-08-17T10:05:44 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:05:44 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:05:47 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:05:47 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B1300>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:05:52 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:05:52 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B1300>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:06:03 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:06:03 [WARNING] pypdf._reader — Object 1767 0 not defined.
+2026-08-17T10:06:03 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA53C0E0>: unable to find page tree
+2026-08-17T10:06:12 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:06:12 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/8d26/8d26cbff-3fce-40e1-9db8-2a46a2ec7acf.pdf', 9, 286621, 'LND-8093-repair', '8d26cbff-3fce-40e1-9db8-2a46a2ec7acf', '8d26cbff-3fce-40e1-9db8-2a46a2ec7acf', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/8d26/8d26cbff-3fce-40e1-9db8-2a46a2ec7acf.pdf', 9, 286621, 'LND-8093-repair']
+2026-08-17T10:06:15 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:06:15 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['8d26cbff-3fce-40e1-9db8-2a46a2ec7acf']
+2026-08-17T10:06:18 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:06:18 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:06:26 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:06:26 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/gonzales/70e2/70e250b3-172e-4ec3-b768-e146a33d8738.pdf', 2, 59829, 'LND-8093-repair', '70e250b3-172e-4ec3-b768-e146a33d8738', '70e250b3-172e-4ec3-b768-e146a33d8738', 's3://enverus-courthouse-prod-chd-plants/tx/gonzales/70e2/70e250b3-172e-4ec3-b768-e146a33d8738.pdf', 2, 59829, 'LND-8093-repair']
+2026-08-17T10:06:28 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:06:29 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['70e250b3-172e-4ec3-b768-e146a33d8738']
+2026-08-17T10:06:31 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:06:31 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:06:38 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:06:38 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA540450>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:06:46 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:06:46 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA3D6CF0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:06:58 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:06:58 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B33D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:07:07 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:07:07 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B14E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:07:07 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:07:07 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B16C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:07:59 [INFO] LND-8482.repair — Processed 771/1505 — 0.5 rec/s — ETA 23m 53s | {'repaired': 6, 'would_repair': 0, 'skipped': 0, 'failed': 765}
+2026-08-17T10:08:10 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:08:10 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA540950>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:08:47 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:08:47 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA543650>: unable to find trailer dictionary while recovering damaged file
+C:\Users\donald.massey\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\PIL\TiffImagePlugin.py:950: UserWarning: Corrupt EXIF data.  Expecting to read 2 bytes but only got 0. 
+  warnings.warn(str(msg))
+2026-08-17T10:09:10 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:09:10 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA542C50>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:09:14 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:09:14 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AEF20>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:09:50 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:10:19 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:10:19 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AF5B0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:10:25 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:10:26 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AF240>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:10:49 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:10:54 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:11:50 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:11:50 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3FB0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:12:15 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:12:15 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5784F0>: root of pages tree has no /Kids array
+2026-08-17T10:12:22 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:12:22 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/9472/94725e6d-f5f7-4875-9ba0-951f1d555d7e.pdf', 3, 57886, 'LND-8093-repair', '94725e6d-f5f7-4875-9ba0-951f1d555d7e', '94725e6d-f5f7-4875-9ba0-951f1d555d7e', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/9472/94725e6d-f5f7-4875-9ba0-951f1d555d7e.pdf', 3, 57886, 'LND-8093-repair']
+2026-08-17T10:12:25 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:12:25 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['94725e6d-f5f7-4875-9ba0-951f1d555d7e']
+2026-08-17T10:12:28 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:12:28 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:12:32 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:12:32 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/9475/9475b109-d18a-4c21-a01f-12fddbfe5ccc.pdf', 2, 86756, 'LND-8093-repair', '9475b109-d18a-4c21-a01f-12fddbfe5ccc', '9475b109-d18a-4c21-a01f-12fddbfe5ccc', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/9475/9475b109-d18a-4c21-a01f-12fddbfe5ccc.pdf', 2, 86756, 'LND-8093-repair']
+2026-08-17T10:12:36 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:12:36 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['9475b109-d18a-4c21-a01f-12fddbfe5ccc']
+2026-08-17T10:12:39 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:12:39 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:12:43 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:12:43 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/947d/947d1f37-911e-449f-98c9-99f84ca98ea1.pdf', 2, 82604, 'LND-8093-repair', '947d1f37-911e-449f-98c9-99f84ca98ea1', '947d1f37-911e-449f-98c9-99f84ca98ea1', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/947d/947d1f37-911e-449f-98c9-99f84ca98ea1.pdf', 2, 82604, 'LND-8093-repair']
+2026-08-17T10:12:46 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:12:46 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['947d1f37-911e-449f-98c9-99f84ca98ea1']
+2026-08-17T10:12:49 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:12:49 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:12:53 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:12:53 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/9485/9485ff4a-d221-42f5-b17f-c211c75a39ea.pdf', 2, 76014, 'LND-8093-repair', '9485ff4a-d221-42f5-b17f-c211c75a39ea', '9485ff4a-d221-42f5-b17f-c211c75a39ea', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/9485/9485ff4a-d221-42f5-b17f-c211c75a39ea.pdf', 2, 76014, 'LND-8093-repair']
+2026-08-17T10:12:56 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:12:56 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['9485ff4a-d221-42f5-b17f-c211c75a39ea']
+2026-08-17T10:12:58 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:12:59 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:13:02 [INFO] LND-8482.repair — Processed 914/1505 — 0.5 rec/s — ETA 19m 29s | {'repaired': 10, 'would_repair': 0, 'skipped': 0, 'failed': 904}
+2026-08-17T10:13:07 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:13:07 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5400E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:13:23 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:13:23 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/7854/78545ef8-94cf-4d87-a6ca-c9d8095eb484.pdf', 7, 330907, 'LND-8093-repair', '78545ef8-94cf-4d87-a6ca-c9d8095eb484', '78545ef8-94cf-4d87-a6ca-c9d8095eb484', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/7854/78545ef8-94cf-4d87-a6ca-c9d8095eb484.pdf', 7, 330907, 'LND-8093-repair']
+2026-08-17T10:13:26 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:13:26 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['78545ef8-94cf-4d87-a6ca-c9d8095eb484']
+2026-08-17T10:13:29 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:13:29 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:13:33 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:13:40 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:13:40 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/78a3/78a33816-14c1-4256-82ce-874cae46c3ff.pdf', 3, 51036, 'LND-8093-repair', '78a33816-14c1-4256-82ce-874cae46c3ff', '78a33816-14c1-4256-82ce-874cae46c3ff', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/78a3/78a33816-14c1-4256-82ce-874cae46c3ff.pdf', 3, 51036, 'LND-8093-repair']
+2026-08-17T10:13:43 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:13:43 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['78a33816-14c1-4256-82ce-874cae46c3ff']
+2026-08-17T10:13:45 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:13:46 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:14:00 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:14:00 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/964d/964d9426-6e5c-43dd-971c-776c9dfa2cbf.pdf', 12, 551994, 'LND-8093-repair', '964d9426-6e5c-43dd-971c-776c9dfa2cbf', '964d9426-6e5c-43dd-971c-776c9dfa2cbf', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/964d/964d9426-6e5c-43dd-971c-776c9dfa2cbf.pdf', 12, 551994, 'LND-8093-repair']
+2026-08-17T10:14:03 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:14:03 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['964d9426-6e5c-43dd-971c-776c9dfa2cbf']
+2026-08-17T10:14:06 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:14:06 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:14:19 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:14:19 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA540270>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:17:04 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:17:04 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5406D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:17:05 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:17:05 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA542A70>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:18:03 [INFO] LND-8482.repair — Processed 1072/1505 — 0.5 rec/s — ETA 14m 11s | {'repaired': 13, 'would_repair': 0, 'skipped': 0, 'failed': 1059}
+2026-08-17T10:18:31 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:18:31 [WARNING] pypdf._reader — Object 104 0 not defined.
+2026-08-17T10:18:31 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3FB0>: unable to find page tree
+2026-08-17T10:19:01 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:19:01 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B1990>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:19:05 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:19:06 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B12B0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:19:08 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:19:08 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AF8D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:19:12 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:19:12 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B16C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:19:23 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:19:25 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:19:25 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AFA10>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:19:31 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:19:39 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:19:39 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B1170>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:19:56 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:19:56 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AF290>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:20:18 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:20:18 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/8275/8275b2cb-b8bb-4796-b60c-da3750953510.pdf', 3, 71344, 'LND-8093-repair', '8275b2cb-b8bb-4796-b60c-da3750953510', '8275b2cb-b8bb-4796-b60c-da3750953510', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/8275/8275b2cb-b8bb-4796-b60c-da3750953510.pdf', 3, 71344, 'LND-8093-repair']
+2026-08-17T10:20:20 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:20:20 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['8275b2cb-b8bb-4796-b60c-da3750953510']
+2026-08-17T10:20:23 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:20:23 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:20:29 [INFO] utils.database_utils — [countyScansTitle] BEGIN TRANSACTION
+2026-08-17T10:20:29 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblS3Image
+               SET s3FilePath        = ?,
+                   pageCount         = ?,
+                   fileSizeBytes     = ?,
+                   _ModifiedBy       = ?,
+                   _ModifiedDateTime = GETDATE()
+             WHERE recordID = ?;
+            IF @@ROWCOUNT = 0
+                INSERT INTO countyScansTitle.dbo.tblS3Image
+                    (recordID, s3FilePath, pageCount, fileSizeBytes, _ModifiedBy, _ModifiedDateTime)
+                VALUES (?, ?, ?, ?, ?, GETDATE()); | params=['s3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/9f63/9f6378e1-546b-44a9-9153-1c1f3d783006.pdf', 12, 410894, 'LND-8093-repair', '9f6378e1-546b-44a9-9153-1c1f3d783006', '9f6378e1-546b-44a9-9153-1c1f3d783006', 's3://enverus-courthouse-prod-chd-plants/tx/eog_gonzales/9f63/9f6378e1-546b-44a9-9153-1c1f3d783006.pdf', 12, 410894, 'LND-8093-repair']
+2026-08-17T10:20:32 [INFO] utils.database_utils — [countyScansTitle] 0 row(s) affected.
+2026-08-17T10:20:32 [INFO] utils.database_utils — [countyScansTitle] UPDATE: UPDATE countyScansTitle.dbo.tblrecord
+                   SET fileExtension = '.pdf'
+                 WHERE recordID = ? | params=['9f6378e1-546b-44a9-9153-1c1f3d783006']
+2026-08-17T10:20:35 [INFO] utils.database_utils — [countyScansTitle] 1 row(s) affected.
+2026-08-17T10:20:35 [INFO] utils.database_utils — [countyScansTitle] COMMIT
+2026-08-17T10:20:44 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:20:44 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AFA60>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:20:45 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:20:45 [WARNING] pypdf._reader — Object 871 0 not defined.
+2026-08-17T10:20:45 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AF1A0>: unable to find page tree
+2026-08-17T10:20:58 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:20:58 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA4B3FB0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:21:21 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:21:21 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AF560>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:21:23 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:21:23 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AF380>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:21:23 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:21:23 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AF3D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:21:36 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:21:36 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA543FB0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:21:46 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:21:46 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA579170>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:22:01 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:22:01 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA543C40>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:22:02 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:22:03 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:22:08 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:22:08 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5434C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:22:09 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:22:09 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA540F90>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:22:14 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-17T10:22:14 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:22:14 [WARNING] pypdf._reader — Object 10 0 not defined.
+2026-08-17T10:22:14 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA543380>: root of pages tree has no /Kids array
+2026-08-17T10:22:14 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:22:14 [WARNING] pypdf._reader — Object 1924 0 not defined.
+2026-08-17T10:22:14 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5421B0>: unable to find page tree
+2026-08-17T10:22:15 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:22:15 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA542660>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:22:17 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:22:17 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA542980>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:22:26 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:22:27 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA540270>: root of pages tree has no /Kids array
+2026-08-17T10:22:29 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:22:29 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA542480>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:22:58 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:22:58 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA540AE0>: root of pages tree has no /Kids array
+2026-08-17T10:23:03 [INFO] LND-8482.repair — Processed 1250/1505 — 0.5 rec/s — ETA 8m 11s | {'repaired': 15, 'would_repair': 0, 'skipped': 0, 'failed': 1235}
+2026-08-17T10:23:05 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:23:05 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA542F20>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:23:13 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:23:13 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA543970>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:23:33 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:23:33 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AFBA0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:23:37 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:23:37 [WARNING] pypdf._reader — Object 59 0 not defined.
+2026-08-17T10:23:37 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AF8D0>: unable to find page tree
+2026-08-17T10:23:41 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:23:41 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5AFC40>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:24:02 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:24:02 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA542A70>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:24:40 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:24:40 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA541760>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:24:47 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:24:47 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA542A70>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:25:23 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:25:23 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57A8E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:25:50 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:25:50 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57B6F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:25:52 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:25:52 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57B740>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:26:05 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:26:05 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57A2F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:26:12 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:26:12 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57A110>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:26:13 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:26:22 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:26:22 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA67C6D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:26:32 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:26:32 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA67C4F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:26:37 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:26:37 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57A930>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:26:40 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:26:40 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57A020>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:26:52 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:26:52 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA67C360>: root of pages tree has no /Kids array
+2026-08-17T10:26:57 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:26:57 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57BD30>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:27:19 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:27:19 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57B4C0>: root of pages tree has no /Kids array
+2026-08-17T10:27:45 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:27:45 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57A0C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:27:55 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:27:55 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA5796C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:28:04 [INFO] LND-8482.repair — Processed 1421/1505 — 0.5 rec/s — ETA 2m 40s | {'repaired': 15, 'would_repair': 0, 'skipped': 0, 'failed': 1406}
+2026-08-17T10:28:13 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:28:13 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA67C590>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:28:35 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:28:35 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-17T10:28:35 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA543920>: unable to find page tree
+2026-08-17T10:28:50 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:29:11 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:29:11 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA542980>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:29:17 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:29:17 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57ADE0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:29:42 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-17T10:29:42 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-17T10:29:42 [WARNING] pypdf._reader — Object 17 0 not defined.
+2026-08-17T10:29:42 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57BE70>: root of pages tree has no /Kids array
+2026-08-17T10:29:50 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:29:50 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA57A4D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:29:51 [WARNING] pypdf._reader — EOF marker not found
+2026-08-17T10:29:51 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001D1CA579530>: unable to find trailer dictionary while recovering damaged file
+2026-08-17T10:30:26 [INFO] LND-8482.repair — Done — {'repaired': 15, 'would_repair': 0, 'skipped': 0, 'failed': 1490} | report: C:\Users\donald.massey\PycharmProjects\jira-repos\LND-8482\artifacts\repair_report_commit_20260817T153026Z.csv
+2026-08-17T10:30:26 [INFO] utils.database_utils — [countyScansTitle] Connection closed

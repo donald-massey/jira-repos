@@ -48,3 +48,30 @@ Standard two-level investigation per the LND-8426 runbook.
 **Root cause:**
 - `7f84be77`: keyer gap — legal present in document, tblLandDescription never populated.
 - All other 23 records: document-type limitation — CO2 releases have no legal description; offshore state leases use coordinate geometry incompatible with the S/T/R-based abstract mapping logic. These cannot be published via the standard pipeline without a structural change.
+
+## Resolution — no actionable records
+
+The earlier "`7f84be77` = keyer gap, rekey it" conclusion is **RETRACTED**. `7f84be77`
+is a *release* of an OGL, which conveys no leasehold. query_3 (2026-08-14) confirms:
+
+- 373/373 records of instrument type "RELEASE OF OIL GAS AND MINERAL LEASES" are
+  `recordIsLease=0` — releases are consistently and correctly flagged not-a-lease.
+- `7f84be77` was already corrected since query_1 (2026-08-10): now `recordIsLease=0`
+  (was 1) and `statusID=17` = **"Filtered Non Lease Type"** (was 4/Published). Reworked
+  2026-08-13 by data entry (keyer 950); supervisor comment "(DG 8/13/26) Please review
+  legals and correct or add as needed. Resubmit." It is deliberately filtered out of the
+  legal_lease pipeline as a release and no longer belongs there.
+
+So the record was NOT a missing land description — the original data error was that a
+release had been tagged as a lease, and that has been fixed. Rekeying would have been
+wrong (manufacturing a land description to force a release into `legal_lease`).
+
+All 24 records now accounted for, none actionable via the standard pipeline:
+- `7f84be77` — reclassified as a release (recordIsLease=0, statusID 17).
+- 8 other Beauregard — CO2-storage / OGM releases, no legal description in document.
+- 14 Plaquemines + 1 St. Bernard — offshore state leases, coordinate geometry, no S/T/R.
+
+**query_2** (pipeline verification) is superseded/moot — kept for reference only.
+**query_3** — `release_ogl_notlease_count.sql` (373 releases, all recordIsLease=0) and
+`record_7f84be77_flag_check.sql` (live-row reconciliation; statusID 17 = "Filtered Non
+Lease Type").

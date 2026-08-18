@@ -46,9 +46,12 @@ at repair time. Source file on the share is `{storageFilePath}\{recordID}{fileEx
 
 4. **PDF repair — single-pass pikepdf, never loop.** Try `pypdf` open + page count. If
    it opens cleanly → the PDF was fine, just needed metadata (see repaired sub-cases).
-   If it fails → one attempt at `pikepdf.open(..., recovery=True)`, save, re-validate
-   with pypdf. Still bad → `failed`. Exactly one recovery attempt per file — the cap is
-   structural, satisfying "don't endlessly retry."
+   If it fails → one attempt at `pikepdf.open(..., attempt_recovery=True)`, save,
+   re-validate with pypdf. Still bad → `failed`. Exactly one recovery attempt per file
+   — the cap is structural, satisfying "don't endlessly retry." (Note: the kwarg is
+   `attempt_recovery`, not `recovery`; qpdf attempts recovery on open by default, so
+   this is belt-and-suspenders. Verified against pikepdf 10.10.0 in the 2026-08-12 dry
+   run, which caught the original `recovery=True` as an invalid-kwarg crash.)
 
 5. **Network share write-back (new file next to original; never destroy the source):**
    - **TIF** → keep `{recordID}.tif`, write converted `{recordID}.pdf` alongside.

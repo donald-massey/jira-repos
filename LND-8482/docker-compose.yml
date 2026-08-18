@@ -1,0 +1,19 @@
+version: "3"
+services:
+  repair:
+    build: .
+    env_file: .env
+    environment:
+      - SHARE_MOUNT=/mnt/CS_TitleImages
+    volumes:
+      - CS_TitleImages:/mnt/CS_TitleImages
+      - ./artifacts:/app/artifacts
+    # Override command at `docker compose run` time; default below is a dry-run guard.
+    command: ["artifacts/rerun_4_input.csv"]
+
+volumes:
+  CS_TitleImages:
+    driver_opts:
+      type: cifs
+      device: //aus2-cs-fss01.na.drillinginfo.com/CS_TitleImages
+      o: "rw,user=diml_svc,password=Lushbutter38,domain=na,file_mode=0777,dir_mode=0777,ip=10.52.240.32"

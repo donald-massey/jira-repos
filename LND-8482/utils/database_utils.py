@@ -40,19 +40,28 @@ class DatabaseConnection:
     # ------------------------------------------------------------------
 
     def connect(self) -> None:
-        """Open a pyodbc connection to the SQL Server database."""
+        """Open a pyodbc connection to the SQL Server database.
+
+        Uses Windows auth (Trusted_Connection) when no username is supplied; falls
+        back to SQL Server auth (UID/PWD) when a username is present.
+        """
         import pyodbc  # noqa: PLC0415
 
         conn_str = (
             f"DRIVER={{{self.driver}}};"
             f"SERVER={self.server};"
             f"DATABASE={self.db_name};"
-            f"UID={self.username};"
-            f"PWD={self.password};"
-            f"TrustServerCertificate=yes;"
         )
+        if self.username:
+            conn_str += f"UID={self.username};PWD={self.password};"
+            auth = "SQL auth"
+        else:
+            conn_str += "Trusted_Connection=yes;"
+            auth = "Windows auth"
+        conn_str += "TrustServerCertificate=yes;"
+
         self._conn = pyodbc.connect(conn_str, autocommit=False)
-        logger.info("[%s] Connected to %s", self.db_name, self.server)
+        logger.info("[%s] Connected to %s (%s)", self.db_name, self.server, auth)
 
     def close(self) -> None:
         """Close the pyodbc connection."""

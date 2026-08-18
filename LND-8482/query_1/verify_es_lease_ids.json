@@ -1,0 +1,41 @@
+// Index: legal_lease_<latest> (or the current alias)
+// Purpose: verify the 28 repaired records with LeaseId mappings are published with image_link
+
+{
+  "query": {
+    "terms": {
+      "lease_id": [
+        3449586,
+        3287295,
+        3585872,
+        4423587,
+        3407111,
+        3578760,
+        3585797,
+        3629823,
+        3534188,
+        3656210,
+        3564003,
+        3565116,
+        3407140,
+        3710855,
+        3521136,
+        4252114,
+        3575361,
+        3656086,
+        3684612,
+        3656145,
+        3585573,
+        3684831,
+        3565072,
+        3534002,
+        3629803,
+        3585846,
+        3598993,
+        3551616
+      ]
+    }
+  },
+  "_source": ["lease_id", "image_link", "county_parish", "state_province", "updated"],
+  "size": 30
+}

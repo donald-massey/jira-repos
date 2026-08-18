@@ -1,0 +1,25 @@
+{
+  "captured_utc": "2026-08-14",
+  "source_server": "AUS2-DTF-PAP01V.NA.DRILLINGINFO.COM",
+  "source_table": "countyScansTitle.dbo.tblexportLog",
+  "filter": "recordID = '68125b82-1ae2-4058-a46f-f3e46709e47b'",
+  "rowcount": 1,
+  "exportLogID_is_identity": true,
+  "row": {
+    "exportLogID": 7536774,
+    "recordID": "68125b82-1ae2-4058-a46f-f3e46709e47b",
+    "LeaseID": 5184347,
+    "exportDate": "2025-09-22 14:09:01",
+    "sentToAudit": 0,
+    "zipName": "CH_09.22.2025.14.26_leases",
+    "zipCopied": 0,
+    "imageCopied": 0,
+    "_CreatedDateTime": "2025-09-22 19:47:02.610",
+    "_CreatedBy": "dataentry",
+    "_ModifiedDateTime": "2025-09-28 12:00:00.863",
+    "_ModifiedBy": "usp_UpdateLeaseID_tblExportLog",
+    "StatusOfLastAttempt": null,
+    "DateOfLastAttempt": null,
+    "CountOfLastAttempt": null
+  }
+}

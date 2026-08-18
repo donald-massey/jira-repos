@@ -1,0 +1,9 @@
+{
+  "_comment": "LND-8655 query_2 GATE 4 — final publish check. Is DIV1 LeaseID 5250310 present in the legal_lease index? Run against cerebro 'Elasticsearch DI Regulatory 6x Client'. BEFORE: zero hits (dropped). PASS: >= 1 hit after a producer+glue run following mapping creation (gate C). Check file_date / _version on the hit to confirm it is the fresh publish.",
+  "size": 20,
+  "query": {
+    "terms": {
+      "lease_id": [ 5250310 ]
+    }
+  }
+}

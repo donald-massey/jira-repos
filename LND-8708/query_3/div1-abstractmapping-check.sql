@@ -52,3 +52,9 @@ LEFT JOIN (
 ORDER BY tl.county_state, tl.lease_id;
 
 DROP TABLE #target_leases;
+
+
+SELECT *
+FROM countyScansTitle.dbo.tblrecord r
+JOIN countyScansTitle.dbo.tblexportlog l ON l.recordID = r.recordID
+WHERE leaseID IN (174305,174359,174404,174414,170085,172470,183193,176027,171755,171791)

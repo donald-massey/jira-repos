@@ -1,0 +1,1255 @@
+2026-08-13T07:41:44 [INFO] LND-8482.repair — Mode: DRY RUN | Report: cleanup_report_commit_20260713T231201Z.csv | Bucket: enverus-courthouse-prod-chd-plants
+2026-08-13T07:41:45 [INFO] LND-8482.repair — Loaded 155268 record(s) from cleanup_report_commit_20260713T231201Z.csv
+2026-08-13T07:41:45 [INFO] utils.database_utils — DatabaseConnection initialised: server=AUS2-DTF-PAP01V.NA.DRILLINGINFO.COM db=countyScansTitle
+2026-08-13T07:41:45 [INFO] utils.database_utils — [countyScansTitle] Connected to AUS2-DTF-PAP01V.NA.DRILLINGINFO.COM (Windows auth)
+2026-08-13T07:41:45 [INFO] utils.s3_utils — S3Client initialised: bucket=enverus-courthouse-prod-chd-plants region=us-east-1
+2026-08-13T07:42:18 [INFO] LND-8482.repair — Source lookup returned 155268/155268 records
+2026-08-13T07:42:20 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:20 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:20 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:20 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:42:20 [WARNING] pypdf._reader — Ignoring wrong pointing object 34 65536 (offset 0)
+2026-08-13T07:42:21 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:21 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:21 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:22 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:22 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:23 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:23 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:24 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:24 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:24 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:24 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:42:25 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:25 [WARNING] pypdf._reader — Ignoring wrong pointing object 7 65536 (offset 0)
+2026-08-13T07:42:25 [WARNING] pypdf._reader — Ignoring wrong pointing object 12 65536 (offset 0)
+2026-08-13T07:42:26 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:26 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:27 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:27 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:27 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:27 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:42:27 [WARNING] pypdf._reader — Ignoring wrong pointing object 34 65536 (offset 0)
+2026-08-13T07:42:27 [WARNING] pypdf._reader — Ignoring wrong pointing object 42 65536 (offset 0)
+2026-08-13T07:42:27 [WARNING] pypdf._reader — Ignoring wrong pointing object 50 65536 (offset 0)
+2026-08-13T07:42:27 [WARNING] pypdf._reader — Ignoring wrong pointing object 58 65536 (offset 0)
+2026-08-13T07:42:27 [WARNING] pypdf._reader — Ignoring wrong pointing object 66 65536 (offset 0)
+2026-08-13T07:42:27 [WARNING] pypdf._reader — Ignoring wrong pointing object 74 65536 (offset 0)
+2026-08-13T07:42:28 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:28 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:28 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:28 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:42:29 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:29 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:29 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:29 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:42:29 [WARNING] pypdf._reader — Ignoring wrong pointing object 34 65536 (offset 0)
+2026-08-13T07:42:29 [WARNING] pypdf._reader — Ignoring wrong pointing object 42 65536 (offset 0)
+2026-08-13T07:42:29 [WARNING] pypdf._reader — Ignoring wrong pointing object 50 65536 (offset 0)
+2026-08-13T07:42:29 [WARNING] pypdf._reader — Ignoring wrong pointing object 58 65536 (offset 0)
+2026-08-13T07:42:29 [WARNING] pypdf._reader — Ignoring wrong pointing object 66 65536 (offset 0)
+2026-08-13T07:42:30 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:30 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:30 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:31 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:31 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:31 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:31 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:32 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:32 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:33 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:33 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:33 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:35 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:35 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:35 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:36 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:36 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:37 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:37 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:37 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:37 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:37 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:38 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:38 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:38 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:39 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:39 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:40 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:40 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:41 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:41 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:41 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:42 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:42 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:44 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:45 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:45 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:45 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:46 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:46 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:46 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:46 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:42:46 [WARNING] pypdf._reader — Ignoring wrong pointing object 34 65536 (offset 0)
+2026-08-13T07:42:46 [WARNING] pypdf._reader — Ignoring wrong pointing object 42 65536 (offset 0)
+2026-08-13T07:42:46 [WARNING] pypdf._reader — Ignoring wrong pointing object 50 65536 (offset 0)
+2026-08-13T07:42:46 [WARNING] pypdf._reader — Ignoring wrong pointing object 58 65536 (offset 0)
+2026-08-13T07:42:47 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:47 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:48 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:48 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:48 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:48 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:42:48 [WARNING] pypdf._reader — Ignoring wrong pointing object 34 65536 (offset 0)
+2026-08-13T07:42:48 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:48 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:49 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:49 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:49 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:49 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:42:51 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:53 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:53 [WARNING] pypdf._reader — Ignoring wrong pointing object 7 65536 (offset 0)
+2026-08-13T07:42:53 [WARNING] pypdf._reader — Ignoring wrong pointing object 12 65536 (offset 0)
+2026-08-13T07:42:53 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:53 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:54 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:54 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:55 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:55 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:56 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:56 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:56 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:42:56 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:42:56 [WARNING] pypdf._reader — Ignoring wrong pointing object 34 65536 (offset 0)
+2026-08-13T07:42:56 [WARNING] pypdf._reader — Ignoring wrong pointing object 42 65536 (offset 0)
+2026-08-13T07:42:56 [WARNING] pypdf._reader — Ignoring wrong pointing object 50 65536 (offset 0)
+2026-08-13T07:42:56 [WARNING] pypdf._reader — Ignoring wrong pointing object 58 65536 (offset 0)
+2026-08-13T07:42:57 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:57 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:57 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:57 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:42:58 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:58 [WARNING] pypdf._reader — Ignoring wrong pointing object 7 65536 (offset 0)
+2026-08-13T07:42:59 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:42:59 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:43:00 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:43:00 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:43:01 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:43:03 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:43:03 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:43:03 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:43:03 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:43:04 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:43:04 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:43:04 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:43:04 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:43:04 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:43:04 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:43:04 [WARNING] pypdf._reader — Ignoring wrong pointing object 26 65536 (offset 0)
+2026-08-13T07:43:04 [WARNING] pypdf._reader — Ignoring wrong pointing object 34 65536 (offset 0)
+2026-08-13T07:43:04 [WARNING] pypdf._reader — Ignoring wrong pointing object 42 65536 (offset 0)
+2026-08-13T07:43:05 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:43:05 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:43:05 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:43:08 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:43:08 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:43:09 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T07:43:09 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T07:43:09 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T07:43:24 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:43:24 [INFO] pikepdf._core — pikepdf C++ to Python logger bridge initialized
+2026-08-13T07:43:24 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92C7DDC10>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:43:29 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:43:29 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:43:57 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:43:58 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CA2FCE0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:44:03 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:44:03 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:44:16 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:44:16 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:44:27 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:44:27 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CA2F060>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:44:31 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:44:31 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:45:46 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:45:56 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:45:56 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CA2EF20>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:46:07 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:46:07 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CA2F470>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:46:18 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:46:18 [WARNING] pypdf._reader — Object 1929 0 not defined.
+2026-08-13T07:46:18 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CBE9490>: unable to find page tree
+2026-08-13T07:46:25 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:46:25 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:46:41 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:46:41 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92C86E660>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:46:45 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:46:45 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-13T07:46:45 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CBE8B80>: unable to find page tree
+2026-08-13T07:46:47 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:46:47 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:46:47 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-13T07:46:47 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CBEBEC0>: root of pages tree has no /Kids array
+2026-08-13T07:46:56 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:46:56 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:47:08 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:47:08 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CA2ED90>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:47:19 [INFO] LND-8482.repair — Processed 7631/155268 — 25.4 rec/s — ETA 97m 02s | {'repaired': 0, 'would_repair': 313, 'skipped': 7308, 'failed': 10}
+2026-08-13T07:47:41 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:47:41 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:48:37 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:48:37 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:49:16 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:49:16 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:49:38 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:49:38 [WARNING] pypdf._reader — Object 89 0 not defined.
+2026-08-13T07:49:38 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CC889A0>: unable to find page tree
+2026-08-13T07:49:59 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:49:59 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:50:24 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:50:24 [WARNING] pypdf._reader — Object 951 0 not defined.
+2026-08-13T07:50:24 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CD79B20>: unable to find page tree
+2026-08-13T07:50:33 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:50:33 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CA2E1B0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:51:11 [WARNING] pypdf._reader — Object ID 10,0 ref repaired
+2026-08-13T07:51:11 [WARNING] pypdf._reader — Object 8 0 found
+2026-08-13T07:51:11 [WARNING] pypdf._reader — Object ID 12,0 ref repaired
+2026-08-13T07:51:11 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T07:51:11 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T07:51:15 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:51:15 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:51:35 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:51:35 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:51:38 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:51:38 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:51:38 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-13T07:51:38 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CD7B380>: root of pages tree has no /Kids array
+2026-08-13T07:52:03 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:52:03 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CD7A390>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:52:19 [INFO] LND-8482.repair — Processed 13137/155268 — 21.9 rec/s — ETA 108m 21s | {'repaired': 0, 'would_repair': 637, 'skipped': 12485, 'failed': 15}
+2026-08-13T07:53:00 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:53:36 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:53:36 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:54:52 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:54:52 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CEE70B0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:55:15 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:55:47 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:55:47 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:56:07 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T07:56:07 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T07:56:07 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T07:56:07 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 9 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 10 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 11 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 12 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 13 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 14 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 15 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 16 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 17 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 18 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 19 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 20 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 21 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 22 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 23 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 24 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 25 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 26 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 27 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 28 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 29 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 30 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 31 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 32 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 33 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 34 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 35 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 36 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 37 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 38 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 39 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 40 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 41 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 42 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 43 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 44 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 45 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 46 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 47 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 48 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 49 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 50 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 51 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 52 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 53 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 54 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 55 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 56 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 57 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 58 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 59 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 60 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 61 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 62 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 63 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 64 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 65 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 66 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 67 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 68 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 69 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 70 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 71 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 72 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 73 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 74 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 75 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 76 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 77 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 78 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 79 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 80 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 81 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 82 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 83 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 84 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 85 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 86 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 87 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 88 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 89 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 90 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 91 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 92 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 93 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 94 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 95 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 96 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 97 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 98 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 99 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 100 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 101 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 102 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 103 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 104 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 105 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 106 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 107 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 108 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 109 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 110 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 111 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 112 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 113 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 114 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 115 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 116 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 117 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 118 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 119 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 120 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 121 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 122 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 123 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 124 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 125 in Xref table invalid but object found
+2026-08-13T07:56:36 [WARNING] pypdf._reader — entry 126 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 127 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 128 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 129 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 130 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 131 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 132 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 133 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 134 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 135 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 136 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 137 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 138 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 139 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 140 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 141 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 142 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 143 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 144 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 145 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 146 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 147 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 148 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 149 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 150 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 151 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 152 in Xref table invalid but object found
+2026-08-13T07:56:37 [WARNING] pypdf._reader — entry 153 in Xref table invalid but object found
+2026-08-13T07:57:20 [INFO] LND-8482.repair — Processed 18086/155268 — 20.1 rec/s — ETA 113m 58s | {'repaired': 0, 'would_repair': 962, 'skipped': 17107, 'failed': 17}
+2026-08-13T07:57:43 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T07:57:43 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:58:04 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:58:04 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93930E930>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:58:08 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:58:08 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93930DB20>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T07:58:54 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T07:58:54 [WARNING] pypdf._reader — Object 8 0 not defined.
+2026-08-13T07:58:54 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93930D300>: unable to find page tree
+2026-08-13T07:58:59 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T07:59:02 [WARNING] pypdf._reader — Object ID 4,0 ref repaired
+2026-08-13T07:59:02 [WARNING] pypdf._reader — Object 2 0 found
+2026-08-13T07:59:02 [WARNING] pypdf._reader — Object 6 0 found
+2026-08-13T08:00:17 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:00:17 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93937FC90>: root of pages tree has no /Kids array
+2026-08-13T08:00:38 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:00:38 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93937DCB0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:00:41 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:00:41 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93937FD80>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:01:13 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:01:13 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:01:14 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:01:14 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93930F8D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:01:23 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T08:01:23 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T08:01:23 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T08:01:23 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:01:46 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:01:46 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939427EC0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:01:54 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:01:54 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9394259E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:02:14 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:02:14 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93937E4D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:02:20 [INFO] LND-8482.repair — Processed 23178/155268 — 19.3 rec/s — ETA 114m 11s | {'repaired': 0, 'would_repair': 1257, 'skipped': 21893, 'failed': 28}
+2026-08-13T08:02:44 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:02:44 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9391F16C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:03:26 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:03:26 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:03:46 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:03:46 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:03:59 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:03:59 [WARNING] pypdf._reader — Object 1926 0 not defined.
+2026-08-13T08:03:59 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93930C400>: unable to find page tree
+2026-08-13T08:04:01 [WARNING] pypdf._reader — Object ID 19,0 ref repaired
+2026-08-13T08:04:01 [WARNING] pypdf._reader — Object 17 0 found
+2026-08-13T08:04:01 [WARNING] pypdf._reader — Object ID 21,0 ref repaired
+2026-08-13T08:04:01 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:04:01 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T08:04:01 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T08:04:01 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T08:04:01 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T08:04:03 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T08:04:03 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T08:04:03 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T08:04:03 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:04:27 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:04:27 [WARNING] pypdf._reader — Object 170 0 not defined.
+2026-08-13T08:04:27 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9390D4860>: unable to find page tree
+2026-08-13T08:05:16 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:05:16 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939006A70>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:05:24 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:05:24 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CD7A610>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:05:51 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:05:51 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CD7BE70>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:06:03 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:06:03 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92CEE7F60>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:06:16 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:06:16 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9390076A0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:06:27 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:06:27 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:06:36 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:06:36 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-13T08:06:36 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93930DA80>: unable to find page tree
+2026-08-13T08:06:43 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:06:43 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939166750>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:07:02 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:07:02 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E92C9D00E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:07:20 [INFO] LND-8482.repair — Processed 29581/155268 — 19.7 rec/s — ETA 106m 22s | {'repaired': 0, 'would_repair': 1596, 'skipped': 27944, 'failed': 41}
+2026-08-13T08:08:09 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T08:08:09 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T08:08:09 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T08:08:09 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:08:09 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T08:08:09 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T08:08:20 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T08:08:20 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T08:08:20 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T08:08:20 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:08:31 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:08:31 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:08:37 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:08:37 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:09:04 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:09:04 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939427560>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:09:11 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:09:11 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9395C4C20>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:09:13 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T08:09:13 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T08:09:13 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T08:09:13 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:09:28 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:09:28 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9394E3010>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:09:41 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:09:41 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:10:34 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:10:34 [WARNING] pypdf._reader — Object 2 0 not defined.
+2026-08-13T08:10:34 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9395C4450>: unable to find page tree
+2026-08-13T08:10:42 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:10:42 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939628630>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:11:01 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:11:01 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93962A430>: root of pages tree has no /Kids array
+2026-08-13T08:11:37 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:11:37 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9395C7F10>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:12:14 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:12:14 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939628D60>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:12:21 [INFO] LND-8482.repair — Processed 34813/155268 — 19.3 rec/s — ETA 103m 57s | {'repaired': 0, 'would_repair': 1891, 'skipped': 32872, 'failed': 50}
+2026-08-13T08:12:26 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:12:26 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93968A2F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:12:49 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:12:49 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9396FE8E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:12:53 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:12:53 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:13:55 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T08:13:55 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T08:13:55 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T08:13:55 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:14:02 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:14:02 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939747330>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:15:11 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:15:11 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9397452B0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:15:42 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:15:42 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9397CBF10>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:16:09 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:16:09 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93983F880>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:16:11 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:16:11 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:16:28 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:16:28 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9397CA750>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:16:36 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:16:36 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E93989C400>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:17:21 [INFO] LND-8482.repair — Processed 40410/155268 — 19.2 rec/s — ETA 99m 37s | {'repaired': 0, 'would_repair': 2225, 'skipped': 38126, 'failed': 59}
+2026-08-13T08:17:41 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:17:41 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:17:58 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:17:58 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9399119E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:18:05 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:18:05 [WARNING] pypdf._reader — Object 212 0 not defined.
+2026-08-13T08:18:05 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939913A10>: unable to find page tree
+2026-08-13T08:18:58 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:20:49 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:20:49 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:21:01 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:21:01 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939A52750>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:21:19 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:21:19 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939A9D260>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:21:20 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:21:20 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939A9C680>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:22:11 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:22:11 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939CB0680>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:22:22 [INFO] LND-8482.repair — Processed 45972/155268 — 19.1 rec/s — ETA 95m 14s | {'repaired': 0, 'would_repair': 2508, 'skipped': 43398, 'failed': 66}
+2026-08-13T08:24:14 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:24:14 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:24:53 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:24:54 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939D34770>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:24:58 [WARNING] pypdf._reader — Object ID 19,0 ref repaired
+2026-08-13T08:24:58 [WARNING] pypdf._reader — Object 17 0 found
+2026-08-13T08:24:58 [WARNING] pypdf._reader — Object ID 21,0 ref repaired
+2026-08-13T08:24:58 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:24:58 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T08:24:58 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T08:24:58 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T08:24:58 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T08:25:36 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:25:36 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939D96B60>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:25:49 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T08:25:49 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T08:25:49 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T08:25:49 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:25:49 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T08:25:49 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T08:26:05 [WARNING] pypdf._reader — Object ID 22,0 ref repaired
+2026-08-13T08:26:05 [WARNING] pypdf._reader — Object 20 0 found
+2026-08-13T08:26:05 [WARNING] pypdf._reader — Object ID 24,0 ref repaired
+2026-08-13T08:26:05 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:26:05 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T08:26:05 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T08:26:05 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T08:26:05 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T08:26:05 [WARNING] pypdf._reader — Object 16 0 found
+2026-08-13T08:26:14 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:26:14 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:26:28 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:26:28 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:26:33 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:26:33 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939B751C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:26:33 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:26:33 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939B75DF0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:27:07 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:27:07 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:27:23 [INFO] LND-8482.repair — Processed 49217/155268 — 18.2 rec/s — ETA 97m 07s | {'repaired': 0, 'would_repair': 2779, 'skipped': 46367, 'failed': 71}
+2026-08-13T08:27:42 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:27:42 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939A9F510>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:28:29 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:30:07 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:30:07 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:30:25 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:30:25 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:30:36 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:30:36 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939167650>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:31:04 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:31:04 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:31:07 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:31:07 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939006E80>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object ID 28,0 ref repaired
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 26 0 found
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object ID 30,0 ref repaired
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 2 0 found
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 8 0 found
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 14 0 found
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 15 0 found
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 16 0 found
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 19 0 found
+2026-08-13T08:32:07 [WARNING] pypdf._reader — Object 22 0 found
+2026-08-13T08:32:20 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:32:20 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:32:23 [INFO] LND-8482.repair — Processed 55301/155268 — 18.4 rec/s — ETA 90m 31s | {'repaired': 0, 'would_repair': 3074, 'skipped': 52153, 'failed': 74}
+2026-08-13T08:32:47 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:32:47 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:32:52 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:32:52 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:33:15 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:33:15 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939E23650>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:34:10 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:34:10 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939EE9F30>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:34:12 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T08:34:12 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T08:34:12 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T08:34:12 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:34:33 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:34:33 [WARNING] pypdf._reader — Object 1998 0 not defined.
+2026-08-13T08:34:33 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939E86480>: unable to find page tree
+2026-08-13T08:34:34 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:34:34 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939E206D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:34:49 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:34:49 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:34:54 [WARNING] pypdf._reader — Object ID 19,0 ref repaired
+2026-08-13T08:34:54 [WARNING] pypdf._reader — Object 17 0 found
+2026-08-13T08:34:54 [WARNING] pypdf._reader — Object ID 21,0 ref repaired
+2026-08-13T08:34:54 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:34:54 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T08:34:54 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T08:34:54 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T08:34:54 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T08:37:38 [INFO] LND-8482.repair — Processed 60831/155268 — 18.3 rec/s — ETA 85m 53s | {'repaired': 0, 'would_repair': 3328, 'skipped': 57424, 'failed': 79}
+2026-08-13T08:37:39 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:37:39 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:38:03 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:38:03 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9690B76F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:38:13 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:38:13 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:38:21 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:38:21 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9691024D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:38:32 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:38:32 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:38:38 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:38:38 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969101B20>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:39:35 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:39:35 [WARNING] pypdf._reader — Object 221 0 not defined.
+2026-08-13T08:39:35 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969185AD0>: unable to find page tree
+2026-08-13T08:39:56 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:39:56 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:40:39 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:40:39 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:41:05 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:41:05 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969232C50>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:41:08 [WARNING] pypdf._reader — Object ID 31,0 ref repaired
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object 29 0 found
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object ID 33,0 ref repaired
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object 16 0 found
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object 19 0 found
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object 22 0 found
+2026-08-13T08:41:09 [WARNING] pypdf._reader — Object 25 0 found
+2026-08-13T08:41:13 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:41:13 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969233970>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:41:50 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:41:50 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9692B8130>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:41:54 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:41:54 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9692BA7F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:42:39 [INFO] LND-8482.repair — Processed 65959/155268 — 18.2 rec/s — ETA 81m 42s | {'repaired': 0, 'would_repair': 3600, 'skipped': 62272, 'failed': 87}
+2026-08-13T08:43:01 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:43:01 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9691866B0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:43:09 [WARNING] pypdf._reader — Object ID 22,0 ref repaired
+2026-08-13T08:43:09 [WARNING] pypdf._reader — Object 20 0 found
+2026-08-13T08:43:09 [WARNING] pypdf._reader — Object ID 24,0 ref repaired
+2026-08-13T08:43:09 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:43:09 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T08:43:09 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T08:43:09 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T08:43:09 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T08:43:09 [WARNING] pypdf._reader — Object 16 0 found
+2026-08-13T08:43:17 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:43:17 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9692B8860>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:43:42 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:43:42 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9693198A0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:44:04 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:44:08 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:44:08 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96939E480>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:44:15 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T08:44:15 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T08:44:15 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T08:44:15 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:44:15 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T08:44:15 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T08:44:46 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:44:46 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:44:52 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:44:52 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969230590>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:45:01 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:45:01 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9693EC130>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:45:12 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T08:45:12 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T08:45:12 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T08:45:12 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:45:24 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:45:24 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9693EECF0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:45:29 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T08:45:29 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T08:45:29 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T08:45:29 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:46:30 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:46:30 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96944FBA0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:47:01 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:47:01 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969495BC0>: root of pages tree has no /Kids array
+2026-08-13T08:47:31 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:47:31 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9694FBF10>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:47:36 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:47:49 [INFO] LND-8482.repair — Processed 70719/155268 — 18.0 rec/s — ETA 78m 19s | {'repaired': 0, 'would_repair': 3851, 'skipped': 66770, 'failed': 98}
+2026-08-13T08:48:43 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:48:43 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969548D60>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:48:46 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:48:46 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:48:46 [WARNING] pypdf._reader — Object 18 0 not defined.
+2026-08-13T08:48:46 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969549210>: root of pages tree has no /Kids array
+2026-08-13T08:49:34 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:49:34 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9695C7D80>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:49:46 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:49:46 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9695C4BD0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:49:46 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:49:46 [WARNING] pypdf._reader — Object 2168 0 not defined.
+2026-08-13T08:49:46 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9695C4810>: unable to find page tree
+2026-08-13T08:50:08 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:50:08 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9695C5CB0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:50:23 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:50:32 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:50:32 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:50:34 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:50:34 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:51:23 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T08:51:23 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T08:51:23 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T08:51:23 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:53:05 [INFO] LND-8482.repair — Processed 75922/155268 — 17.9 rec/s — ETA 73m 57s | {'repaired': 0, 'would_repair': 4091, 'skipped': 71727, 'failed': 104}
+2026-08-13T08:53:27 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:53:27 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969719DF0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:54:09 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:54:09 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9697137E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:54:53 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:54:53 [WARNING] pypdf._reader — Object 1767 0 not defined.
+2026-08-13T08:54:53 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96901CF40>: unable to find page tree
+2026-08-13T08:56:28 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:56:28 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96971A4D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:56:39 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T08:56:39 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T08:56:39 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T08:56:39 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T08:56:39 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T08:56:39 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T08:56:42 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:56:42 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9697103B0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:57:04 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:57:04 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969848810>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:57:14 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:57:14 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969712B10>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:57:15 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:57:15 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969712480>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:57:42 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T08:57:42 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T08:58:05 [INFO] LND-8482.repair — Processed 81463/155268 — 17.9 rec/s — ETA 68m 39s | {'repaired': 0, 'would_repair': 4379, 'skipped': 76971, 'failed': 113}
+2026-08-13T08:58:24 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:58:24 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96982B380>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T08:59:06 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:59:06 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969828090>: unable to find trailer dictionary while recovering damaged file
+C:\Users\donald.massey\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\PIL\TiffImagePlugin.py:950: UserWarning: Corrupt EXIF data.  Expecting to read 2 bytes but only got 0. 
+  warnings.warn(str(msg))
+2026-08-13T08:59:43 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T08:59:43 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96990BA60>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:00:02 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:00:02 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96991A200>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:01:26 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T09:01:26 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T09:01:26 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T09:01:26 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:01:30 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object ID 52,0 ref repaired
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 50 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object ID 54,0 ref repaired
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 16 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 19 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 22 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 25 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 28 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 31 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 34 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 37 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 40 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 43 0 found
+2026-08-13T09:01:48 [WARNING] pypdf._reader — Object 46 0 found
+2026-08-13T09:02:24 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:02:24 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E9699DADE0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:02:44 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:02:44 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96998CC20>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:03:06 [INFO] LND-8482.repair — Processed 85112/155268 — 17.6 rec/s — ETA 66m 35s | {'repaired': 0, 'would_repair': 4634, 'skipped': 80358, 'failed': 120}
+2026-08-13T09:03:13 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:03:13 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:03:25 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:03:35 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:04:58 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:04:58 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969A23290>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:05:30 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:05:30 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969AA8A90>: root of pages tree has no /Kids array
+2026-08-13T09:05:41 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:05:41 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969AFC180>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:06:17 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T09:06:17 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T09:06:17 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T09:06:17 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:06:19 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:06:20 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:06:20 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:07:21 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:07:21 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:08:10 [INFO] LND-8482.repair — Processed 90148/155268 — 17.5 rec/s — ETA 62m 01s | {'repaired': 0, 'would_repair': 4915, 'skipped': 85110, 'failed': 123}
+2026-08-13T09:08:23 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:08:23 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969B93650>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:10:10 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:10:10 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969C4AE80>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:10:11 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:10:11 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969C48BD0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:10:29 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:10:29 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:10:36 [WARNING] pypdf._reader — Object ID 19,0 ref repaired
+2026-08-13T09:10:36 [WARNING] pypdf._reader — Object 17 0 found
+2026-08-13T09:10:36 [WARNING] pypdf._reader — Object ID 21,0 ref repaired
+2026-08-13T09:10:36 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:10:36 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T09:10:36 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T09:10:36 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T09:10:36 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T09:11:31 [WARNING] pypdf._reader — Object ID 28,0 ref repaired
+2026-08-13T09:11:31 [WARNING] pypdf._reader — Object 26 0 found
+2026-08-13T09:11:31 [WARNING] pypdf._reader — Object ID 30,0 ref repaired
+2026-08-13T09:11:32 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:11:32 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T09:11:32 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T09:11:32 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T09:11:32 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T09:11:32 [WARNING] pypdf._reader — Object 16 0 found
+2026-08-13T09:11:32 [WARNING] pypdf._reader — Object 19 0 found
+2026-08-13T09:11:32 [WARNING] pypdf._reader — Object 22 0 found
+2026-08-13T09:12:23 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:12:23 [WARNING] pypdf._reader — Object 104 0 not defined.
+2026-08-13T09:12:23 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969DF43B0>: unable to find page tree
+2026-08-13T09:13:11 [INFO] LND-8482.repair — Processed 94682/155268 — 17.4 rec/s — ETA 58m 09s | {'repaired': 0, 'would_repair': 5230, 'skipped': 89324, 'failed': 128}
+2026-08-13T09:13:26 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:13:26 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969DF7BF0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:13:31 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:13:31 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969E58180>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:13:34 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:13:34 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969E58360>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:13:47 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:13:47 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969D25DA0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:14:13 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:14:13 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:15:05 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:15:31 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T09:15:31 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T09:15:31 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T09:15:31 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:15:38 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:15:38 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969F05850>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:15:50 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:16:16 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:16:16 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969F70720>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:16:59 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:16:59 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969FBA340>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:17:22 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T09:17:22 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T09:17:22 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T09:17:22 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:17:35 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:17:35 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:18:16 [INFO] LND-8482.repair — Processed 100805/155268 — 17.5 rec/s — ETA 51m 50s | {'repaired': 0, 'would_repair': 5504, 'skipped': 95166, 'failed': 135}
+2026-08-13T09:18:43 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:18:43 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:18:58 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:18:58 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969FBBD30>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:19:00 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:19:00 [WARNING] pypdf._reader — Object 871 0 not defined.
+2026-08-13T09:19:00 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A0762A0>: unable to find page tree
+2026-08-13T09:19:38 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:19:38 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A150450>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:21:09 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:21:09 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A214810>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:21:16 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:21:16 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969EBBC90>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:21:18 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:21:18 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969F05580>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:22:46 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:22:46 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96991AB10>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:23:03 [WARNING] pypdf._reader — Object ID 19,0 ref repaired
+2026-08-13T09:23:03 [WARNING] pypdf._reader — Object 17 0 found
+2026-08-13T09:23:03 [WARNING] pypdf._reader — Object ID 21,0 ref repaired
+2026-08-13T09:23:03 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:23:03 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T09:23:03 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T09:23:03 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T09:23:03 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T09:23:16 [INFO] LND-8482.repair — Processed 106831/155268 — 17.6 rec/s — ETA 45m 46s | {'repaired': 0, 'would_repair': 5810, 'skipped': 100878, 'failed': 143}
+2026-08-13T09:23:38 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:23:38 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E969D277E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:23:51 [WARNING] pypdf._reader — Object ID 19,0 ref repaired
+2026-08-13T09:23:51 [WARNING] pypdf._reader — Object 17 0 found
+2026-08-13T09:23:51 [WARNING] pypdf._reader — Object ID 21,0 ref repaired
+2026-08-13T09:23:51 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:23:51 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T09:23:51 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T09:23:51 [WARNING] pypdf._reader — Object 10 0 found
+2026-08-13T09:23:51 [WARNING] pypdf._reader — Object 13 0 found
+2026-08-13T09:25:38 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:25:38 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E939FC7B50>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:25:40 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:25:41 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:25:48 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:25:48 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96984B9C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:25:49 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:25:49 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96984B380>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:26:29 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:26:29 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:26:37 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:26:37 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:26:37 [WARNING] pypdf._reader — Object 10 0 not defined.
+2026-08-13T09:26:37 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A1A7C40>: root of pages tree has no /Kids array
+2026-08-13T09:26:40 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:26:40 [WARNING] pypdf._reader — Object 1924 0 not defined.
+2026-08-13T09:26:41 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A1A5D00>: unable to find page tree
+2026-08-13T09:26:42 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:26:42 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96984BCE0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:27:02 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:27:02 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A1A7A10>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:27:14 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:27:14 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A1A40E0>: root of pages tree has no /Kids array
+2026-08-13T09:27:25 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:27:25 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A214CC0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:27:29 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:27:29 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:27:45 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:27:45 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:28:11 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:28:11 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:28:16 [INFO] LND-8482.repair — Processed 111472/155268 — 17.5 rec/s — ETA 41m 37s | {'repaired': 0, 'would_repair': 6033, 'skipped': 105285, 'failed': 154}
+2026-08-13T09:29:04 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:29:04 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A2E8540>: root of pages tree has no /Kids array
+2026-08-13T09:29:42 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:29:42 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A31EA20>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:30:28 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:30:28 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A31E700>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:30:57 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:30:57 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:31:13 [WARNING] pypdf._reader — Ignoring wrong pointing object 3 0 (offset 672834)
+2026-08-13T09:31:14 [WARNING] pypdf._reader — Ignoring wrong pointing object 4 0 (offset 670176)
+2026-08-13T09:31:14 [WARNING] pypdf._reader — Ignoring wrong pointing object 6 0 (offset 669879)
+2026-08-13T09:31:14 [WARNING] pypdf._reader — Ignoring wrong pointing object 7 0 (offset 669976)
+2026-08-13T09:31:14 [WARNING] pypdf._reader — Ignoring wrong pointing object 8 0 (offset 670077)
+2026-08-13T09:31:14 [WARNING] pypdf._reader — Ignoring wrong pointing object 9 0 (offset 670298)
+2026-08-13T09:31:14 [WARNING] pypdf._reader — Ignoring wrong pointing object 11 0 (offset 1237515)
+2026-08-13T09:31:14 [WARNING] pypdf._reader — Ignoring wrong pointing object 12 0 (offset 1234153)
+2026-08-13T09:31:14 [WARNING] pypdf._reader — Ignoring wrong pointing object 13 0 (offset 672949)
+2026-08-13T09:31:14 [WARNING] pypdf._reader — Ignoring wrong pointing object 14 0 (offset 1233853)
+2026-08-13T09:31:15 [WARNING] pypdf._reader — Ignoring wrong pointing object 15 0 (offset 1233951)
+2026-08-13T09:31:15 [WARNING] pypdf._reader — Ignoring wrong pointing object 16 0 (offset 1234053)
+2026-08-13T09:31:15 [WARNING] pypdf._reader — Ignoring wrong pointing object 17 0 (offset 1234280)
+2026-08-13T09:31:15 [WARNING] pypdf._reader — Ignoring wrong pointing object 21 0 (offset 1237633)
+2026-08-13T09:31:15 [WARNING] pypdf._reader — Ignoring wrong pointing object 2 65536 (offset 0)
+2026-08-13T09:31:15 [WARNING] pypdf._reader — Ignoring wrong pointing object 10 65536 (offset 0)
+2026-08-13T09:31:15 [WARNING] pypdf._reader — Ignoring wrong pointing object 18 65536 (offset 0)
+2026-08-13T09:31:15 [WARNING] pypdf._reader — Object 3 0 not defined.
+2026-08-13T09:31:15 [WARNING] pypdf._reader — Object 11 0 not defined.
+2026-08-13T09:31:21 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:31:21 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:32:28 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:32:28 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:33:18 [INFO] LND-8482.repair — Processed 116955/155268 — 17.6 rec/s — ETA 36m 21s | {'repaired': 0, 'would_repair': 6279, 'skipped': 110519, 'failed': 157}
+2026-08-13T09:33:35 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:33:35 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A41D030>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:33:47 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:33:47 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:34:18 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:34:18 [WARNING] pypdf._reader — Object 59 0 not defined.
+2026-08-13T09:34:18 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A41EE80>: unable to find page tree
+2026-08-13T09:34:35 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:34:35 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A4E0270>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:35:28 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:35:28 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:35:44 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:35:44 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:35:50 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:35:50 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:35:57 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:35:57 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A536F20>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:38:18 [INFO] LND-8482.repair — Processed 121012/155268 — 17.4 rec/s — ETA 32m 50s | {'repaired': 0, 'would_repair': 6488, 'skipped': 114363, 'failed': 161}
+2026-08-13T09:39:39 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:39:39 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A6373D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:41:38 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:41:38 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:41:42 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T09:41:42 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T09:41:42 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T09:41:42 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:41:51 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:41:51 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A62AC00>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:43:24 [INFO] LND-8482.repair — Processed 123449/155268 — 17.0 rec/s — ETA 31m 12s | {'repaired': 0, 'would_repair': 6596, 'skipped': 116690, 'failed': 163}
+2026-08-13T09:43:32 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:43:32 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:44:50 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:44:50 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A76BB00>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:47:36 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:47:36 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:48:24 [INFO] LND-8482.repair — Processed 126859/155268 — 16.8 rec/s — ETA 28m 14s | {'repaired': 0, 'would_repair': 6797, 'skipped': 119898, 'failed': 164}
+2026-08-13T09:48:49 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T09:48:49 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T09:48:49 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T09:48:49 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:49:01 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:49:01 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A8BE3E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:49:03 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:49:03 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A715BC0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:50:17 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:50:17 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A95E7A0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:50:57 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:50:57 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96A9138D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:51:01 [WARNING] pypdf._reader — Object ID 6,0 ref repaired
+2026-08-13T09:51:01 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T09:51:01 [WARNING] pypdf._reader — Object ID 8,0 ref repaired
+2026-08-13T09:51:01 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:51:01 [WARNING] pypdf._reader — Object 2 0 found
+2026-08-13T09:51:17 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:52:10 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:52:10 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:52:12 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:52:12 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:52:20 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T09:52:20 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T09:52:20 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T09:52:20 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:52:20 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T09:52:20 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T09:52:32 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:52:32 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:52:58 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:52:58 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AAC28E0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:53:03 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:53:03 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:53:24 [INFO] LND-8482.repair — Processed 131807/155268 — 16.8 rec/s — ETA 23m 20s | {'repaired': 0, 'would_repair': 7043, 'skipped': 124595, 'failed': 169}
+2026-08-13T09:53:44 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:53:44 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AB03BF0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:54:09 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:54:09 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:54:11 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:54:11 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AB01120>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:54:21 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T09:54:21 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T09:54:21 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T09:54:21 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:54:21 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:54:21 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AB03E70>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:54:31 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:54:31 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AAC19E0>: root of pages tree has no /Kids array
+2026-08-13T09:55:09 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:55:09 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AB007C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:55:48 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:55:48 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AA073D0>: root of pages tree has no /Kids array
+2026-08-13T09:56:06 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T09:56:06 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T09:56:06 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T09:56:06 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:56:06 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T09:56:06 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T09:56:12 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T09:56:12 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T09:56:12 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T09:56:12 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:56:17 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T09:56:17 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T09:56:17 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T09:56:17 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:57:53 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:57:53 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T09:58:25 [INFO] LND-8482.repair — Processed 136234/155268 — 16.7 rec/s — ETA 19m 00s | {'repaired': 0, 'would_repair': 7294, 'skipped': 128765, 'failed': 175}
+2026-08-13T09:58:59 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T09:58:59 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96ACA8B80>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T09:59:12 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T09:59:12 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T09:59:12 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T09:59:12 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:59:32 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T09:59:32 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T09:59:32 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T09:59:32 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T09:59:32 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T09:59:32 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T09:59:44 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T09:59:44 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:00:10 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T10:00:10 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:00:31 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:00:31 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AD9B9C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:00:56 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T10:00:56 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T10:00:56 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T10:00:56 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:01:10 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T10:01:10 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T10:01:10 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T10:01:10 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:02:08 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:02:08 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AE59F30>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:02:30 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T10:02:30 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T10:02:30 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T10:02:30 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:02:57 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T10:02:57 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:03:25 [INFO] LND-8482.repair — Processed 140271/155268 — 16.6 rec/s — ETA 15m 05s | {'repaired': 0, 'would_repair': 7565, 'skipped': 132528, 'failed': 178}
+2026-08-13T10:04:29 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T10:04:29 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T10:04:29 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T10:04:29 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:04:52 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:04:52 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-13T10:04:52 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96ACF24D0>: unable to find page tree
+2026-08-13T10:06:18 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:06:39 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T10:06:39 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T10:06:39 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T10:06:39 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:06:39 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T10:06:39 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T10:06:43 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T10:06:43 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T10:06:43 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T10:06:43 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:07:55 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T10:07:55 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:08:02 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T10:08:02 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:08:06 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:08:06 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AEEF6F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:08:25 [INFO] LND-8482.repair — Processed 143930/155268 — 16.4 rec/s — ETA 11m 30s | {'repaired': 0, 'would_repair': 7842, 'skipped': 135907, 'failed': 181}
+2026-08-13T10:08:35 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:08:35 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AEB9350>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:08:44 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T10:08:44 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T10:08:44 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T10:08:44 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:08:44 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T10:08:44 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T10:10:01 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T10:10:01 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:10:01 [WARNING] pypdf._reader — Object 17 0 not defined.
+2026-08-13T10:10:01 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AA46570>: root of pages tree has no /Kids array
+2026-08-13T10:11:28 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:11:28 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AF0C4F0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:11:29 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:11:29 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AF0D5D0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:11:48 [WARNING] pypdf._reader — Object ID 8,0 ref repaired
+2026-08-13T10:11:48 [WARNING] pypdf._reader — Object 6 0 found
+2026-08-13T10:11:48 [WARNING] pypdf._reader — Object ID 10,0 ref repaired
+2026-08-13T10:11:48 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:11:48 [WARNING] pypdf._reader — Object 2 0 found
+2026-08-13T10:13:26 [INFO] LND-8482.repair — Processed 147381/155268 — 16.3 rec/s — ETA 8m 05s | {'repaired': 0, 'would_repair': 8078, 'skipped': 139118, 'failed': 185}
+2026-08-13T10:13:28 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T10:13:28 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:13:56 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T10:13:56 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T10:13:56 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T10:13:56 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:15:56 [WARNING] pypdf._reader — Object ID 7,0 ref repaired
+2026-08-13T10:15:56 [WARNING] pypdf._reader — Object 5 0 found
+2026-08-13T10:15:56 [WARNING] pypdf._reader — Object ID 9,0 ref repaired
+2026-08-13T10:15:56 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:15:57 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T10:15:57 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T10:15:57 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T10:15:57 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:15:57 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T10:15:57 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T10:16:22 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:16:22 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001EA340B5C10>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:16:52 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:16:52 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001EA3406BD80>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:17:16 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T10:17:16 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:17:18 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:17:18 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001EA34069210>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:18:26 [INFO] LND-8482.repair — Processed 149917/155268 — 16.0 rec/s — ETA 5m 34s | {'repaired': 0, 'would_repair': 8352, 'skipped': 141377, 'failed': 188}
+2026-08-13T10:23:28 [INFO] LND-8482.repair — Processed 150380/155268 — 15.6 rec/s — ETA 5m 14s | {'repaired': 0, 'would_repair': 8692, 'skipped': 141500, 'failed': 188}
+2026-08-13T10:27:49 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:27:49 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001EA3419B9C0>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:28:28 [INFO] LND-8482.repair — Processed 150838/155268 — 15.1 rec/s — ETA 4m 52s | {'repaired': 0, 'would_repair': 9032, 'skipped': 141617, 'failed': 189}
+2026-08-13T10:33:28 [INFO] LND-8482.repair — Processed 151280/155268 — 14.7 rec/s — ETA 4m 30s | {'repaired': 0, 'would_repair': 9357, 'skipped': 141734, 'failed': 189}
+2026-08-13T10:34:54 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T10:34:54 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T10:34:54 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T10:34:54 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:34:54 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T10:34:54 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T10:34:59 [WARNING] pypdf._reader — Object ID 13,0 ref repaired
+2026-08-13T10:35:00 [WARNING] pypdf._reader — Object 11 0 found
+2026-08-13T10:35:00 [WARNING] pypdf._reader — Object ID 15,0 ref repaired
+2026-08-13T10:35:00 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:35:00 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T10:35:00 [WARNING] pypdf._reader — Object 7 0 found
+2026-08-13T10:35:43 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:37:39 [WARNING] pypdf._reader — Object ID 10,0 ref repaired
+2026-08-13T10:37:39 [WARNING] pypdf._reader — Object 8 0 found
+2026-08-13T10:37:39 [WARNING] pypdf._reader — Object ID 12,0 ref repaired
+2026-08-13T10:37:39 [WARNING] pypdf._reader — Object 1 0 found
+2026-08-13T10:37:39 [WARNING] pypdf._reader — Object 4 0 found
+2026-08-13T10:38:08 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:38:08 [WARNING] pypdf._reader — Object 1923 0 not defined.
+2026-08-13T10:38:08 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001E96AEEE2F0>: unable to find page tree
+2026-08-13T10:38:29 [INFO] LND-8482.repair — Processed 153582/155268 — 14.5 rec/s — ETA 1m 56s | {'repaired': 0, 'would_repair': 9628, 'skipped': 143764, 'failed': 190}
+2026-08-13T10:38:42 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:38:42 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001EA341B2A70>: unable to find trailer dictionary while recovering damaged file
+2026-08-13T10:38:59 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T10:38:59 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:38:59 [WARNING] pypdf._reader — Object 5 0 not defined.
+2026-08-13T10:38:59 [WARNING] LND-8482.repair — pikepdf recovery failed: stream <_io.BytesIO object at 0x000001EA341B16C0>: root of pages tree has no /Kids array
+2026-08-13T10:39:27 [WARNING] pypdf._reader — incorrect startxref pointer(4)
+2026-08-13T10:39:27 [WARNING] pypdf._reader — parsing for Object Streams
+2026-08-13T10:39:35 [WARNING] pypdf._reader — EOF marker not found
+2026-08-13T10:40:35 [INFO] LND-8482.repair — Done — {'repaired': 0, 'would_repair': 9739, 'skipped': 145337, 'failed': 192} | report: C:\Users\donald.massey\PycharmProjects\jira-repos\LND-8482\artifacts\repair_report_dryrun_20260813T154031Z.csv
+2026-08-13T10:40:35 [INFO] LND-8482.repair — [DRY RUN] No changes applied. Re-run with --commit to write share, S3, and DB.
+2026-08-13T10:40:35 [INFO] utils.database_utils — [countyScansTitle] Connection closed
