@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Landtrac Unit Pipeline — V002: DIV1 Loop Closed</title>
+<style>
+  :root{ --bg:#0e1014; --muted:#8f9bb0; --grn:#4caf7d; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:#e6ecf5;font:14px/1.4 "Segoe UI",system-ui,Arial,sans-serif}
+  header{padding:18px 26px 6px}
+  h1{margin:0;font-size:22px;letter-spacing:.2px}
+  .sub{color:var(--muted);margin:4px 0 0;font-size:13px;max-width:1220px}
+  .scroll{overflow-x:auto;padding:14px 26px 26px}
+  #canvas{position:relative;width:1940px;height:1160px}
+  svg#wires{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+  svg#labels{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
+  .node{position:absolute;z-index:3;border-radius:8px;padding:8px 10px;
+        border:1.5px solid var(--bd,#556);background:var(--fill,#222);
+        box-shadow:0 1px 4px rgba(0,0,0,.4);display:flex;flex-direction:column;justify-content:center}
+  .node .t{font-weight:600;font-size:13px}
+  .node .s{color:var(--muted);font-size:11px;margin-top:3px;line-height:1.3}
+  .node.changed{border-color:var(--grn);box-shadow:0 0 0 2px rgba(76,175,125,.45),0 1px 4px rgba(0,0,0,.4)}
+  .gbadge{position:absolute;top:-9px;right:8px;font-size:9px;letter-spacing:.4px;
+          padding:1px 7px;border-radius:10px;background:#123024;border:1px solid #3a8b64;color:#bfe8d0;white-space:nowrap}
+  .group{position:absolute;z-index:1;border:1.5px dashed #4a5470;border-radius:12px;background:rgba(120,140,200,.05)}
+  .group .glabel{position:absolute;top:-11px;left:16px;background:var(--bg);padding:0 8px;color:#9fb0d8;font-weight:700;font-size:12px;letter-spacing:1px}
+  .elabel{fill:#aeb9cc;font-size:11px;font-weight:500}
+  .elabel.grn{fill:#a6e0c2}
+  .elabel-bg{fill:var(--bg)}
+  .external{--fill:#22303f;--bd:#5a7a99;color:#cfe3f5}
+  .manual  {--fill:#3a2f1a;--bd:#c79433;color:#f0d9a8;border-style:dashed}
+  .script  {--fill:#43201f;--bd:#9a5555;color:#f2c9c9}
+  .db      {--fill:#2b2743;--bd:#6b5a9a;color:#d9cff5}
+  .producer{--fill:#4a2020;--bd:#c06a6a;color:#f6d3d3}
+  .topic   {--fill:#0f3936;--bd:#2f8f86;color:#b8f0e8}
+  .service {--fill:#472c1f;--bd:#c1875a;color:#f6dcc3}
+  .control {--fill:#1f3350;--bd:#5183c4;color:#cfe0f7}
+  .cloud   {--fill:#2a2340;--bd:#7a5fb0;color:#e2d5f7}
+  .dbnew   {--fill:#3a2f12;--bd:#e0a83f;color:#f7e4b0}
+  .maint   {--fill:#22262e;--bd:#5a6472;color:#c3cbd8}
+  .new     {--fill:#12281c;--bd:#4caf7d;color:#bfe8d0}
+  .lchanged{--fill:#1a2a20;--bd:#4caf7d}
+  .container{--fill:rgba(126,138,168,.05);--bd:#39414f;color:#8f9bb0;box-shadow:none;overflow:visible}
+  .clabel{position:absolute;top:-10px;left:14px;background:var(--bg);padding:0 8px;color:#9fb0d8;font-weight:700;font-size:12px;letter-spacing:.3px}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;padding:6px 26px 0;color:var(--muted);font-size:12px}
+  .legend .k{display:flex;align-items:center;gap:6px}
+  .sw{width:16px;height:12px;border-radius:3px;border:1.5px solid}
+  .notes{margin:8px 26px 40px;max-width:1180px}
+  .notes h2{font-size:15px;margin:18px 0 8px}
+  .callout{border:1px solid #2a5a3a;background:#12211a;border-left:4px solid var(--grn);border-radius:6px;padding:10px 14px;margin:8px 0;font-size:13px}
+  .callout.q{border-color:#6a5a2a;background:#211d12;border-left-color:#e0a83f}
+  .callout b{color:#9fe0bd}
+  .callout.q b{color:#f0d29a}
+  code{background:#1b202b;padding:1px 5px;border-radius:4px;color:#c8d3e6;font-size:12px}
+  .maptbl{border-collapse:collapse;width:100%;max-width:1180px;margin:8px 0 4px;font-size:12.5px}
+  .maptbl th,.maptbl td{border:1px solid #2a3140;padding:6px 9px;text-align:left;vertical-align:top}
+  .maptbl th{background:#161b24;color:#9fb0d8;font-weight:600}
+  .maptbl td code{font-size:11.5px}
+  .maptbl tr:nth-child(even) td{background:#12151c}
+  .maptbl .warn{color:#f0d29a}
+  .src{color:var(--muted);font-size:12px;margin:2px 0 0}
+  .node .t a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;text-decoration-color:rgba(180,200,230,.5)}
+  .node .t a:hover{text-decoration-color:currentColor}
+</style>
+</head>
+<body>
+<header>
+  <h1>Landtrac Unit Pipeline — V002: DIV1 Loop Closed (Future State)</h1>
+  <p class="sub"><b style="color:#9fe0bd">Goal:</b> remove DIV1 entirely. <code>landtrac-unit-upload</code> writes polygons to <b>Hendrix</b> (not the Div1 loader); <code>daapUnitID</code> is minted by a <b>new Hendrix sequence/table</b>; producer well-enrichment moves to <b>Databricks Unity Catalog</b> (⚠ proposed, not yet confirmed). <span style="color:var(--grn)">Green</span> = new or changed vs. today.</p>
+</header>
+
+<div class="legend" id="legend"></div>
+
+<div class="scroll">
+  <div id="canvas">
+    <svg id="wires">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3 L0,6 Z" fill="#7f8ba3"/></marker>
+        <marker id="arrowd" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3 L0,6 Z" fill="#c79433"/></marker>
+        <marker id="arrowg" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3 L0,6 Z" fill="#4caf7d"/></marker>
+      </defs>
+    </svg>
+    <svg id="labels"></svg>
+  </div>
+</div>
+
+<div class="notes">
+  <h2>What changes vs. today</h2>
+  <div class="callout"><b>DIV1 removed — loop closed.</b> No repo reads or writes DIV1. The Div1 box, the hotfolder loader (<code>\\prod-loader05</code>), and the tblWell/tblDaapUnit round-trip are all gone.</div>
+  <div class="callout"><b>landtrac-unit-upload → Hendrix.</b> QC'd new/corrected polygons write straight to the Hendrix <code>UNIT_POLYGON</code> SDE instead of the Div1 hotfolder. Removes the ArcGIS shapefile export + copy step.</div>
+  <div class="callout"><b>daapUnitID minted in Hendrix.</b> A new Hendrix sequence/table assigns <code>daapUnitID</code> when a polygon lands — replacing Div1's on-import minting. <code>daapID-update</code>'s cross-DB copy becomes an internal Hendrix operation (or is retired).</div>
+  <div class="callout"><b>Producer enrichment → Databricks Unity Catalog.</b> The <code>Div1</code> database class and all <code>sql/div1/*</code> queries (tblWell + 6 tables) are replaced by reads from Unity Catalog. WellID stamping in <code>direct-access-unit-point-feed</code> / <code>wellid-updates</code> re-sources from the same.</div>
+  <div class="callout q"><b>⚠ Open decisions.</b> (1) Unity Catalog as the well-data source is proposed, not confirmed. (2) Whether <code>wellid-updates</code> / <code>daapID-update</code> are re-sourced or retired outright once daapUnitID is native to Hendrix and WellID comes from Unity Catalog.</div>
+  <div class="callout"><b>Unchanged.</b> Everything from the Airflow producer rightward — Kafka <code>dp.pres.landtracunit.v3</code>, DSM, the Prefect flow, and all 6 publish targets — is untouched.</div>
+
+  <h2>Column mapping: <code>div1.dbo.tblWell</code> → Databricks Unity Catalog</h2>
+  <p class="src"><b style="color:#9fe0bd">Source table:</b> <code>enverus.direct_access_v3.foundations_wellheader</code> (6,184,921 rows, prod-published Direct Access V3). Delta-sharing mirror for consumers outside the <code>enverus</code> catalog: <code>cts_deltasharing_da_prod.direct_access_v3.foundations_wellheader</code>.</p>
+  <p class="src"><b class="warn">Match key:</b> the pipeline joins on <b>API10</b>, not on <code>WellID</code>. <code>UNIT_POINT_PROD.API = LEFT(ApiNo,10)</code>; DA V3 equivalent is <code>LEFT(API_UWI_Unformatted,10)</code>. DIV1 <code>WellID</code> was only ever an internal backfill value and is a different id space from DA V3 <code>WellID</code> — do not swap it column-for-column.</p>
+  <table class="maptbl">
+    <thead><tr><th>tblWell column</th><th>Type</th><th>Consumed by</th><th>foundations_wellheader</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td><code>uwi</code></td><td>str</td><td>producer, wellid-updates, daapID-update (match to <code>UPP.API</code>)</td><td><code>LEFT(API_UWI_Unformatted,10)</code></td><td>The real join key (API10). <code>API_UWI</code> = formatted <code>42-485-E8473</code>; unformatted = <code>42485E8473</code>.</td></tr>
+      <tr><td><code>WellID</code></td><td>int</td><td>producer join; wellid/daap join to <code>tblDaapUnit</code>; backfill <code>UPP.WellID</code></td><td><code>WellID</code> (LONG)</td><td class="warn">⚠ Different id space (DA V3 is a 15-digit DAAP id). Re-key on API10; re-point or dual-key any downstream that stored DIV1 WellID.</td></tr>
+      <tr><td><code>Created</code></td><td>datetime</td><td>wellid/daap "new well since" filter</td><td class="warn">— none —</td><td class="warn">⚠ No creation date. Use <code>UpdatedDate</code> (catches new + changed) or <code>core_wells.envcompinserteddate</code>.</td></tr>
+      <tr><td><code>StateID</code></td><td>int FK</td><td>producer</td><td><code>StateProvince</code> (<code>TX</code>)</td><td>id→name: DA V3 gives the resolved string; drop the DIV1 lookup join.</td></tr>
+      <tr><td><code>CountyID</code></td><td>int FK</td><td>producer</td><td><code>County</code> (<code>WICHITA</code>)</td><td>id→name</td></tr>
+      <tr><td><code>AbstractID</code></td><td>int FK</td><td>producer</td><td><code>Abstract</code></td><td>id→name</td></tr>
+      <tr><td><code>wellStatusID</code></td><td>int FK</td><td>producer</td><td><code>ENVWellStatus</code> (<code>P &amp; A</code>)</td><td>id→name</td></tr>
+      <tr><td><code>currentCompanyID</code></td><td>int FK</td><td>producer</td><td><code>ENVOperator</code></td><td>id→name (often NULL in DA V3)</td></tr>
+    </tbody>
+  </table>
+  <div class="callout q"><b>⚠ Not covered by Unity Catalog.</b> <code>daapUnitID</code> comes from <code>div1.dbo.tblDaapUnit</code> (joined <code>tblWell.WellID = tblDaapUnit.wellId</code>) — a Landtrac-internal id, not a well attribute. DA V3 does not have it. This is the piece the <b>new Hendrix unit-id sequence</b> replaces. DA V3 replaces <code>tblWell</code> only; both changes are required to close the DIV1 loop.</div>
+  <div class="callout"><b>Also from DIV1 today (producer, 6 more tables).</b> <code>get_tblWell.sql</code> is one of seven <code>sql/div1/*</code> queries. The other six (well status, company, county/abstract lookups, etc.) resolve the FK ids above — most collapse away once you consume DA V3's pre-resolved strings, but confirm each against <code>business_rules.py</code> before deleting.</div>
+</div>
+
+<script>
+const nodes = [
+  {id:'gisMfg', c:'container', x:18, y:96, w:300, h:560, t:'GIS Manufacturing (aus2-gis-pmfg01)', s:''},
+  {id:'daAPI', c:'external', x:30,  y:26,  w:272, h:46, t:'Direct Access Production API', s:'external well data (DA V2)'},
+  {id:'daFeed',c:'script',   x:30,  y:112, w:276, h:54, t:'direct-access-unit-point-feed', s:'DA V2 API → UPP · WellID re-sourced', changed:1, badge:'no DIV1'},
+  {id:'upSync',c:'script',   x:30,  y:172, w:276, h:54, t:'up-upp-sync  ⚠ trigger?', s:'unit_point (UP) → UPP · missing pts'},
+  {id:'wellid',c:'script',   x:30,  y:232, w:276, h:54, t:'wellid-updates', s:'WellID from Unity Catalog? · re-source/retire', changed:1, badge:'re-source'},
+  {id:'daapid',c:'script',   x:30,  y:292, w:276, h:54, t:'daapID-update', s:'daapUnitID now native to Hendrix', changed:1, badge:'internal'},
+  {id:'polyid',c:'manual',   x:30,  y:352, w:276, h:54, t:'unit-polygon-id  ⚠ manual', s:'ML unit clustering — run by hand'},
+  {id:'areacalc',c:'script', x:30,  y:412, w:276, h:54, t:'unit-polygon-area-calculation', s:'Acres for NULL/0 unit_polygon · Sun 2am'},
+  {id:'upload',c:'script',   x:30,  y:472, w:276, h:54, t:'landtrac-unit-upload', s:'QC’d polygons → Hendrix SDE · daily 4am', changed:1, badge:'→ Hendrix'},
+  {id:'gisTeam',c:'manual',  x:30,  y:532, w:276, h:48, t:'GIS Team — manual edits', s:'edits SDE.EDITORS version'},
+  {id:'reconcile',c:'maint', x:30,  y:586, w:276, h:58, t:'reconcile-post-all', s:'SDE EDITORS→DEFAULT · compress · reindex · daily 3am'},
+
+  {id:'hendrix',c:'db', x:430, y:150, w:258, h:158, t:'Hendrix — landtrac_unit.sde', s:'UNIT_POINT_PROD (UPP)\nUNIT_POLYGON (+ daapUnitID native)\nunit_point (UP)\nsrv v03henpdb01'},
+  {id:'idseq',  c:'new', x:430, y:440, w:258, h:82, t:'Hendrix unit-id sequence  ★NEW', s:'mints daapUnitID on polygon load\nreplaces Div1 minting'},
+
+  {id:'producer',c:'producer', x:792, y:180, w:236, h:104, t:'landtrac-unit-to-kafka  (Airflow)', s:'batch UNIT_POLYGON · enrich Unity+DS9 · Protobuf', changed:1, badge:'no DIV1'},
+  {id:'ds9src',  c:'db',       x:792, y:322, w:236, h:70,  t:'DS9 — enrichment source', s:'well status · entitlement · basin/play'},
+  {id:'unity',   c:'new',      x:792, y:430, w:236, h:92,  t:'Databricks Unity Catalog  ⚠', s:'direct_access_v3.foundations_wellheader\nmatch API10 · ⚠ proposed'},
+
+  {id:'kafka',  c:'topic',   x:1114, y:209, w:344, h:74, t:'Kafka topic  dp.pres.landtracunit.v3', s:'schema pres_land_v3/landtracunit.proto · encoded JSON'},
+  {id:'dsm',    c:'service', x:1114, y:333, w:344, h:74, t:'dataset-materialization-service', s:'consumer / materializer · dsm-spec landtracunit/v3'},
+  {id:'prefect',c:'control', x:1114, y:459, w:344, h:92, t:'landtracunit-v3  (Prefect)', s:'orchestrator · Materialize→Prepublish→Verify→Publish→Clean'},
+
+  {id:'prism',  c:'cloud', x:1570, y:120, w:322, h:66, t:'Prism Data Lake', s:'/enverus/publish/landtracunit_v3'},
+  {id:'elastic',c:'cloud', x:1570, y:200, w:322, h:66, t:'Elasticsearch', s:'aliases: landtrac-units, landtracunit_v3'},
+  {id:'da_db',  c:'db',    x:1570, y:280, w:322, h:66, t:'Direct Access DB', s:'data_platform.bdd'},
+  {id:'dibi',   c:'db',    x:1570, y:360, w:322, h:66, t:'DIBI', s:'Drillinginfo_DIBI.di_bdd'},
+  {id:'ds9t',   c:'db',    x:1570, y:440, w:322, h:66, t:'DS9', s:'pres.batch_landtracunit_v3'},
+  {id:'hendrixt',c:'dbnew',x:1570, y:520, w:322, h:74, t:'Hendrix gis_exports  6th target', s:'bdd.batch_landtracunit_v3'},
+];
+
+const groups = [ {x:1076, y:120, w:420, h:520, label:'BDD'} ];
+
+const E = (from,to,s1,s2,o={}) => Object.assign({from,to,s1,s2},o);
+const edges = [
+  E('daAPI','daFeed','b','t'),
+  E('gisMfg','hendrix','r','l',{label:'maintains SDE + polygons',green:1}),
+  E('idseq','hendrix','t','b',{label:'daapUnitID',green:1}),
+  E('hendrix','producer','r','l',{label:'UNIT_POLYGON'}),
+  E('ds9src','producer','t','b',{label:'status/basin'}),
+  E('unity','producer','t','b',{label:'well data ⚠',green:1,dash:1}),
+  E('producer','hendrix','t','t',{dash:1,label:'QC write-back'}),
+  E('producer','kafka','r','l',{label:'Protobuf'}),
+  E('kafka','dsm','b','t',{label:'consume'}),
+  E('prefect','dsm','t','b',{dash:1,label:'orchestrates'}),
+  E('dsm','prism','r','l',{busX:1502}),
+  E('dsm','elastic','r','l',{busX:1502}),
+  E('dsm','da_db','r','l',{busX:1502}),
+  E('dsm','dibi','r','l',{busX:1502}),
+  E('dsm','ds9t','r','l',{busX:1502}),
+  E('dsm','hendrixt','r','l',{busX:1502}),
+];
+
+const repoUrls = {
+  daFeed:'https://git.drillinginfo.com/GIS/direct-access-unit-point-feed',
+  upSync:'https://git.drillinginfo.com/GIS/up-upp-sync',
+  wellid:'https://git.drillinginfo.com/GIS/wellid-updates',
+  daapid:'https://git.drillinginfo.com/GIS/daapID-update',
+  polyid:'https://git.drillinginfo.com/GIS/unit-polygon-id',
+  areacalc:'https://git.drillinginfo.com/GIS/unit-polygon-area-calculation',
+  upload:'https://git.drillinginfo.com/GIS/landtrac-unit-upload',
+  reconcile:'https://git.drillinginfo.com/GIS/reconcile-post-all',
+  producer:'https://git.drillinginfo.com/Land/landtrac-unit-to-kafka',
+  prefect:'https://git.drillinginfo.com/RAI/bdd-prefect-flows/blob/main/flows/landtracunit_v3.py',
+};
+
+const byId = Object.fromEntries(nodes.map(n=>[n.id,n]));
+const canvas = document.getElementById('canvas');
+const svg = document.getElementById('wires');
+const SVGNS='http://www.w3.org/2000/svg';
+
+for(const g of groups){
+  const d=document.createElement('div'); d.className='group';
+  d.style.cssText+=`left:${g.x}px;top:${g.y}px;width:${g.w}px;height:${g.h}px`;
+  d.innerHTML=`<span class="glabel">${g.label}</span>`;
+  canvas.appendChild(d);
+}
+
+for(const n of nodes){
+  const d=document.createElement('div'); d.className='node '+n.c+(n.changed?' changed':'');
+  d.style.cssText+=`left:${n.x}px;top:${n.y}px;width:${n.w}px;height:${n.h}px`;
+  if(n.c==='container'){
+    d.innerHTML=`<span class="clabel">${n.t}</span>`;
+  } else {
+    const sub=(n.s||'').split('\n').join('<br>');
+    const url=repoUrls[n.id];
+    const title=url?`<a href="${url}" target="_blank" rel="noopener">${n.t}</a>`:n.t;
+    d.innerHTML=`<div class="t">${title}</div>`+(n.s?`<div class="s">${sub}</div>`:'')+(n.badge?`<span class="gbadge">${n.badge}</span>`:'');
+  }
+  canvas.appendChild(d);
+}
+
+function anchor(n,side,f){
+  f=(f==null)?0.5:f;
+  switch(side){
+    case 'l': return {x:n.x,       y:n.y+n.h*f};
+    case 'r': return {x:n.x+n.w,   y:n.y+n.h*f};
+    case 't': return {x:n.x+n.w*f, y:n.y};
+    case 'b': return {x:n.x+n.w*f, y:n.y+n.h};
+  }
+}
+const gkey=(id,s)=>id+':'+s;
+const sg={}, tg={};
+edges.forEach(e=>{ (sg[gkey(e.from,e.s1)] ||= []).push(e); (tg[gkey(e.to,e.s2)] ||= []).push(e); });
+const octr=(e,which)=>{ const o=byId[which==='s'?e.to:e.from]; return {x:o.x+o.w/2,y:o.y+o.h/2}; };
+function spread(groups,which){
+  for(const k in groups){
+    const g=groups[k], s=(which==='s'?g[0].s1:g[0].s2), hz=(s==='l'||s==='r');
+    g.sort((a,b)=> hz? octr(a,which).y-octr(b,which).y : octr(a,which).x-octr(b,which).x);
+    g.forEach((e,j)=>{ const f=g.length===1?0.5:0.28+0.44*j/(g.length-1);
+      if(which==='s'){e.f1=f;e.sN=g.length;e.sJ=j;} else {e.f2=f;e.tN=g.length;e.tJ=j;} });
+  }
+}
+spread(sg,'s'); spread(tg,'t');
+
+const CH=9;
+function route(e){
+  const n1=byId[e.from], n2=byId[e.to];
+  const p1=anchor(n1,e.s1,e.f1), p2=anchor(n2,e.s2,e.f2);
+  const h1=(e.s1==='l'||e.s1==='r'), h2=(e.s2==='l'||e.s2==='r');
+  if(e.busX!=null) return [p1,{x:e.busX,y:p1.y},{x:e.busX,y:p2.y},p2];
+  if(h1&&h2){
+    let cx;
+    if((e.tN||1)>=(e.sN||1)){ const d=e.s2==='l'?-1:1; cx=p2.x+d*(22+(e.tN-1-e.tJ)*CH); }
+    else { const d=e.s1==='r'?1:-1; cx=p1.x+d*(22+e.sJ*CH); }
+    return [p1,{x:cx,y:p1.y},{x:cx,y:p2.y},p2];
+  }
+  if(!h1&&!h2){
+    if(e.s1===e.s2){ const d=e.s1==='t'?-1:1;
+      const cy=(d<0?Math.min(p1.y,p2.y):Math.max(p1.y,p2.y))+d*(24+(e.tJ||0)*CH);
+      return [p1,{x:p1.x,y:cy},{x:p2.x,y:cy},p2]; }
+    const cy=(p1.y+p2.y)/2; return [p1,{x:p1.x,y:cy},{x:p2.x,y:cy},p2];
+  }
+  if(h1) return [p1,{x:p2.x,y:p1.y},p2];
+  return [p1,{x:p1.x,y:p2.y},p2];
+}
+function pathStr(pts){ return pts.map((p,i)=>(i?'L':'M')+p.x.toFixed(1)+' '+p.y.toFixed(1)).join(' '); }
+function midOfPath(pts){
+  let total=0; const seg=[];
+  for(let i=1;i<pts.length;i++){ const d=Math.hypot(pts[i].x-pts[i-1].x, pts[i].y-pts[i-1].y); seg.push(d); total+=d; }
+  let target=total/2, acc=0;
+  for(let i=1;i<pts.length;i++){
+    if(acc+seg[i-1]>=target){ const f=(target-acc)/(seg[i-1]||1);
+      return {x:pts[i-1].x+(pts[i].x-pts[i-1].x)*f, y:pts[i-1].y+(pts[i].y-pts[i-1].y)*f}; }
+    acc+=seg[i-1];
+  }
+  return pts[Math.floor(pts.length/2)];
+}
+function labelPoint(pts){
+  let best=-1,bx=0,by=0;
+  for(let i=1;i<pts.length;i++){
+    const dx=Math.abs(pts[i].x-pts[i-1].x), dy=Math.abs(pts[i].y-pts[i-1].y);
+    if(dx>best && dx>=dy){best=dx; bx=(pts[i].x+pts[i-1].x)/2; by=pts[i].y;}
+  }
+  return best<0? midOfPath(pts) : {x:bx,y:by};
+}
+const labelSvg=document.getElementById('labels');
+
+for(const e of edges){
+  const pts=route(e);
+  const path=document.createElementNS(SVGNS,'path');
+  path.setAttribute('d',pathStr(pts));
+  path.setAttribute('fill','none');
+  path.setAttribute('stroke', e.green?'#4caf7d':(e.dash?'#c79433':'#7f8ba3'));
+  path.setAttribute('stroke-width', e.green?'2':'1.6');
+  if(e.dash) path.setAttribute('stroke-dasharray','6 5');
+  path.setAttribute('marker-end', e.green?'url(#arrowg)':(e.dash?'url(#arrowd)':'url(#arrow)'));
+  svg.appendChild(path);
+  if(e.label){
+    const mp=labelPoint(pts);
+    const t=document.createElementNS(SVGNS,'text');
+    t.setAttribute('x',mp.x); t.setAttribute('y',mp.y-4);
+    t.setAttribute('text-anchor','middle'); t.setAttribute('class','elabel'+(e.green?' grn':''));
+    t.textContent=e.label;
+    const bb=document.createElementNS(SVGNS,'rect');
+    labelSvg.appendChild(t);
+    const box=t.getBBox();
+    bb.setAttribute('x',box.x-4);bb.setAttribute('y',box.y-1);
+    bb.setAttribute('width',box.width+8);bb.setAttribute('height',box.height+2);
+    bb.setAttribute('rx','3');bb.setAttribute('class','elabel-bg');
+    labelSvg.insertBefore(bb,t);
+  }
+}
+
+const legendItems=[
+  ['new','New in V002'],['lchanged','Changed in V002'],
+  ['script','GIS script (scheduled)'],['manual','Manual / ad-hoc'],
+  ['db','Database / SDE'],['producer','Kafka producer'],['topic','Kafka topic'],
+  ['service','Materialization service'],['control','Prefect orchestrator'],
+  ['cloud','Publish target'],['maint','SDE maintenance'],
+];
+const leg=document.getElementById('legend');
+for(const [c,label] of legendItems){
+  const probe=document.createElement('div'); probe.className='node '+c;
+  document.body.appendChild(probe);
+  const cs=getComputedStyle(probe);
+  const fill=cs.getPropertyValue('--fill')||cs.backgroundColor;
+  const bd=cs.getPropertyValue('--bd')||cs.borderColor;
+  probe.remove();
+  const k=document.createElement('div'); k.className='k';
+  k.innerHTML=`<span class="sw" style="background:${fill};border-color:${bd}"></span>${label}`;
+  leg.appendChild(k);
+}
+</script>
+</body>
+</html>
