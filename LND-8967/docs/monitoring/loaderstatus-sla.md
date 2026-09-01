@@ -55,7 +55,7 @@ This splits the loaders into two different checks:
   have a connection to CS Digital / `dbo.loaderStatus`? If not, that connection must be
   provisioned before any widget can be built. Step zero.
 - **Max-expected-runtime threshold** for the stuck-lock detector (widget #1). This
-  number is only meaningful once ADR 0003 bounds run duration — before that, "how long
+  number is only meaningful once ADR 0005 bounds run size (batches per run) — before that, "how long
   should a run take" is unbounded. Sets the `lastLoaded`-age cutoff paired with
   `running = 1`.
 - **Daily-freshness threshold** for widget #2 (`high` and non-IIE loaders) — ~1 day is

@@ -59,4 +59,18 @@ commit. The unit of memory pressure and, where checkpointing applies, the unit o
 committed progress.
 
 **Checkpoint** — Advancing `lastLoaded` to record that datasets up to a given
-`created_at` have been durably written.
+`created_at` have been durably written. The IIE loader checkpoints *mid-run*, every
+tenth batch, to the maximum `created_at` of the **last fully-committed** batch (never
+an in-flight one). Other loaders checkpoint only at end of run.
+
+**Finalize** — The end-of-run advance of `lastLoaded` to the run's *end bound*
+(`this_load_date`), covering any trailing span of the window that held no datasets. It
+is **skipped when a run stops at the batch cap**, because the tail past the last
+committed batch has not been processed and must not be checkpointed over.
+
+**Batch cap** (`IIE_MAX_BATCHES`) — The maximum number of batches an IIE run processes
+before stopping cleanly (set to `100` in dev+prod; at the Consul `IIE_BATCH_SIZE=100`, a
+10,000-dataset ceiling per run). Bounds a single run's runtime and the cross-priority
+lock it holds. Composes
+with the checkpoint: a capped run leaves `lastLoaded` at its last committed batch, and
+the next scheduled run resumes from there, draining the backlog in monotonic slices.

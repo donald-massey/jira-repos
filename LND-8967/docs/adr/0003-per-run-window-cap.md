@@ -1,8 +1,12 @@
 # ADR 0003: Per-run window cap for the IIE loader
 
-- **Status:** Proposed
+- **Status:** Deferred — not implemented by LND-8967
 - **Date:** 2026-08-31
 - **Component:** `main.py`
+- **Superseded for now by:** ADR 0005 (per-run *batch* cap, `IIE_MAX_BATCHES`).
+  LND-8967 chose the count-based cap this ADR named as its deferred variant. This
+  time-window cap remains the complementary option for bounding the *upfront query*,
+  which the batch cap does not — revisit it if that query proves heavy.
 
 ## Context
 

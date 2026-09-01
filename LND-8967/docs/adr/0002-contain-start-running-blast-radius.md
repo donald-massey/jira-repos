@@ -106,6 +106,6 @@ one-liner** — it relaxes a documented policy.
 
 ## Related
 
-- ADR 0001 and ADR 0003 reduce the frequency of the hard kills that leak the lock.
+- ADR 0001 and ADR 0005 reduce the frequency of the hard kills that leak the lock.
 - [`../monitoring/loaderstatus-sla.md`](../monitoring/loaderstatus-sla.md) — the
   detection counterpart: this ADR *contains* a leaked lock, monitoring *surfaces* it.
