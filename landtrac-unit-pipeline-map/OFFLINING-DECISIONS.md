@@ -147,7 +147,7 @@ source-only enrichment — the lowest-blast-radius fallback if v4 is judged too 
 big-bang re-key/republish on `v3`. Rationale: a versioned topic makes the largest-blast-radius cutover
 **incremental and reversible**, with v3 as a live fallback throughout; cost is two topics + producer
 double-publish during transition. Still owed: per-consumer UWI-key acceptance + migration order. See
-`NEW-PIPELINE-V001.md` §2.4 for the holistic write-up.
+`NEW-PIPELINE/NEW-PIPELINE-V001.md` §2.4 for the holistic write-up.
 
 ## Open decisions
 
