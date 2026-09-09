@@ -85,6 +85,60 @@ Grant the GIS service principal UC read on `ea_wells_prod`, then verify: (1) all
 (2) join columns match what the repo SQL uses, (3) replication lag vs DIV1 is inside the daily cycle
 (freshness — item 2 from the original grill; a morning upload's enrichment rows must be in UC same-run).
 
+## Strategic pivot — UWI re-key instead of a DIV1 mirror (Land Data, 2026-09-09)
+
+Land Data's direction: **do not depend on DIV1 `WellID` or `daapUnitID` at all.** Re-key the pipeline on
+**UWI 12 / 14** and source wells from the Enverus canonical wells product rather than a UC copy of the DIV1
+tables. This reframes D4/D5 — see the D5a note below.
+
+### Candidate source evaluated — `enverus.data.foundations_wells` (verified 2026-09-09)
+
+Reachable from the Databricks "Enverus Lake" connection; DESCRIBE + profiling run directly.
+
+**Fit — carries the re-key column + the enrichment.** Has `api_uwi_12`, `api_uwi_14` (formatted +
+`_unformatted` variants) plus the human-readable attributes the producer currently rebuilds via 5 DIV1
+lookup joins: `county`, `stateprovince`, `abstract`, `survey`, `envwellstatus`, `envoperator`. A UWI re-key
+could therefore **collapse tblWell + tblState + tblCounty + tblAbstract + tblWellStatus + tblCompany into
+this one table** — 6 of the 8 DIV1 tables retired outright, not migrated.
+
+**Grain — `api_uwi_14`, NOT well-level.** 6,636,802 rows. 5,723,833 distinct `api_uwi_14` across ~5.72M
+non-null → essentially 1:1 on 14. `api_uwi_12` has only 6,328,144 distinct → **~308k uwi_12 values sit on
+multiple rows** (wellbores / laterals / completions under one well). Consequence for the unit↔well join:
+- Key on **`api_uwi_14`** → clean 1:1, but inherits completion grain (one unit ↔ many laterals).
+- Key on **`api_uwi_12`** → matches how units map to wells, but **fans out**; must dedup/roll up to one row
+  per well before joining.
+
+**Coverage gap — 912,958 rows (13.8%) have NULL `api_uwi_14`;** only 740 rows have NULL `api_uwi_12`.
+Keying strictly on 14 loses the ability to match ~14% of the well universe; any landtrac unit whose well
+falls in that null-14 set silently drops. This pushes toward **uwi_12 + dedup for coverage** over
+uwi_14 for cleanliness. Pick which failure mode is acceptable.
+
+**API-length mismatch to resolve.** `daapID-update` truncates to **API-10** (`str(num)[:10]`) and
+`UNIT_POINT_PROD.ApiNo` is 10-digit. `foundations_wells` exposes 12 and 14 but no 10-digit key column —
+uwi_10 would be derived (`substr(api_uwi_12,1,10)`), which is many-to-one. Confirm the actual unit↔well
+match length before committing.
+
+**Still-open validation (needs DIV1 access, blocked today):**
+1. **Coverage join** — % of the current DIV1 well universe (by UWI) that actually exists in
+   `foundations_wells`. Cannot run until DIV1 is reachable alongside UC.
+2. **Attribute-vocab parity** — `envwellstatus` strings vs DIV1 `wellStatusID` codes, operator naming, etc.
+   Downstream status/operator logic must be re-mapped, not assumed equal.
+3. **Well-grain alternative** — check whether a well-grain (not completion-grain) UC wells table exists that
+   avoids the uwi_12 fan-out entirely.
+
+**Verdict:** `foundations_wells` is a **defensible, probably-correct** source for a UWI-keyed model (it's
+the canonical Enverus wells product and has the columns) but is **not a drop-in**. Three decisions owed
+first: (i) key on uwi_12+dedup vs uwi_14, (ii) how to handle the 13.8% null-uwi_14 coverage, (iii) confirm
+the unit↔well match length.
+
+### D5a — UWI re-key reopens the Kafka-identity constraint  [HARD — supersedes D5 if the pivot is adopted]
+D5 below assumes daapUnitID stays the Kafka key and must be preserved. **The UWI pivot breaks that
+assumption:** if `unit_id` is re-keyed off UWI, every one of the ≤ 663970 already-published units is
+re-keyed and all downstream consumers (compacted topic, DSM, Prefect, 6 publish targets, DirectAccess,
+Prism) fork — the exact outcome D5 was written to prevent. Before the wells-source choice matters at all,
+the team must settle: do downstream consumers accept UWI-keyed messages, and how are the existing
+daapUnitID-keyed messages migrated? **This is a larger blast radius than the source swap** and gates it.
+
 ## Open decisions
 
 ### D1 — Write chain / where daapUnitID becomes authoritative  [TEAM]
@@ -151,12 +205,16 @@ honor. D2/D3/D6 are design choices that follow.
 
 | # | Decision | Type | Blocks |
 |---|---|---|---|
+| D5a | UWI re-key vs preserve daapUnitID as Kafka key (pivot) | HARD | source choice + all downstream |
 | D1 | Where daapUnitID is minted + how it reaches UC | TEAM | everything |
-| D4 | 8 DIV1 tables present + granted + fresh in `ea_wells_prod` | PRE-WORK | producer + 4 readers re-source |
-| D5 | daapUnitID minting must be seeded from DIV1 (Kafka key) | HARD CONSTRAINT | D1, D6 |
+| D4 | Source wells from `foundations_wells` (UWI) vs mirror the 8 DIV1 tables + granted + fresh | PRE-WORK | producer + 4 readers re-source |
+| D5 | daapUnitID minting must be seeded from DIV1 (Kafka key) — **void if D5a adopts UWI** | HARD CONSTRAINT | D1, D6 |
 | D3 | Inventory what the Esri Shapeloader does besides mint | PRE-WORK | replacing the writer safely |
 | D2 | New "loaded" success signal + fate of the 2 tracking scripts | TEAM | freeze-detection, script rework |
 | D6 | Seed / dual-run / rollback cutover strategy | TEAM | go-live |
 
-**Known scope of change:** 4 reader repos repoint `tblWell` → UC (mechanical). 1 writer repo
-(`landtrac-unit-upload`) is the hard rework. 8 DIV1 tables to re-source. 4 Hendrix-only repos untouched.
+**Known scope of change:** depends on D5a. Under the **UWI pivot**, `foundations_wells` can retire 6 of the
+8 DIV1 tables outright (tblWell + 5 lookups), leaving DaapUnit/DaapUnitDocumentMapping to resolve; the
+tradeoff is re-keying the Kafka identity (D5a). Under the **DIV1-mirror** path, 4 reader repos repoint
+`tblWell` → UC (mechanical), all 8 tables re-sourced, daapUnitID preserved (D5). Either way: 1 writer repo
+(`landtrac-unit-upload`) is the hard rework and 4 Hendrix-only repos are untouched.

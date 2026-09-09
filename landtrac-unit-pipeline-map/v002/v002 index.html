@@ -1,4 +1,4 @@
-<!doctype html>
+  <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -95,22 +95,22 @@
   <div class="callout"><b>Unchanged.</b> Everything from the Airflow producer rightward — Kafka <code>dp.pres.landtracunit.v3</code>, DSM, the Prefect flow, and all 6 publish targets — is untouched.</div>
 
   <h2>Column mapping: <code>div1.dbo.tblWell</code> → Databricks Unity Catalog</h2>
-  <p class="src"><b style="color:#9fe0bd">Source table:</b> <code>enverus.direct_access_v3.foundations_wellheader</code> (6,184,921 rows, prod-published Direct Access V3). Delta-sharing mirror for consumers outside the <code>enverus</code> catalog: <code>cts_deltasharing_da_prod.direct_access_v3.foundations_wellheader</code>.</p>
-  <p class="src"><b class="warn">Match key:</b> the pipeline joins on <b>API10</b>, not on <code>WellID</code>. <code>UNIT_POINT_PROD.API = LEFT(ApiNo,10)</code>; DA V3 equivalent is <code>LEFT(API_UWI_Unformatted,10)</code>. DIV1 <code>WellID</code> was only ever an internal backfill value and is a different id space from DA V3 <code>WellID</code> — do not swap it column-for-column.</p>
+  <p class="src"><b style="color:#9fe0bd">Source table:</b> <code>enverus.data.foundations_wells</code> (6,636,802 rows). <b>Decision (GIS + Land, with Lindsey Chambers, 2026-09-09):</b> drop DIV1 <code>WellID</code>/<code>daapUnitID</code> entirely and re-key on <b>UWI 12/14</b>.</p>
+  <p class="src"><b class="warn">Match key:</b> UWI 12/14, not <code>WellID</code>. Grain is <code>api_uwi_14</code> (5,723,833 distinct, ~1:1) but <b class="warn">13.8% of rows have NULL <code>api_uwi_14</code></b> — key strictly on 14 and you can't match ~14% of wells. <code>api_uwi_12</code> is near-complete (740 NULL) but <b class="warn">fans out</b> (~308k duplicate <code>uwi_12</code> = wellbores/laterals under one well) — dedup to well grain before joining. No native 10-digit column; derive from <code>*_unformatted</code>. Confirm the actual unit↔well match length (pipeline historically used API10).</p>
   <table class="maptbl">
-    <thead><tr><th>tblWell column</th><th>Type</th><th>Consumed by</th><th>foundations_wellheader</th><th>Note</th></tr></thead>
+    <thead><tr><th>tblWell column</th><th>Type</th><th>Consumed by</th><th>foundations_wells</th><th>Note</th></tr></thead>
     <tbody>
-      <tr><td><code>uwi</code></td><td>str</td><td>producer, wellid-updates, daapID-update (match to <code>UPP.API</code>)</td><td><code>LEFT(API_UWI_Unformatted,10)</code></td><td>The real join key (API10). <code>API_UWI</code> = formatted <code>42-485-E8473</code>; unformatted = <code>42485E8473</code>.</td></tr>
-      <tr><td><code>WellID</code></td><td>int</td><td>producer join; wellid/daap join to <code>tblDaapUnit</code>; backfill <code>UPP.WellID</code></td><td><code>WellID</code> (LONG)</td><td class="warn">⚠ Different id space (DA V3 is a 15-digit DAAP id). Re-key on API10; re-point or dual-key any downstream that stored DIV1 WellID.</td></tr>
-      <tr><td><code>Created</code></td><td>datetime</td><td>wellid/daap "new well since" filter</td><td class="warn">— none —</td><td class="warn">⚠ No creation date. Use <code>UpdatedDate</code> (catches new + changed) or <code>core_wells.envcompinserteddate</code>.</td></tr>
-      <tr><td><code>StateID</code></td><td>int FK</td><td>producer</td><td><code>StateProvince</code> (<code>TX</code>)</td><td>id→name: DA V3 gives the resolved string; drop the DIV1 lookup join.</td></tr>
-      <tr><td><code>CountyID</code></td><td>int FK</td><td>producer</td><td><code>County</code> (<code>WICHITA</code>)</td><td>id→name</td></tr>
-      <tr><td><code>AbstractID</code></td><td>int FK</td><td>producer</td><td><code>Abstract</code></td><td>id→name</td></tr>
-      <tr><td><code>wellStatusID</code></td><td>int FK</td><td>producer</td><td><code>ENVWellStatus</code> (<code>P &amp; A</code>)</td><td>id→name</td></tr>
-      <tr><td><code>currentCompanyID</code></td><td>int FK</td><td>producer</td><td><code>ENVOperator</code></td><td>id→name (often NULL in DA V3)</td></tr>
+      <tr><td><code>uwi</code></td><td>str</td><td>producer, wellid-updates, daapID-update (match to <code>UPP.API</code>)</td><td><code>api_uwi_12</code> / <code>api_uwi_14</code></td><td>New join key (UWI 12/14). 14 unique but 13.8% NULL; 12 complete but fans out.</td></tr>
+      <tr><td><code>WellID</code></td><td>int</td><td>producer join; wellid/daap join to <code>tblDaapUnit</code>; backfill <code>UPP.WellID</code></td><td class="warn">— dropped —</td><td class="warn">⚠ DIV1 WellID no longer used — pipeline re-keys on UWI. <code>foundations_wells.wellid</code> is Enverus id space, ignored.</td></tr>
+      <tr><td><code>Created</code></td><td>datetime</td><td>wellid/daap "new well since" filter</td><td><code>updateddate</code> / <code>envcompinserteddate</code></td><td class="warn">⚠ No native creation date. Use <code>updateddate</code> (catches new + changed) or <code>envcompinserteddate</code>.</td></tr>
+      <tr><td><code>StateID</code></td><td>int FK</td><td>producer</td><td><code>stateprovince</code></td><td>id→name: DA gives the resolved string; drop the DIV1 lookup join.</td></tr>
+      <tr><td><code>CountyID</code></td><td>int FK</td><td>producer</td><td><code>county</code></td><td>id→name</td></tr>
+      <tr><td><code>AbstractID</code></td><td>int FK</td><td>producer</td><td><code>abstract</code> (+ <code>survey</code>)</td><td>id→name</td></tr>
+      <tr><td><code>wellStatusID</code></td><td>int FK</td><td>producer</td><td><code>envwellstatus</code></td><td>id→name — re-map vocab vs DIV1 status codes.</td></tr>
+      <tr><td><code>currentCompanyID</code></td><td>int FK</td><td>producer</td><td><code>envoperator</code></td><td>id→name (may be NULL — fall back to <code>rawoperator</code>/<code>initialoperator</code>)</td></tr>
     </tbody>
   </table>
-  <div class="callout q"><b>⚠ Not covered by Unity Catalog.</b> <code>daapUnitID</code> comes from <code>div1.dbo.tblDaapUnit</code> (joined <code>tblWell.WellID = tblDaapUnit.wellId</code>) — a Landtrac-internal id, not a well attribute. DA V3 does not have it. This is the piece the <b>new Hendrix unit-id sequence</b> replaces. DA V3 replaces <code>tblWell</code> only; both changes are required to close the DIV1 loop.</div>
+  <div class="callout q"><b>⚠ Not covered by Unity Catalog.</b> <code>daapUnitID</code> comes from <code>div1.dbo.tblDaapUnit</code> (joined <code>tblWell.WellID = tblDaapUnit.wellId</code>) — a Landtrac-internal id, not a well attribute. <code>foundations_wells</code> does not have it. This is the piece the <b>new Hendrix unit-id sequence</b> replaces. Note the re-key means <code>daapUnitID</code> is no longer the message identity (see <code>OFFLINING-DECISIONS.md</code> D5a); <code>foundations_wells</code> replaces <code>tblWell</code> + the 5 lookups, both changes required to close the DIV1 loop.</div>
   <div class="callout"><b>Also from DIV1 today (producer, 6 more tables).</b> <code>get_tblWell.sql</code> is one of seven <code>sql/div1/*</code> queries. The other six (well status, company, county/abstract lookups, etc.) resolve the FK ids above — most collapse away once you consume DA V3's pre-resolved strings, but confirm each against <code>business_rules.py</code> before deleting.</div>
 </div>
 
@@ -133,7 +133,7 @@ const nodes = [
 
   {id:'producer',c:'producer', x:792, y:180, w:236, h:104, t:'landtrac-unit-to-kafka  (Airflow)', s:'batch UNIT_POLYGON · enrich Unity+DS9 · Protobuf', changed:1, badge:'no DIV1'},
   {id:'ds9src',  c:'db',       x:792, y:322, w:236, h:70,  t:'DS9 — enrichment source', s:'well status · entitlement · basin/play'},
-  {id:'unity',   c:'new',      x:792, y:430, w:236, h:92,  t:'Databricks Unity Catalog  ⚠', s:'direct_access_v3.foundations_wellheader\nmatch API10 · ⚠ proposed'},
+  {id:'unity',   c:'new',      x:792, y:430, w:236, h:92,  t:'Databricks Unity Catalog', s:'enverus.data.foundations_wells\nre-key on UWI 12/14'},
 
   {id:'kafka',  c:'topic',   x:1114, y:209, w:344, h:74, t:'Kafka topic  dp.pres.landtracunit.v3', s:'schema pres_land_v3/landtracunit.proto · encoded JSON'},
   {id:'dsm',    c:'service', x:1114, y:333, w:344, h:74, t:'dataset-materialization-service', s:'consumer / materializer · dsm-spec landtracunit/v3'},
