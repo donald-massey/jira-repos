@@ -19,6 +19,10 @@ WellStatus/Company). See `OFFLINING-DECISIONS.md` → "Strategic pivot" and D5a.
 - `CONTEXT.md` — scope, glossary, blast radius, D1/D2 open decisions (grill-with-docs seed).
 - `OFFLINING-DECISIONS.md` — the authoritative decision doc: DIV1 table footprint, UC
   availability blocker, D1–D6, and the pre-commit advisory summary. **Start here.**
+- `NEW-PIPELINE-V001.md` / `NEW-PIPELINE-V001.html` — holistic target-pipeline draft: every
+  D1–D6/D5a decision resolved to a **recommended** value (with team **options** beside each) so the
+  end-state reads as one coherent design. Presentation companion to `OFFLINING-DECISIONS.md`. D5a
+  recommended = UWI on a new `v4` topic, `v3` in parallel until consumers drain.
 - `index.html` / `landtrac-unit-pipeline.drawio` — top-level map.
 - `v001/` — current-state diagram (all live DIV1 dependencies).
 - `v002/` — target-state diagram (Div1 loop closed).

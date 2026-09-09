@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEW-PIPELINE-V001 — Target Landtrac Unit Pipeline (DIV1 removed, UWI-keyed)</title>
+<style>
+  :root{ --bg:#0e1014; --muted:#8f9bb0; --grn:#4caf7d; --amber:#e0a83f; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:#e6ecf5;font:14px/1.45 "Segoe UI",system-ui,Arial,sans-serif}
+  header{padding:18px 26px 6px}
+  h1{margin:0;font-size:22px;letter-spacing:.2px}
+  .sub{color:var(--muted);margin:5px 0 0;font-size:13px;max-width:1240px}
+  .scroll{overflow-x:auto;padding:14px 26px 26px}
+  #canvas{position:relative;width:1980px;height:1180px}
+  svg#wires{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+  svg#labels{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
+  .node{position:absolute;z-index:3;border-radius:8px;padding:8px 10px;
+        border:1.5px solid var(--bd,#556);background:var(--fill,#222);
+        box-shadow:0 1px 4px rgba(0,0,0,.4);display:flex;flex-direction:column;justify-content:center}
+  .node .t{font-weight:600;font-size:13px}
+  .node .s{color:var(--muted);font-size:11px;margin-top:3px;line-height:1.3}
+  .node.changed{border-color:var(--grn);box-shadow:0 0 0 2px rgba(76,175,125,.45),0 1px 4px rgba(0,0,0,.4)}
+  .node.legacy{opacity:.62;border-style:dashed}
+  .gbadge{position:absolute;top:-9px;right:8px;font-size:9px;letter-spacing:.4px;
+          padding:1px 7px;border-radius:10px;background:#123024;border:1px solid #3a8b64;color:#bfe8d0;white-space:nowrap}
+  .gbadge.leg{background:#2a2320;border-color:#6a5a2a;color:#e6c88f}
+  .group{position:absolute;z-index:1;border:1.5px dashed #4a5470;border-radius:12px;background:rgba(120,140,200,.05)}
+  .group .glabel{position:absolute;top:-11px;left:16px;background:var(--bg);padding:0 8px;color:#9fb0d8;font-weight:700;font-size:12px;letter-spacing:1px}
+  .elabel{fill:#aeb9cc;font-size:11px;font-weight:500}
+  .elabel.grn{fill:#a6e0c2}
+  .elabel-bg{fill:var(--bg)}
+  .external{--fill:#22303f;--bd:#5a7a99;color:#cfe3f5}
+  .manual  {--fill:#3a2f1a;--bd:#c79433;color:#f0d9a8;border-style:dashed}
+  .script  {--fill:#43201f;--bd:#9a5555;color:#f2c9c9}
+  .db      {--fill:#2b2743;--bd:#6b5a9a;color:#d9cff5}
+  .producer{--fill:#4a2020;--bd:#c06a6a;color:#f6d3d3}
+  .topic   {--fill:#0f3936;--bd:#2f8f86;color:#b8f0e8}
+  .service {--fill:#472c1f;--bd:#c1875a;color:#f6dcc3}
+  .control {--fill:#1f3350;--bd:#5183c4;color:#cfe0f7}
+  .cloud   {--fill:#2a2340;--bd:#7a5fb0;color:#e2d5f7}
+  .dbnew   {--fill:#3a2f12;--bd:#e0a83f;color:#f7e4b0}
+  .maint   {--fill:#22262e;--bd:#5a6472;color:#c3cbd8}
+  .new     {--fill:#12281c;--bd:#4caf7d;color:#bfe8d0}
+  .container{--fill:rgba(126,138,168,.05);--bd:#39414f;color:#8f9bb0;box-shadow:none;overflow:visible}
+  .clabel{position:absolute;top:-10px;left:14px;background:var(--bg);padding:0 8px;color:#9fb0d8;font-weight:700;font-size:12px;letter-spacing:.3px}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;padding:6px 26px 0;color:var(--muted);font-size:12px}
+  .legend .k{display:flex;align-items:center;gap:6px}
+  .sw{width:16px;height:12px;border-radius:3px;border:1.5px solid}
+  .notes{margin:8px 26px 40px;max-width:1200px}
+  .notes h2{font-size:16px;margin:22px 0 8px;border-bottom:1px solid #232a36;padding-bottom:5px}
+  .lead{color:#c6cfdd;max-width:1120px}
+  code{background:#1b202b;padding:1px 5px;border-radius:4px;color:#c8d3e6;font-size:12px}
+  /* decision cards */
+  .dcard{border:1px solid #2a3140;border-radius:8px;background:#12151c;margin:12px 0;overflow:hidden}
+  .dhead{display:flex;align-items:center;gap:10px;padding:9px 14px;background:#161b24;border-bottom:1px solid #2a3140}
+  .dtag{font-size:10px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:10px;background:#1f3350;border:1px solid #5183c4;color:#cfe0f7}
+  .dtag.hard{background:#2f1a1a;border-color:#c06a6a;color:#f2c9c9}
+  .dtag.pre{background:#211d12;border-color:#c79433;color:#f0d29a}
+  .dtitle{font-weight:600;font-size:14px}
+  .dbody{padding:10px 14px}
+  .rec{border-left:4px solid var(--grn);background:#12211a;padding:8px 12px;border-radius:5px;margin:0 0 10px}
+  .rec b{color:#9fe0bd}
+  .opts{margin:0;padding-left:0;list-style:none}
+  .opts li{padding:6px 12px;border-left:3px solid #4a5468;background:#141821;border-radius:4px;margin:6px 0;font-size:13px}
+  .opts li b{color:#cbd6e8}
+  .warn-i{border-left:3px solid var(--amber);background:#1c1810}
+  .warn-i b{color:#f0d29a}
+  .maptbl{border-collapse:collapse;width:100%;max-width:1200px;margin:8px 0 4px;font-size:12.5px}
+  .maptbl th,.maptbl td{border:1px solid #2a3140;padding:6px 9px;text-align:left;vertical-align:top}
+  .maptbl th{background:#161b24;color:#9fb0d8;font-weight:600}
+  .maptbl td code{font-size:11.5px}
+  .maptbl tr:nth-child(even) td{background:#12151c}
+  .maptbl .g{color:#9fe0bd}
+  .maptbl .a{color:#f0d29a}
+  .pill{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:9px;background:#12281c;border:1px solid #3a8b64;color:#bfe8d0}
+  .pill.opt{background:#141821;border-color:#4a5468;color:#9fb0d8}
+  .node .t a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;text-decoration-color:rgba(180,200,230,.5)}
+  .node .t a:hover{text-decoration-color:currentColor}
+  .disclaim{color:var(--muted);font-size:12px;margin:6px 0 0;font-style:italic}
+</style>
+</head>
+<body>
+<header>
+  <h1>NEW-PIPELINE-V001 — Target Landtrac Unit Pipeline</h1>
+  <p class="sub"><b style="color:#9fe0bd">DIV1 removed on both sides.</b> Well enrichment re-sourced from <code>enverus.data.foundations_wells</code> (Databricks Unity Catalog) keyed on <b>UWI 12/14</b>; <code>daapUnitID</code> minted by a <b>new Hendrix sequence</b> instead of the prodloader05 round-trip; message identity moves to <b>UWI on a new <code>v4</code> topic</b> that runs in parallel with <code>v3</code> until consumers migrate. <span style="color:var(--grn)">Green</span> = new/changed; every decision below shows the <b>recommended</b> value and the <b>team options</b>. Presentation draft — nothing built until ratified.</p>
+</header>
+
+<div class="legend" id="legend"></div>
+
+<div class="scroll">
+  <div id="canvas">
+    <svg id="wires">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3 L0,6 Z" fill="#7f8ba3"/></marker>
+        <marker id="arrowd" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3 L0,6 Z" fill="#c79433"/></marker>
+        <marker id="arrowg" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,3 L0,6 Z" fill="#4caf7d"/></marker>
+      </defs>
+    </svg>
+    <svg id="labels"></svg>
+  </div>
+</div>
+
+<div class="notes">
+  <p class="lead"><b style="color:#9fe0bd">One-sentence summary.</b> DIV1 disappears on both sides — the producer's well enrichment comes from <code>foundations_wells</code> in Unity Catalog keyed on UWI, and <code>daapUnitID</code> is minted by a new Hendrix sequence instead of the prodloader05/Shapeloader round-trip; the message identity moves to UWI on a new <code>v4</code> topic that runs alongside <code>v3</code> until consumers migrate.</p>
+
+  <h2>Target design — decision by decision</h2>
+
+  <div class="dcard">
+    <div class="dhead"><span class="dtag pre">D4 · PRE-WORK</span><span class="dtitle">Well enrichment source — <code>foundations_wells</code> on UWI</span></div>
+    <div class="dbody">
+      <div class="rec"><b>✅ Recommended.</b> Producer + point-feed read <code>enverus.data.foundations_wells</code>, keyed on <b><code>api_uwi_12</code> with dedup/roll-up to one row per well</b>. This one table carries the resolved strings the producer rebuilds via 5 DIV1 lookup joins, so it <b>retires 6 of the 8 DIV1 tables outright</b> (tblWell + State/County/Abstract/WellStatus/Company). Only <code>tblDaapUnit</code> (→ Hendrix seq) and <code>tblDaapUnitDocumentMapping</code> remain.</div>
+      <ul class="opts">
+        <li><b>⇄ Key on <code>api_uwi_14</code></b> — clean ~1:1, no dedup, but <b>13.8% NULL uwi_14</b> drops ~14% of wells. Viable only if those wells are confirmed out-of-scope. <span class="pill opt">option</span></li>
+        <li><b>⇄ Mirror the 8 DIV1 tables into UC</b> — column-for-column repoint, preserves WellID/daapUnitID identity, voids the UWI pivot + D5a. Lower design risk, keeps a DIV1-shaped schema alive. <span class="pill opt">option</span></li>
+        <li class="warn-i"><b>⚠ Gating pre-work.</b> GIS service principal needs UC read grants; then coverage-join % vs DIV1, attribute-vocab parity (<code>envwellstatus</code> strings vs DIV1 codes), and confirm unit↔well match length (pipeline historically used API-10).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dcard">
+    <div class="dhead"><span class="dtag">D1 · TEAM</span><span class="dtitle">Where <code>daapUnitID</code> is minted — new Hendrix sequence</span></div>
+    <div class="dbody">
+      <div class="rec"><b>✅ Recommended: Hendrix-authoritative with UC ingest.</b> A new Hendrix sequence/table mints <code>daapUnitID</code> when a QC'd polygon lands in <code>UNIT_POLYGON</code>. Hendrix = write-side system of record; UC ingests off it. The sequence must be <b>seeded from DIV1 <code>tblDaapUnit</code>, next-value = MAX+1 (663970+1)</b>, monotonic, no reuse — so every already-minted unit keeps its historical id as a lineage attribute.</div>
+      <ul class="opts">
+        <li><b>⇄ Direct UC write path</b> — writer puts the minted id straight into UC, Hendrix reads back. Rejected as default: inverts today's ownership (GIS loses local id authority) and adds a UC round-trip to the upload critical path. <span class="pill opt">option</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dcard">
+    <div class="dhead"><span class="dtag pre">D3 · PRE-WORK</span><span class="dtitle">Replacing the Esri Shapeloader — inventory before removal</span></div>
+    <div class="dbody">
+      <p style="margin:0 0 8px;color:#c6cfdd">The DIV1 round-trip is also the <b>promotion path</b> from an edited SDE polygon to a registered prod unit. The direct-to-Hendrix write must replicate what the Shapeloader did besides mint IDs, or behavior is silently dropped.</p>
+      <ul class="opts">
+        <li><b>Projection (NAD83→NAD27 / NADCON).</b> <span class="pill">✅ default: drop NAD27, keep NAD83</span> if no consumer requires it. <span class="pill opt">⇄ preserve NAD27</span> if a dependency is found.</li>
+        <li><b>Validation / repair / topology.</b> Confirm make-valid / dedup / topology checks and port into the upload path (Shapely <code>make_valid</code> — geom-spark precedent).</li>
+        <li><b>Promotion / QC gate.</b> Enforce the same <code>Status</code>/<code>StatusCode IN (1–4)</code> gate on direct write that distinguishes an editing polygon from a registered <code>UNIT_POLYGON</code> row.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dcard">
+    <div class="dhead"><span class="dtag hard">D5a · HARD — largest blast radius</span><span class="dtitle">Message identity — UWI on a new <code>v4</code> topic</span></div>
+    <div class="dbody">
+      <div class="rec"><b>✅ Recommended: re-key to UWI on <code>dp.pres.landtracunit.v4</code>, run in parallel with <code>v3</code>.</b> Producer publishes UWI-keyed messages to <b>v4</b> (<code>unit_id</code> = UWI, key = <code>key_base + UWI</code>). The existing <b>v3</b> topic (daapUnitID-keyed) keeps running; each consumer — DSM, DirectAccess, DIBI, Prism, Elasticsearch, DS9, Hendrix gis_exports — migrates v3→v4 on its own schedule; v3 retired when drained. <code>daapUnitID</code> kept as a stable payload attribute. A versioned topic makes the cutover <b>incremental and reversible</b> — no big-bang, v3 is a live fallback throughout. Cost: two topics + double-publish during transition.</div>
+      <ul class="opts">
+        <li><b>⇄ Keep <code>daapUnitID</code> as the key, UWI source-only</b> — <b>lowest blast radius.</b> daapUnitID (Hendrix-minted) stays the key; UWI is enrichment in the payload only; no consumer forks; D5 preserved. Choose if "new identifier" is satisfied by re-sourcing wells on UWI without changing message identity. The natural fallback if v4 is judged too much infra. <span class="pill opt">option</span></li>
+        <li><b>⇄ Big-bang re-key on v3</b> — backfill every published unit (≤ 663970) under new UWI keys on the same topic, all consumers re-key at once. Highest risk, least long-term overhead. Not recommended given consumer count. <span class="pill opt">option</span></li>
+        <li class="warn-i"><b>⚠ Owed regardless.</b> Do downstream consumers <i>accept</i> UWI-shaped keys, and in what migration order? That inventory is the first task if v4 is ratified.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dcard">
+    <div class="dhead"><span class="dtag">D2 / D2a · TEAM</span><span class="dtitle">Freeze-detection signal + tracking scripts</span></div>
+    <div class="dbody">
+      <p style="margin:0 0 8px;color:#c6cfdd">Today <code>daapUnitID</code> is an <b>outcome</b> signal (exists only after a successful ingest) — GIS's freeze-detection tripwire (the LND-8911 stall). Minting in Hendrix at <i>upload</i> time makes it an <b>assignment</b> signal, so the tripwire is lost. A replacement is <b>required</b>.</p>
+      <div class="rec"><b>✅ Recommended.</b> New success indicator = a <b>Kafka-publish confirmation written back to a Hendrix tracking column</b> (per unit: reached v4 / materialized / published). <b>Consolidate</b> <code>wellid-updates</code> + <code>daapID-update</code> into one UC-sourced job that updates the tracking table + backfills wellid/daapid in a single script, carrying the new signal — collapsing the Py2/Py3 overlap.</div>
+      <ul class="opts">
+        <li><b>⇄ Re-source both scripts, keep separate</b> — repoint each DIV1→UC individually, carry the indicator, don't consolidate. Less refactoring. <span class="pill opt">option</span></li>
+        <li><b>⇄ Retire both without replacement</b> — only if daapUnitID-as-assignment is accepted and the signal lives elsewhere. Leaves no GIS-side tracking job. Not recommended. <span class="pill opt">option</span></li>
+        <li class="warn-i"><b>⚠ Secondary signal candidate:</b> UC-ingest timestamp. Publish-confirmation preferred because it proves the record reached the actual downstream — what the old signal implicitly meant.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dcard">
+    <div class="dhead"><span class="dtag">D6 · TEAM</span><span class="dtitle">Cutover, seeding, rollback</span></div>
+    <div class="dbody">
+      <div class="rec"><b>✅ Recommended sequence.</b> (1) <b>Seed</b> — snapshot DIV1 <code>tblDaapUnit</code> → Hendrix sequence, next-value = MAX+1. Snapshot-and-flip. (2) <b>Dual-run validation</b> — UC-sourced producer beside DIV1-sourced, diff Kafka output before any cutover (gated on D4 pre-work). (3) <b>Parallel publish</b> — double-publish v3 + v4; consumers migrate independently; retire v3 when drained. (4) <b>Rollback</b> — fall back to DIV1-sourced producer / v3 if UC freshness lags.</div>
+      <ul class="opts">
+        <li><b>⇄ Dual-write DIV1 + Hendrix during transition</b> (instead of snapshot-and-flip) — keeps both id stores consistent while consumers migrate; heavier, but removes flip-day risk. <span class="pill opt">option</span></li>
+        <li class="warn-i"><b>⚠ Rollback has an expiry.</b> DIV1 is being retired org-wide, so "repoint to DIV1" has a hard deadline — confirm the window before relying on it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Repo-by-repo target state</h2>
+  <table class="maptbl">
+    <thead><tr><th>Repo</th><th>Today</th><th>Target state</th><th>Decision</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td><code>direct-access-unit-point-feed</code></td><td>reads <code>div1.tblWell</code></td><td class="g">re-source well data from <code>foundations_wells</code> (UWI); DA V2 point ingest unchanged</td><td>D4</td><td>Low</td></tr>
+      <tr><td><code>landtrac-unit-to-kafka</code> <i>(producer)</i></td><td>reads 8 DIV1 tables; publishes v3 keyed on daapUnitID</td><td class="g">reads <code>foundations_wells</code> (UWI, retires 6 tables) + DS9; publishes <b>v4 keyed on UWI</b> (v3 in parallel during transition)</td><td>D4, D5a</td><td class="a">High</td></tr>
+      <tr><td><code>landtrac-unit-upload</code> <i>(writer)</i></td><td>pushes polygons to prodloader05 hotfolder → DIV1 Shapeloader mints daapUnitID</td><td class="g">writes QC'd polygons <b>direct to Hendrix <code>UNIT_POLYGON</code></b>; new Hendrix sequence mints daapUnitID; ports Shapeloader QC/projection/validation</td><td>D1, D3, D6</td><td class="a">Highest</td></tr>
+      <tr><td><code>wellid-updates</code> + <code>daapID-update</code></td><td>two scripts read <code>tblWell ⨝ tblDaapUnit</code>, backfill UPP</td><td class="g"><b>consolidated</b> into one UC-sourced job carrying the new publish-confirmation success signal</td><td>D2</td><td>Medium</td></tr>
+      <tr><td><code>up-upp-sync</code>, <code>unit-polygon-id</code>, <code>unit-polygon-area-calculation</code>, <code>reconcile-post-all</code></td><td>Hendrix-only</td><td><b>unchanged</b></td><td>—</td><td>None</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What stays the same</h2>
+  <ul class="opts">
+    <li><b>Everything from the Airflow producer rightward is structurally unchanged</b> — DSM, the Prefect flow (Materialize→Prepublish→Verify→Publish→Clean), all <b>6 publish targets</b>. Their only change is a new topic/key to migrate onto, and only if v4 is ratified.</li>
+    <li><b>The Hendrix SDE hub</b> (<code>landtrac_unit.sde</code> on <code>v03henpdb01</code>) stays the center of gravity — gains the native daapUnitID sequence + tracking column; the SDE tables themselves are unchanged.</li>
+    <li><b>DS9 enrichment</b> (well status, entitlement, basin/play) is untouched — the UWI pivot only replaces the <i>DIV1</i> enrichment.</li>
+    <li><b><code>reconcile-post-all</code></b> remains the step that makes GIS-team versioned edits visible to the producer.</li>
+  </ul>
+
+  <h2>Decision summary — recommended vs. options</h2>
+  <table class="maptbl">
+    <thead><tr><th>#</th><th>Decision</th><th class="g">✅ Recommended (in this draft)</th><th>⇄ Alternatives</th><th>Reversible?</th></tr></thead>
+    <tbody>
+      <tr><td>D4</td><td>Well source + key</td><td class="g"><code>foundations_wells</code>, <b>uwi_12 + dedup</b></td><td>uwi_14 (−14% cov); mirror 8 DIV1 tables</td><td>Med</td></tr>
+      <tr><td>D1</td><td>daapUnitID minting</td><td class="g"><b>Hendrix sequence</b>, UC ingests off it</td><td>Direct UC write path</td><td>Low</td></tr>
+      <tr><td>D3</td><td>Shapeloader replacement</td><td class="g"><b>Drop NAD27</b> if unused; port validation + QC gate</td><td>Preserve NAD27</td><td>Low</td></tr>
+      <tr><td>D5a</td><td>Message identity</td><td class="g"><b>UWI on new <code>v4</code> topic</b>, v3 parallel</td><td>Keep daapUnitID key (UWI source-only); big-bang re-key on v3</td><td class="a">Hard</td></tr>
+      <tr><td>D2</td><td>Tracking scripts + signal</td><td class="g"><b>Consolidate to one UC job</b>; publish-confirmation signal</td><td>Re-source separately; retire both</td><td>Med</td></tr>
+      <tr><td>D6</td><td>Cutover</td><td class="g"><b>Seed MAX+1 → dual-run diff → parallel v3/v4 → retire v3</b></td><td>Dual-write DIV1+Hendrix in transition</td><td class="a">Hard</td></tr>
+    </tbody>
+  </table>
+  <p class="disclaim">Draft prepared 2026-09-09 alongside OFFLINING-DECISIONS.md. Recommended values are starting positions for GIS + Land Data ratification, not commitments. See NEW-PIPELINE-V001.md for full narrative and the §5 open-items list.</p>
+</div>
+
+<script>
+const nodes = [
+  {id:'gisMfg', c:'container', x:18, y:96, w:300, h:560, t:'GIS Manufacturing (aus2-gis-pmfg01)', s:''},
+  {id:'daAPI', c:'external', x:30,  y:26,  w:272, h:46, t:'Direct Access Production API', s:'external well data (DA V2)'},
+  {id:'daFeed',c:'script',   x:30,  y:112, w:276, h:54, t:'direct-access-unit-point-feed', s:'DA V2 API → UPP · well data re-sourced (UWI)', changed:1, badge:'no DIV1'},
+  {id:'upSync',c:'script',   x:30,  y:172, w:276, h:54, t:'up-upp-sync', s:'unit_point (UP) → UPP · unchanged'},
+  {id:'track', c:'new',      x:30,  y:232, w:276, h:70, t:'unit-tracking job  ★NEW (consolidated)', s:'wellid-updates + daapID-update merged\nUC-sourced · carries publish-confirm signal', badge:'was 2 scripts'},
+  {id:'polyid',c:'manual',   x:30,  y:318, w:276, h:54, t:'unit-polygon-id  ⚠ manual', s:'ML unit clustering — run by hand'},
+  {id:'areacalc',c:'script', x:30,  y:378, w:276, h:54, t:'unit-polygon-area-calculation', s:'Acres for NULL/0 unit_polygon · Sun 2am'},
+  {id:'upload',c:'script',   x:30,  y:438, w:276, h:70, t:'landtrac-unit-upload', s:'QC’d polygons → Hendrix SDE (direct)\nports Shapeloader QC/projection/validation', changed:1, badge:'→ Hendrix'},
+  {id:'gisTeam',c:'manual',  x:30,  y:520, w:276, h:44, t:'GIS Team — manual edits', s:'edits SDE.EDITORS version'},
+  {id:'reconcile',c:'maint', x:30,  y:574, w:276, h:58, t:'reconcile-post-all', s:'SDE EDITORS→DEFAULT · compress · reindex · daily 3am'},
+
+  {id:'hendrix',c:'db', x:430, y:150, w:262, h:158, t:'Hendrix — landtrac_unit.sde', s:'UNIT_POLYGON (+ daapUnitID native)\nUNIT_POINT_PROD (UPP)\n+ publish-confirm tracking col\nsrv v03henpdb01'},
+  {id:'idseq',  c:'new', x:430, y:440, w:262, h:88, t:'Hendrix unit-id sequence  ★NEW', s:'mints daapUnitID on polygon load\nseeded DIV1 MAX+1 (663970) · monotonic'},
+
+  {id:'producer',c:'producer', x:800, y:172, w:244, h:110, t:'landtrac-unit-to-kafka  (Airflow)', s:'batch UNIT_POLYGON · enrich UC+DS9 · Protobuf\nre-key unit_id → UWI', changed:1, badge:'no DIV1 · UWI'},
+  {id:'ds9src',  c:'db',       x:800, y:322, w:244, h:66,  t:'DS9 — enrichment source', s:'well status · entitlement · basin/play'},
+  {id:'unity',   c:'new',      x:800, y:428, w:244, h:100, t:'Databricks Unity Catalog  ★NEW', s:'enverus.data.foundations_wells\nkey UWI 12/14 · retires 6 DIV1 tables'},
+
+  {id:'kafka4', c:'topic',   x:1124, y:150, w:352, h:78, t:'Kafka  dp.pres.landtracunit.v4  ★NEW', s:'key = UWI · recommended steady-state', changed:1, badge:'UWI key'},
+  {id:'kafka3', c:'topic',   x:1124, y:242, w:352, h:60, t:'Kafka  dp.pres.landtracunit.v3', s:'key = daapUnitID · parallel, retired when drained', legacy:1, badge:'legacy · leg'},
+  {id:'dsm',    c:'service', x:1124, y:330, w:352, h:72, t:'dataset-materialization-service', s:'consumes v4 (migrating from v3) · dsm-spec landtracunit'},
+  {id:'prefect',c:'control', x:1124, y:454, w:352, h:88, t:'landtracunit  (Prefect)', s:'orchestrator · Materialize→Prepublish→Verify→Publish→Clean'},
+
+  {id:'prism',  c:'cloud', x:1584, y:120, w:322, h:64, t:'Prism Data Lake', s:'/enverus/publish/landtracunit'},
+  {id:'elastic',c:'cloud', x:1584, y:198, w:322, h:64, t:'Elasticsearch', s:'aliases: landtrac-units'},
+  {id:'da_db',  c:'db',    x:1584, y:276, w:322, h:64, t:'Direct Access DB', s:'data_platform.bdd'},
+  {id:'dibi',   c:'db',    x:1584, y:354, w:322, h:64, t:'DIBI', s:'Drillinginfo_DIBI.di_bdd'},
+  {id:'ds9t',   c:'db',    x:1584, y:432, w:322, h:64, t:'DS9', s:'pres.batch_landtracunit'},
+  {id:'hendrixt',c:'dbnew',x:1584, y:510, w:322, h:70, t:'Hendrix gis_exports  6th target', s:'bdd.batch_landtracunit'},
+];
+
+const groups = [ {x:1086, y:120, w:430, h:530, label:'BDD'} ];
+
+const E = (from,to,s1,s2,o={}) => Object.assign({from,to,s1,s2},o);
+const edges = [
+  E('daAPI','daFeed','b','t'),
+  E('gisMfg','hendrix','r','l',{label:'maintains SDE + polygons',green:1}),
+  E('idseq','hendrix','t','b',{label:'daapUnitID',green:1}),
+  E('hendrix','producer','r','l',{label:'UNIT_POLYGON'}),
+  E('ds9src','producer','t','b',{label:'status/basin'}),
+  E('unity','producer','t','b',{label:'well data (UWI)',green:1}),
+  E('producer','hendrix','t','t',{dash:1,label:'publish-confirm write-back',green:1}),
+  E('producer','kafka4','r','l',{label:'Protobuf · UWI key',green:1}),
+  E('producer','kafka3','r','l',{dash:1,label:'v3 (transition)'}),
+  E('kafka4','dsm','b','t',{label:'consume',green:1}),
+  E('kafka3','dsm','b','t',{dash:1}),
+  E('prefect','dsm','t','b',{dash:1,label:'orchestrates'}),
+  E('dsm','prism','r','l',{busX:1516}),
+  E('dsm','elastic','r','l',{busX:1516}),
+  E('dsm','da_db','r','l',{busX:1516}),
+  E('dsm','dibi','r','l',{busX:1516}),
+  E('dsm','ds9t','r','l',{busX:1516}),
+  E('dsm','hendrixt','r','l',{busX:1516}),
+];
+
+const repoUrls = {
+  daFeed:'https://git.drillinginfo.com/GIS/direct-access-unit-point-feed',
+  upSync:'https://git.drillinginfo.com/GIS/up-upp-sync',
+  polyid:'https://git.drillinginfo.com/GIS/unit-polygon-id',
+  areacalc:'https://git.drillinginfo.com/GIS/unit-polygon-area-calculation',
+  upload:'https://git.drillinginfo.com/GIS/landtrac-unit-upload',
+  reconcile:'https://git.drillinginfo.com/GIS/reconcile-post-all',
+  producer:'https://git.drillinginfo.com/Land/landtrac-unit-to-kafka',
+  prefect:'https://git.drillinginfo.com/RAI/bdd-prefect-flows/blob/main/flows/landtracunit_v3.py',
+};
+
+const byId = Object.fromEntries(nodes.map(n=>[n.id,n]));
+const canvas = document.getElementById('canvas');
+const svg = document.getElementById('wires');
+const SVGNS='http://www.w3.org/2000/svg';
+
+for(const g of groups){
+  const d=document.createElement('div'); d.className='group';
+  d.style.cssText+=`left:${g.x}px;top:${g.y}px;width:${g.w}px;height:${g.h}px`;
+  d.innerHTML=`<span class="glabel">${g.label}</span>`;
+  canvas.appendChild(d);
+}
+
+for(const n of nodes){
+  const d=document.createElement('div'); d.className='node '+n.c+(n.changed?' changed':'')+(n.legacy?' legacy':'');
+  d.style.cssText+=`left:${n.x}px;top:${n.y}px;width:${n.w}px;height:${n.h}px`;
+  if(n.c==='container'){
+    d.innerHTML=`<span class="clabel">${n.t}</span>`;
+  } else {
+    const sub=(n.s||'').split('\n').join('<br>');
+    const url=repoUrls[n.id];
+    const title=url?`<a href="${url}" target="_blank" rel="noopener">${n.t}</a>`:n.t;
+    let badgeHtml='';
+    if(n.badge){ const leg=n.badge.endsWith(' leg'); const txt=leg?n.badge.slice(0,-4):n.badge; badgeHtml=`<span class="gbadge${leg?' leg':''}">${txt}</span>`; }
+    d.innerHTML=`<div class="t">${title}</div>`+(n.s?`<div class="s">${sub}</div>`:'')+badgeHtml;
+  }
+  canvas.appendChild(d);
+}
+
+function anchor(n,side,f){
+  f=(f==null)?0.5:f;
+  switch(side){
+    case 'l': return {x:n.x,       y:n.y+n.h*f};
+    case 'r': return {x:n.x+n.w,   y:n.y+n.h*f};
+    case 't': return {x:n.x+n.w*f, y:n.y};
+    case 'b': return {x:n.x+n.w*f, y:n.y+n.h};
+  }
+}
+const gkey=(id,s)=>id+':'+s;
+const sg={}, tg={};
+edges.forEach(e=>{ (sg[gkey(e.from,e.s1)] ||= []).push(e); (tg[gkey(e.to,e.s2)] ||= []).push(e); });
+const octr=(e,which)=>{ const o=byId[which==='s'?e.to:e.from]; return {x:o.x+o.w/2,y:o.y+o.h/2}; };
+function spread(groups,which){
+  for(const k in groups){
+    const g=groups[k], s=(which==='s'?g[0].s1:g[0].s2), hz=(s==='l'||s==='r');
+    g.sort((a,b)=> hz? octr(a,which).y-octr(b,which).y : octr(a,which).x-octr(b,which).x);
+    g.forEach((e,j)=>{ const f=g.length===1?0.5:0.28+0.44*j/(g.length-1);
+      if(which==='s'){e.f1=f;e.sN=g.length;e.sJ=j;} else {e.f2=f;e.tN=g.length;e.tJ=j;} });
+  }
+}
+spread(sg,'s'); spread(tg,'t');
+
+const CH=9;
+function route(e){
+  const n1=byId[e.from], n2=byId[e.to];
+  const p1=anchor(n1,e.s1,e.f1), p2=anchor(n2,e.s2,e.f2);
+  const h1=(e.s1==='l'||e.s1==='r'), h2=(e.s2==='l'||e.s2==='r');
+  if(e.busX!=null) return [p1,{x:e.busX,y:p1.y},{x:e.busX,y:p2.y},p2];
+  if(h1&&h2){
+    let cx;
+    if((e.tN||1)>=(e.sN||1)){ const d=e.s2==='l'?-1:1; cx=p2.x+d*(22+(e.tN-1-e.tJ)*CH); }
+    else { const d=e.s1==='r'?1:-1; cx=p1.x+d*(22+e.sJ*CH); }
+    return [p1,{x:cx,y:p1.y},{x:cx,y:p2.y},p2];
+  }
+  if(!h1&&!h2){
+    if(e.s1===e.s2){ const d=e.s1==='t'?-1:1;
+      const cy=(d<0?Math.min(p1.y,p2.y):Math.max(p1.y,p2.y))+d*(24+(e.tJ||0)*CH);
+      return [p1,{x:p1.x,y:cy},{x:p2.x,y:cy},p2]; }
+    const cy=(p1.y+p2.y)/2; return [p1,{x:p1.x,y:cy},{x:p2.x,y:cy},p2];
+  }
+  if(h1) return [p1,{x:p2.x,y:p1.y},p2];
+  return [p1,{x:p1.x,y:p2.y},p2];
+}
+function pathStr(pts){ return pts.map((p,i)=>(i?'L':'M')+p.x.toFixed(1)+' '+p.y.toFixed(1)).join(' '); }
+function midOfPath(pts){
+  let total=0; const seg=[];
+  for(let i=1;i<pts.length;i++){ const d=Math.hypot(pts[i].x-pts[i-1].x, pts[i].y-pts[i-1].y); seg.push(d); total+=d; }
+  let target=total/2, acc=0;
+  for(let i=1;i<pts.length;i++){
+    if(acc+seg[i-1]>=target){ const f=(target-acc)/(seg[i-1]||1);
+      return {x:pts[i-1].x+(pts[i].x-pts[i-1].x)*f, y:pts[i-1].y+(pts[i].y-pts[i-1].y)*f}; }
+    acc+=seg[i-1];
+  }
+  return pts[Math.floor(pts.length/2)];
+}
+function labelPoint(pts){
+  let best=-1,bx=0,by=0;
+  for(let i=1;i<pts.length;i++){
+    const dx=Math.abs(pts[i].x-pts[i-1].x), dy=Math.abs(pts[i].y-pts[i-1].y);
+    if(dx>best && dx>=dy){best=dx; bx=(pts[i].x+pts[i-1].x)/2; by=pts[i].y;}
+  }
+  return best<0? midOfPath(pts) : {x:bx,y:by};
+}
+const labelSvg=document.getElementById('labels');
+
+for(const e of edges){
+  const pts=route(e);
+  const path=document.createElementNS(SVGNS,'path');
+  path.setAttribute('d',pathStr(pts));
+  path.setAttribute('fill','none');
+  path.setAttribute('stroke', e.green?'#4caf7d':(e.dash?'#c79433':'#7f8ba3'));
+  path.setAttribute('stroke-width', e.green?'2':'1.6');
+  if(e.dash) path.setAttribute('stroke-dasharray','6 5');
+  path.setAttribute('marker-end', e.green?'url(#arrowg)':(e.dash?'url(#arrowd)':'url(#arrow)'));
+  svg.appendChild(path);
+  if(e.label){
+    const mp=labelPoint(pts);
+    const t=document.createElementNS(SVGNS,'text');
+    t.setAttribute('x',mp.x); t.setAttribute('y',mp.y-4);
+    t.setAttribute('text-anchor','middle'); t.setAttribute('class','elabel'+(e.green?' grn':''));
+    t.textContent=e.label;
+    const bb=document.createElementNS(SVGNS,'rect');
+    labelSvg.appendChild(t);
+    const box=t.getBBox();
+    bb.setAttribute('x',box.x-4);bb.setAttribute('y',box.y-1);
+    bb.setAttribute('width',box.width+8);bb.setAttribute('height',box.height+2);
+    bb.setAttribute('rx','3');bb.setAttribute('class','elabel-bg');
+    labelSvg.insertBefore(bb,t);
+  }
+}
+
+const legendItems=[
+  ['new','New in target'],['topic','Kafka topic'],
+  ['script','GIS script'],['manual','Manual / ad-hoc'],
+  ['db','Database / SDE'],['producer','Kafka producer'],
+  ['service','Materialization service'],['control','Prefect orchestrator'],
+  ['cloud','Publish target'],['maint','SDE maintenance'],
+];
+const leg=document.getElementById('legend');
+for(const [c,label] of legendItems){
+  const probe=document.createElement('div'); probe.className='node '+c;
+  document.body.appendChild(probe);
+  const cs=getComputedStyle(probe);
+  const fill=cs.getPropertyValue('--fill')||cs.backgroundColor;
+  const bd=cs.getPropertyValue('--bd')||cs.borderColor;
+  probe.remove();
+  const k=document.createElement('div'); k.className='k';
+  k.innerHTML=`<span class="sw" style="background:${fill};border-color:${bd}"></span>${label}`;
+  leg.appendChild(k);
+}
+</script>
+</body>
+</html>

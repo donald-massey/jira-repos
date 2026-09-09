@@ -139,6 +139,16 @@ Prism) fork — the exact outcome D5 was written to prevent. Before the wells-so
 the team must settle: do downstream consumers accept UWI-keyed messages, and how are the existing
 daapUnitID-keyed messages migrated? **This is a larger blast radius than the source swap** and gates it.
 
+**Recommended path (Donald, 2026-09-09) — new `v4` topic, parallel run.** Publish UWI-keyed messages
+to a **new topic `dp.pres.landtracunit.v4`**; keep `v3` (daapUnitID-keyed) running in parallel; each
+consumer migrates v3→v4 on its own schedule; retire `v3` once drained. `daapUnitID` is retained as a
+stable payload attribute for lineage. Chosen over (a) keeping daapUnitID as the key with UWI as
+source-only enrichment — the lowest-blast-radius fallback if v4 is judged too much infra — and (b) a
+big-bang re-key/republish on `v3`. Rationale: a versioned topic makes the largest-blast-radius cutover
+**incremental and reversible**, with v3 as a live fallback throughout; cost is two topics + producer
+double-publish during transition. Still owed: per-consumer UWI-key acceptance + migration order. See
+`NEW-PIPELINE-V001.md` §2.4 for the holistic write-up.
+
 ## Open decisions
 
 ### D1 — Write chain / where daapUnitID becomes authoritative  [TEAM]
