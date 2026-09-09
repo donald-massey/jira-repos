@@ -92,6 +92,8 @@
 </div>
 
 <div class="notes">
+  <div class="callout" style="border-color:#2a5a3a;background:#12211a;border-left-color:#4caf7d"><b style="color:#9fe0bd">Offlining decision (GIS + Land, with Lindsey Chambers, 2026-09-09).</b> The DIV1 dependencies in this production map are being removed. Wells re-key on <b>UWI 12/14</b> from <code>enverus.data.foundations_wells</code> — dropping DIV1 <code>WellID</code> and collapsing the 5 producer lookup joins (State/County/Abstract/WellStatus/Company) into that one table. <code>daapUnitID</code> minting moves from the prodloader05/Div1 round-trip to a new Hendrix unit-id sequence; the re-key also stops it being the Kafka message identity (<code>OFFLINING-DECISIONS.md</code> D5a). See <b>V001</b> (current deps) and <b>V002</b> (closed-loop target).</div>
+
   <h2>Discrepancies &amp; corrections vs. the original diagram</h2>
   <div class="callout"><b>Prefect is a control plane, not a data-path stage.</b> <code>landtracunit-v3 (Prefect)</code> does not touch Kafka or move records. It drives the <code>dataset-materialization-service</code> lifecycle (Materialize → Prepublish → Verify counts → Publish → Clean) via the DSM API. Real data path: Airflow producer → Kafka → DSM consumes/materializes.</div>
   <div class="callout"><b>6th publish target (undocumented).</b> The Prefect flow's <code>cache_config</code> writes results back to Hendrix <code>gis_exports.bdd.batch_landtracunit_v3</code>, in addition to the five originally drawn (Direct Access, DIBI, Prism, Elasticsearch, DS9).</div>
