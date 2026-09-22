@@ -37,7 +37,29 @@ LND-9028 also found ~3,000 pre-2026 unprocessed records in the high tier during 
 
 ## Approach
 
-<!-- Populated during planning session -->
+### query_1 — medium backlog scan (verify counts before any watermark reset)
+
+Adapt `LND-9028/query_2/verify_coverage.py` into `query_1/verify_coverage.py` with one filter change:
+replace the double `must_not` exclusion with a positive `must` term on `data.iie_priority: medium`.
+Everything else (S3 package_id join, monthly windows, temp-table DB check, CSV output) is unchanged.
+
+Run: `--start 2023-01-01 --end 2026-10-01 --out candidates_medium.csv`
+
+The 2023 lower bound is intentional: the ticket's 861K figure came from an ES hits.total that
+used an unverified join key (ES dataset_id ≠ DB dataset_id — different id spaces). The S3
+package_id join is the only authoritative check. If someone wants pre-2023 history, this card
+is the reference point for how to extend the scan.
+
+**Do not reset the watermark until the scan completes.** The oldest unprocessed `created_at`
+in the output is the correct reset target — not 2024-05-22 (unverified) from the ticket.
+
+Key facts from LND-9028 that carry forward:
+- ES field: `data.iie_priority`, value `"medium"` (positive match, no exclusions needed)
+- Correct join: `records[0]["package_id"]` from S3 iie.json → `iie.instrument.package_id`
+- DB join key: `dataset_id`-keyed joins produce 100% false misses — do not use them
+- Empty datasets (records == []) are correct; loader skips them, not a gap
+- Open a fresh DB connection per month — idle connections drop during long S3 fetches
+- `S3_WORKERS=48` default; reduce if SSL/ConnectionClosed errors dominate the error log
 
 ## Completed
 
