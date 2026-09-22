@@ -1,13 +1,18 @@
-"""DAG comparison — fill in the variables below, then run: python compare.py
+"""DAG comparison — paste DAG source and fill variables below, then run: python compare.py"""
 
-Place prod.py and dev.py in the same folder as this file before running.
-"""
-
-from pathlib import Path
-import subprocess
+import difflib
 import sys
 
 # fmt: off
+
+PROD_DAG = """
+# paste prod DAG source here
+"""
+
+DEV_DAG = """
+# paste dev DAG source here
+"""
+
 PROD_VARIABLES = {
     # "key": "value",
 }
@@ -15,28 +20,23 @@ PROD_VARIABLES = {
 DEV_VARIABLES = {
     # "key": "value",
 }
+
 # fmt: on
 
 # ---------------------------------------------------------------------------
 
-HERE = Path(__file__).parent
-
-
 def compare_source() -> bool:
-    prod, dev = HERE / "prod.py", HERE / "dev.py"
-    for label, path in [("prod.py", prod), ("dev.py", dev)]:
-        if not path.exists():
-            sys.exit(f"ERROR: {label} not found at {path}")
-
     print(f"\n{'='*60}\nDAG SOURCE DIFF\n{'='*60}")
-    result = subprocess.run(
-        ["git", "diff", "--no-index", "--", str(prod), str(dev)],
-        capture_output=True, text=True,
-    )
-    if result.returncode == 0:
+    diff = list(difflib.unified_diff(
+        PROD_DAG.splitlines(keepends=True),
+        DEV_DAG.splitlines(keepends=True),
+        fromfile="prod",
+        tofile="dev",
+    ))
+    if not diff:
         print("  No differences.")
         return True
-    print(result.stdout)
+    print("".join(diff))
     return False
 
 
@@ -70,9 +70,7 @@ def compare_variables() -> bool:
 
 
 if __name__ == "__main__":
-    source_clean = compare_source()
-    vars_clean = compare_variables()
-    clean = source_clean and vars_clean
+    clean = compare_source() & compare_variables()
     print(f"\n{'='*60}")
     print("RESULT:", "CLEAN — no differences." if clean else "DIFFERENCES DETECTED — see above.")
     print(f"{'='*60}\n")
