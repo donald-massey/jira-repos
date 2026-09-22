@@ -5,13 +5,13 @@ import sys
 
 # fmt: off
 
-PROD_DAG = '''
+PROD_DAG = """
 # paste prod DAG source here
-'''
+"""
 
-DEV_DAG = '''
+DEV_DAG = """
 # paste dev DAG source here
-'''
+"""
 
 PROD_VARIABLES = {
     # "key": "value",
