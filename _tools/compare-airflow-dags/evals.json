@@ -1,0 +1,48 @@
+{
+  "skill_name": "compare-airflow-dags",
+  "evals": [
+    {
+      "id": 0,
+      "name": "port-with-regressions",
+      "prompt": "We moved our land_lease_producer DAG to the new Airflow instance and the platform team adjusted it. I've got the two versions at FIXTURE_DIR/old_airflow_dag.py and FIXTURE_DIR/new_airflow_dag.py. I already checked the logs. Do an in-depth comparison and tell me if the new DAG lost any tasks or functionality versus the old one.",
+      "fixture": "regressions",
+      "assertions": [
+        {"text": "Verdict is a regression/gap verdict (not 'no gaps' and not purely 'cannot verify')"},
+        {"text": "Identifies the dropped 'notify' task as a regression"},
+        {"text": "Identifies the removed dependency edge into 'notify' (publish_kafka >> notify)"},
+        {"text": "Identifies retries lowered from 3 to 2 in default_args"},
+        {"text": "Classifies the bash_operator/python_operator/contrib import path changes as expected port adjustments, not regressions"},
+        {"text": "Classifies schedule_interval -> schedule as an expected rename with the same value (not a behavior change)"},
+        {"text": "Does NOT flag the removal of provide_context=True as a functional regression"},
+        {"text": "Writes a dag_comparison.md report file to the output directory"}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "clean-cosmetic-port",
+      "prompt": "Compare these two Airflow DAGs for me: FIXTURE_DIR/old_airflow_dag.py (original) and FIXTURE_DIR/new_airflow_dag.py (ported to Airflow 2). I need to confirm the port didn't drop any tasks or change any behavior before we cut over.",
+      "fixture": "clean_port",
+      "assertions": [
+        {"text": "Verdict is 'no functional gaps' / clean"},
+        {"text": "Does NOT report any dropped task (all four task_ids present in both)"},
+        {"text": "Recognizes PythonOperator -> @task build_manifest as the same task with the same callable, not a dropped/added task"},
+        {"text": "Lists the import moves, schedule rename, and provide_context removal as expected port adjustments"},
+        {"text": "Does not invent regressions that aren't there (no false positives in the regression table)"},
+        {"text": "Writes a dag_comparison.md report file to the output directory"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "dynamic-task-generation",
+      "prompt": "Diff the old vs new version of our county_loader DAG at FIXTURE_DIR/old_airflow_dag.py and FIXTURE_DIR/new_airflow_dag.py. The new one was rewritten for the new Airflow instance. Make sure no county loading tasks went missing.",
+      "fixture": "dynamic",
+      "assertions": [
+        {"text": "Recognizes tasks are generated dynamically in a loop and cannot be fully enumerated statically"},
+        {"text": "Verdict reflects uncertainty (cannot fully verify statically) rather than a false 'clean' claim"},
+        {"text": "Notes the county list source changed from a hardcoded list to Variable.get('active_counties')"},
+        {"text": "Explains that whether counties went missing depends on the runtime Variable value, routing it to manual verification"},
+        {"text": "Writes a dag_comparison.md report file to the output directory"}
+      ]
+    }
+  ]
+}
