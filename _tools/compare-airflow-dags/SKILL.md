@@ -118,8 +118,14 @@ an assumption to verify.
 
 ### 5. Write the report
 
-Write `dag_comparison.md` to the ticket folder (alongside the DAG files). Use this
-structure exactly — the verdict goes first so the reader gets the answer immediately:
+Write the report to a folder named after the DAG — `<dag_id>/dag_comparison.md`,
+relative to where the DAG files live (e.g. the ticket folder). Use the `dag_id`
+from the extractor's `dag` output (they share one when it's an old/new pair); if the
+two differ, use the new DAG's `dag_id`, and if it can't be resolved statically (e.g.
+`dag_id=DAG_NAME`), read the source to find its literal value. Create the folder if
+it doesn't exist. This keeps each DAG's report grouped under its own name when several
+DAGs are compared in the same workspace. Use this structure exactly — the verdict goes
+first so the reader gets the answer immediately:
 
 ```markdown
 # DAG Comparison: <old file> vs <new file>
