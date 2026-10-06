@@ -1,0 +1,149 @@
+{
+  "image": {
+    "image_path_format": "(0*){instrument_number}.tif",
+    "type": "multi_page_tiff"
+  },
+  "index": [
+    {
+      "columns": [
+        {
+          "keep_field": false,
+          "name": "indicator"
+        },
+        {
+          "name": "instrument_number"
+        },
+        {
+          "name": "grantor.name",
+          "party": true
+        },
+        {
+          "name": "grantee.name",
+          "party": true
+        },
+        {
+          "name": "name"
+        },
+        {
+          "name": "address_name"
+        },
+        {
+          "name": "address_1"
+        },
+        {
+          "name": "city_state"
+        },
+        {
+          "name": "zipcode"
+        },
+        {
+          "keep_field": false,
+          "name": "zero"
+        },
+        {
+          "name": "instrument_type"
+        },
+        {
+          "name": "amount"
+        },
+        {
+          "date_format": "%Y/%m/%d",
+          "ignore_bad_dates": true,
+          "name": "instrument_date"
+        },
+        {
+          "keep_field": false,
+          "name": "instrument_month"
+        },
+        {
+          "keep_field": false,
+          "name": "instrument_day"
+        },
+        {
+          "keep_field": false,
+          "name": "instrument_hour"
+        },
+        {
+          "keep_field": false,
+          "name": "instrument_minute"
+        },
+        {
+          "date_format": "%Y/%m/%d %H:%M",
+          "name": "file_date"
+        },
+        {
+          "keep_field": false,
+          "name": "file_month"
+        },
+        {
+          "keep_field": false,
+          "name": "file_day"
+        },
+        {
+          "keep_field": false,
+          "name": "file_hour"
+        },
+        {
+          "keep_field": false,
+          "name": "file_minute"
+        },
+        {
+          "keep_field": false,
+          "name": "file_am/pm"
+        },
+        {
+          "name": "acres"
+        },
+        {
+          "date_format": "%Y/%m/%d",
+          "ignore_bad_dates": true,
+          "name": "_date"
+        },
+        {
+          "keep_field": false,
+          "name": "_month"
+        },
+        {
+          "keep_field": false,
+          "name": "_day"
+        },
+        {
+          "keep_field": false,
+          "name": "_hour"
+        },
+        {
+          "keep_field": false,
+          "name": "_minute"
+        },
+        {
+          "location": true,
+          "name": "location.legal_description"
+        },
+        {
+          "keep_field": false,
+          "name": "prior_reference.instrument_number",
+          "prior_reference": true
+        },
+        {
+          "keep_field": false,
+          "name": "empty"
+        },
+        {
+          "keep_field": false,
+          "name": "a"
+        }
+      ],
+      "delimiter": "\t",
+      "has_footer": true,
+      "has_header": false,
+      "has_quoting": false,
+      "index_file_regex": "ORANGE(.*).txt",
+      "type": "read_orange"
+    }
+  ],
+  "instrument_number_format": {
+    "keep_indexed_value": true
+  },
+  "join_field": "instrument_number",
+  "type_is_abbreviated": false
+}
