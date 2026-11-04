@@ -71,7 +71,25 @@ Prod. `ch-lease-exporter`, CSTitle `countyScansTitle.dbo.tblrecord`, `tblExportL
 
 ## Approach
 
-<!-- Populated during planning session -->
+### Decisions
+
+- Data cleanup scope: only the non-lease rows blocking the exporter pool (stuck on a join). Non-lease records already exported to DS9 `legal_lease` are out of scope; size them from `query_1` result 2 and raise a follow-up card if large.
+
+- Review sheet: one CSV, `query_3/stuck_records_review.csv`, covers every stuck record (REOGL included, `direction` column separates lease type, non-lease type, no type and REOGL). The user opens each image and sets `actualDocType`, `isLease` Y/N, `action` (REKEY or STATUS17) and `notes`. REKEY joins the data-entry re-key list; STATUS17 means `recordIsLease` 0 and `StatusID` 17, run manually. REOGL is decided per record, not by type.
+- Fix strategy: drain via data cleanup first. A `ch-lease-exporter` code change (joins inside TOP, ORDER BY) is a last resort, only if the data fix cannot keep the stuck set below 500.
+- Recurrence control: count-and-threshold monitoring, no automated cleanup (an automated status/flag change could break things; all cleanup stays manual). Thresholds WARN 250, ALERT 400 of the 500 pool.
+- **Action: add `query_2/exporter_stuck_monitor_cstitle.sql` to Martin Ilecek's monitoring notebook** so the stuck count is tracked going forward.
+- Cleanup order (all run manually by the user, never scripted):
+  1. Stuck non-lease and no-type rows, including VOID and BLNK, to `recordIsLease` 0 and `StatusID` 17. Fastest way below the 500 pool.
+  2. Re-run `query_2`, confirm the count dropped, then watch `tblExportLog` for the 8,504 starved leases to drain in batches of 500.
+  3. Data entry re-keys every row marked REKEY in `stuck_records_review.csv` (this covers the lease-type rows from `LND-7358/query_38` result 4 and any REOGL or misclassified rows).
+- VOID and BLNK keep arriving after the flip; the upstream source of `recordIsLease` 1 on them is still unfound (loader or keying tool).
+- Upstream investigation (who sets `recordIsLease` 1 on VOID, BLNK and the NM bulk loads) stays on this card. Any code or config change that comes out of it goes on a separate card.
+
+### Investigation
+
+- First step (user): check the instrument type groups for misclassification in both directions, a lease keyed with a non-lease type or a non-lease keyed with a lease type. `query_3/stuck_records_review_cstitle.sql` result 1 groups the stuck rows by state, county, type and created date; result 2 lists every stuck record with an image path for `query_3/stuck_records_review.csv`. Not yet run.
+- `query_1/non_lease_instrument_types_cstitle.sql` (CSTitle, read-only): non-lease instrument types with `recordIsLease` 1, split into already exported, stuck, exportable. REOGL is labelled separately. Not yet run.
 
 ## Completed
 
